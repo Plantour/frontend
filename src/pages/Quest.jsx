@@ -35,7 +35,7 @@ const Quest = () => {
         if (data) {
           // 데이터가 있는 경우 상태 업데이트
           setQuestDataBySeason(data);
-          console.log(data);
+          console.log("questDataBySeason", data);
         } else {
           // 데이터가 없는 경우 상태 업데이트
           console.log("no data");

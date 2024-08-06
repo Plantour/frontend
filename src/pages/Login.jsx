@@ -1,5 +1,9 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { fetchData } from "../api/FetchData";
+import { FcGoogle } from "react-icons/fc";
+import { API_URL } from "../api/apiUrl";
 
 const LoginLayout = styled.div`
   width: 100%;
@@ -11,8 +15,47 @@ const LoginLayout = styled.div`
   align-items: center;
 `;
 
+const Button = styled.button`
+  padding: 3px 10px;
+  font-size: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+`;
+
 const Login = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
+
+  //access token의 유효성 검사 로직
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      console.log("tryingfetch for 유효성검사");
+      if (accessToken) {
+        try {
+          const response = await fetchData(
+            `${API_URL}/api/auth/check-token`,
+            "GET"
+          );
+          console.log("aceesstoken유효성검사:", response);
+          if (response.status === 200 && response.isValid) {
+            setIsAuthenticated(true);
+            console.log("유효성검사200응답");
+          } else {
+            handleSignOut();
+            console.log("유효성검사200응답안옴");
+          }
+        } catch (error) {
+          console.error("Error validating token:", error);
+          handleSignOut();
+        }
+      }
+      if (!accessToken) {
+        console.log("no accessToken");
+      }
+    };
+
+    checkAuthentication();
+  }, []);
 
   const redirectToGoogleSSO = () => {
     const clientId = import.meta.env.VITE_GOOGLE_OAUTH_KEY_CLIENT_ID;
@@ -25,16 +68,20 @@ const Login = () => {
   };
 
   const handleSignOut = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
+    //localStorage.removeItem("accessToken");
+    //localStorage.removeItem("refreshToken");
+    setIsAuthenticated(false);
   };
 
   return (
     <LoginLayout>
       {accessToken ? (
-        <button onClick={handleSignOut}>Sign Out</button>
+        <Button onClick={handleSignOut}>Sign Out</Button>
       ) : (
-        <button onClick={redirectToGoogleSSO}>Sign In with Google</button>
+        <Button onClick={redirectToGoogleSSO}>
+          <FcGoogle />
+          Sign In with Google
+        </Button>
       )}
     </LoginLayout>
   );

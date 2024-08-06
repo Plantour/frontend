@@ -42,12 +42,37 @@ const GoogleOAuthCallback = () => {
 
           // JWT 토큰 추출 및 저장
           const { accessToken, refreshToken } = response;
+          console.log(
+            "access token:",
+            accessToken,
+            "refresh token:",
+            refreshToken
+          );
           if (accessToken && refreshToken) {
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
-            console.log("JWT tokens stored in localStorage");
+            console.log(
+              "Stored accessToken:",
+              localStorage.getItem("accessToken")
+            );
+            console.log(
+              "Stored refreshToken:",
+              localStorage.getItem("refreshToken")
+            );
+            // 저장 확인
+            const storedAccessToken = localStorage.getItem("accessToken");
+            const storedRefreshToken = localStorage.getItem("refreshToken");
+
+            if (storedAccessToken && storedRefreshToken) {
+              console.log("Tokens successfully stored in localStorage");
+
+              // 저장 성공 확인 후 지연된 네비게이션
+              setTimeout(() => {
+                navigate("/my");
+              }, 100); // 100ms 지연
+            }
           } else {
-            console.error("No JWT token received from server");
+            throw new Error("Failed to store tokens in localStorage");
           }
 
           // 인증 완료 후 '/my' 페이지로 리디렉션

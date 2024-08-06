@@ -20,6 +20,15 @@ const QuestStatusForm = styled.form`
   align-items: center;
 `;
 
+const CompletedQuestViewContainer = styled.div`
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 const ButtonsContainer = styled.div`
   height: 5%;
   background-color: black;
@@ -74,15 +83,26 @@ const PhotoCompletedQuest = styled.div`
   height: 375px;
 `;
 
-const StyledImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
+const TitleWrapper = styled.div`
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  border-bottom: 1px solid #ddd;
 `;
 
-const TextDataCompletedQuest = styled.textarea`
-  background-color: ivory;
+const DateCompletedQuest = styled.div``;
+
+const PlantNameCompledtedQuest = styled.h3`
+  padding-left: 10px;
+`;
+
+const ContentCompletedQuest = styled.p`
   width: 100%;
+  height: 200px;
+  padding: 10px;
+  text-align: left;
 `;
 
 //작성된 글이 있을 경우 받아오고 없으면 글작성 UI띄우기
@@ -107,6 +127,47 @@ const QuestStatus = () => {
   const [responseMessage, setResponseMessage] = useState(""); // 응답 메시지 상태
 
   const navigate = useNavigate();
+
+  const showDDMMYY = (dateStr) => {
+    // Date 객체로 변환
+    const dateObj = new Date(dateStr);
+
+    // 영국식 날짜 형식 (8th Aug 2024)
+    const day = dateObj.getDate();
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const month = monthNames[dateObj.getMonth()];
+    const year = dateObj.getFullYear();
+
+    // 서수 접미사 계산
+    const getOrdinalSuffix = (day) => {
+      if (day > 3 && day < 21) return "th"; // 4th - 20th
+      switch (day % 10) {
+        case 1:
+          return "st"; // 1st, 21st, 31st
+        case 2:
+          return "nd"; // 2nd, 22nd
+        case 3:
+          return "rd"; // 3rd, 23rd
+        default:
+          return "th"; // 4th, 5th, ...
+      }
+    };
+
+    return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
+  };
 
   // Check if there's a completed quest for this puzzleNumber
   useEffect(() => {
@@ -136,8 +197,6 @@ const QuestStatus = () => {
     }
   }, [blockId, questDataBySeason]);
 
-  console.log(imageBlob);
-
   const handleTextChange = (event) => {
     setTextData(event.target.value);
   };
@@ -145,12 +204,9 @@ const QuestStatus = () => {
   const handleImageChange = (blob) => {
     setImageBlob(blob);
   };
-  // const handleImageChange = (dataURL) => {
-  //   setImageDataURL(dataURL);
-  // };
 
   const handleDate = (date) => {
-    setToday(date);
+    setToday(showDDMMYY(date));
   };
 
   const handleBtnClose = () => {
@@ -209,17 +265,6 @@ const QuestStatus = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (imageBlob) {
-  //     // Blob을 URL로 변환
-  //     const url = URL.createObjectURL(imageBlob);
-  //     setImageUrl(url);
-
-  //     // 컴포넌트가 언마운트될 때 URL을 해제
-  //     return () => URL.revokeObjectURL(url);
-  //   }
-  // }, [imageBlob]);
-
   return (
     <>
       {isMapOpen ? (
@@ -234,8 +279,7 @@ const QuestStatus = () => {
         </>
       ) : doesCompletedQuestExist ? (
         // 작성된 데이터가 있는 경우 표시
-        <QuestStatusForm>
-          <div>{plant}</div>
+        <CompletedQuestViewContainer>
           <PhotoCompletedQuest>
             {imageBlob ? (
               <img src={imageBlob} alt="Completed Quest Image" />
@@ -243,38 +287,16 @@ const QuestStatus = () => {
               <div>No image available</div>
             )}
           </PhotoCompletedQuest>
-          <div>{today}</div>
-          <TextDataCompletedQuest>{textData}</TextDataCompletedQuest>
+          <TitleWrapper>
+            <PlantNameCompledtedQuest>{plant}</PlantNameCompledtedQuest>
+            <DateCompletedQuest>{today}</DateCompletedQuest>
+          </TitleWrapper>
+
+          <ContentCompletedQuest>{textData}</ContentCompletedQuest>
 
           <div></div>
-        </QuestStatusForm>
+        </CompletedQuestViewContainer>
       ) : (
-        // <QuestStatusForm>
-        //   <ButtonsContainer>
-        //     <CancelBtn to="/quest">X</CancelBtn>
-        //   </ButtonsContainer>
-        //   <TextArea
-        //     value={textData}
-        //     onChange={handleTextChange}
-        //     handleDate={handleDate}
-        //     plant={plant}
-        //     setPlant={setPlant}
-        //     setPlantId={setPlantId}
-        //     isMapOpen={isMapOpen}
-        //     setIsMapOpen={setIsMapOpen}
-        //     disabled // 읽기 전용 모드
-        //   />
-        //   <CameraComponent
-        //     // imageDataURL={imageDataURL}
-        //     imageBlob={imageBlob}
-        //     setImageBlob={setImageBlob}
-        //     onImageCapture={handleImageChange}
-        //     disabled // 이미지 캡처 불가능
-        //   />
-        //   {isMapOpen && <StyledMapComponent />}
-        //   <ResponseMessage>{responseMessage}</ResponseMessage>
-        // </QuestStatusForm>
-
         // 데이터가 없는 경우 폼 표시
         <QuestStatusForm onSubmit={handleSubmit}>
           <ButtonsContainer>
