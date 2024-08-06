@@ -6,6 +6,42 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { questDataState, selectedSeasonState } from "../../state/atom";
 import { fetchData } from "../../api/FetchData";
 import { API_URL } from "../../api/apiUrl";
+import quest_spring_01 from "../../assets/quest_spring_01.png";
+import quest_spring_02 from "../../assets/quest_spring_02.png";
+import quest_spring_03 from "../../assets/quest_spring_03.png";
+import quest_spring_04 from "../../assets/quest_spring_04.png";
+import quest_spring_05 from "../../assets/quest_spring_05.png";
+import quest_spring_06 from "../../assets/quest_spring_06.png";
+import quest_spring_07 from "../../assets/quest_spring_07.png";
+import quest_spring_08 from "../../assets/quest_spring_08.png";
+import quest_spring_09 from "../../assets/quest_spring_09.png";
+import quest_summer_01 from "../../assets/quest_summer_01.png";
+import quest_summer_02 from "../../assets/quest_summer_02.png";
+import quest_summer_03 from "../../assets/quest_summer_03.png";
+import quest_summer_04 from "../../assets/quest_summer_04.png";
+import quest_summer_05 from "../../assets/quest_summer_05.png";
+import quest_summer_06 from "../../assets/quest_summer_06.png";
+import quest_summer_07 from "../../assets/quest_summer_07.png";
+import quest_summer_08 from "../../assets/quest_summer_08.png";
+import quest_summer_09 from "../../assets/quest_summer_09.png";
+import quest_autumn_01 from "../../assets/quest_autumn_01.png";
+import quest_autumn_02 from "../../assets/quest_autumn_02.png";
+import quest_autumn_03 from "../../assets/quest_autumn_03.png";
+import quest_autumn_04 from "../../assets/quest_autumn_04.png";
+import quest_autumn_05 from "../../assets/quest_autumn_05.png";
+import quest_autumn_06 from "../../assets/quest_autumn_06.png";
+import quest_autumn_07 from "../../assets/quest_autumn_07.png";
+import quest_autumn_08 from "../../assets/quest_autumn_08.png";
+import quest_autumn_09 from "../../assets/quest_autumn_09.png";
+import quest_winter_01 from "../../assets/quest_winter_01.png";
+import quest_winter_02 from "../../assets/quest_winter_02.png";
+import quest_winter_03 from "../../assets/quest_winter_03.png";
+import quest_winter_04 from "../../assets/quest_winter_04.png";
+import quest_winter_05 from "../../assets/quest_winter_05.png";
+import quest_winter_06 from "../../assets/quest_winter_06.png";
+import quest_winter_07 from "../../assets/quest_winter_07.png";
+import quest_winter_08 from "../../assets/quest_winter_08.png";
+import quest_winter_09 from "../../assets/quest_winter_09.png";
 
 const fadeIn = keyframes`
   from {
@@ -44,13 +80,62 @@ const StampBlock = styled(Link)`
 `;
 
 const ImgSticker = styled.img`
-  width: 30px;
+  width: 100%;
+  height: 100%;
   ${(props) =>
     props.animate &&
     css`
       animation: ${fadeIn} 0.5s ease-in-out;
     `}
+  filter: ${(props) => (props.completed ? "none" : "grayscale(100%)")};
 `;
+
+const imageMap = {
+  SPRING: {
+    1: quest_spring_01,
+    2: quest_spring_02,
+    3: quest_spring_03,
+    4: quest_spring_04,
+    5: quest_spring_05,
+    6: quest_spring_06,
+    7: quest_spring_07,
+    8: quest_spring_08,
+    9: quest_spring_09,
+  },
+  SUMMER: {
+    1: quest_summer_01,
+    2: quest_summer_02,
+    3: quest_summer_03,
+    4: quest_summer_04,
+    5: quest_summer_05,
+    6: quest_summer_06,
+    7: quest_summer_07,
+    8: quest_summer_08,
+    9: quest_summer_09,
+  },
+  AUTUMN: {
+    1: quest_autumn_01,
+    2: quest_autumn_02,
+    3: quest_autumn_03,
+    4: quest_autumn_04,
+    5: quest_autumn_05,
+    6: quest_autumn_06,
+    7: quest_autumn_07,
+    8: quest_autumn_08,
+    9: quest_autumn_09,
+  },
+  WINTER: {
+    1: quest_winter_01,
+    2: quest_winter_02,
+    3: quest_winter_03,
+    4: quest_winter_04,
+    5: quest_winter_05,
+    6: quest_winter_06,
+    7: quest_winter_07,
+    8: quest_winter_08,
+    9: quest_winter_09,
+  },
+};
 
 const Stamp = ({ animateId, setAnimateId }) => {
   const [selectedSeason, setSelectedSeason] =
@@ -118,6 +203,9 @@ const Stamp = ({ animateId, setAnimateId }) => {
     questDataBySeason.completedQuests.map((quest) => quest.puzzleNumber)
   );
 
+  // 선택된 시즌에 맞는 이미지 맵 선택
+  const currentImageMap = imageMap[selectedSeason] || {};
+
   return (
     <StampLayout>
       <GridContainer>
@@ -126,15 +214,12 @@ const Stamp = ({ animateId, setAnimateId }) => {
             key={block.blockId}
             to={`/queststatus/${selectedSeason}/${block.blockId}`}
           >
-            {completedBlockIds.has(block.blockId) ? (
-              <ImgSticker
-                animate={block.blockId === parseInt(animateId, 10)} // 애니메이션 적용 조건
-                src={flowerSticker}
-                alt="completed"
-              />
-            ) : (
-              block.blockId
-            )}
+            <ImgSticker
+              animate={block.blockId === parseInt(animateId, 10)} // 애니메이션 적용 조건
+              src={currentImageMap[block.blockId]}
+              alt={`block-${block.blockId}`}
+              completed={completedBlockIds.has(block.blockId)} //완료된 블록 여부전달
+            />
           </StampBlock>
         ))}
       </GridContainer>

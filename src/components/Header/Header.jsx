@@ -71,7 +71,7 @@ const StyledLiaSmileWink = styled(LiaSmileWink)`
 
 const checkLogin = () => {
   // 로그인 여부를 확인하는 로직. (로컬 스토리지에서 토큰 확인)
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("jwt_token");
   console.log(token);
   return token !== null;
 };

@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { fetchData } from "../api/FetchData";
+import { API_URL } from "../api/apiUrl";
 
 const MyLayout = styled.div`
   width: 100%;
@@ -12,15 +15,63 @@ const MyLayout = styled.div`
 const LogoutButton = styled.button``;
 
 const My = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
   const logoutBtnClickHandler = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+  const handleSignOut = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setIsAuthenticated(false);
+  };
+
+  const redirectToGoogleSSO = () => {
+    const clientId = import.meta.env.VITE_GOOGLE_OAUTH_KEY_CLIENT_ID;
+    const redirectUri = "http://localhost:5173/oauth/callback"; //배포후 변경 필요
+    const scope = "openid profile email";
+    const responseType = "code"; //인가 코드(authorization code)를 받는다.
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
+
+    window.location.href = authUrl;
+  };
+
+  //access token의 유효성 검사 로직
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      console.log("tryingfetch");
+      if (accessToken) {
+        try {
+          const response = await fetchData(
+            `${API_URL}/api/auth/check-token`,
+            "GET"
+          );
+          console.log("aceesstoken유효성검사:", response);
+          if (response.status === 200 && response.isValid) {
+            setIsAuthenticated(true);
+          } else {
+            handleSignOut();
+          }
+        } catch (error) {
+          console.error("Error validating token:", error);
+          handleSignOut();
+        }
+      }
+    };
+
+    checkAuthentication();
+  }, []);
   return (
     <MyLayout>
       My
-      <LogoutButton onClick={logoutBtnClickHandler}>Logout</LogoutButton>
+      {accessToken ? (
+        <LogoutButton onClick={logoutBtnClickHandler}>Sign Out</LogoutButton>
+      ) : (
+        <button onClick={redirectToGoogleSSO}>Sign In with Google</button>
+      )}
     </MyLayout>
   );
 };
