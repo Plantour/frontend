@@ -38,14 +38,16 @@ const GoogleOAuthCallback = () => {
           // );
 
           //테스트용 기본 fetch 코드
-
-          const response = await fetch(`${API_URL}/api/auth/google`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ code }),
-          });
+          const response = await fetch(
+            "https://plantour.site:8443/api/auth/google",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ code }),
+            }
+          );
 
           console.log("Server response:", response);
 
