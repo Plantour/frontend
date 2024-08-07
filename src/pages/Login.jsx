@@ -59,7 +59,7 @@ const Login = () => {
 
   const redirectToGoogleSSO = () => {
     const clientId = import.meta.env.VITE_GOOGLE_OAUTH_KEY_CLIENT_ID;
-    const redirectUri = `${API_URL}/oauth/callback`;
+    const redirectUri = `${API_URL}/api/oauth/callback`;
     const scope = "openid profile email";
     const responseType = "code"; //인가 코드(authorization code)를 받는다.
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
