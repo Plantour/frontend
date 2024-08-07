@@ -18,23 +18,23 @@ import MapModal from "./MapModal";
 const MapContainer = styled.div`
   width: 100%;
   height: calc(100vh - 100px);
+  position: relative;
 `;
 
 const SearchBoxContainer = styled.div`
   position: absolute;
-  top: 120px;
+  top: 80px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
   width: 250px;
-  border-radius: 50%;
-  box-sizing: border-box;
 `;
 
 const SearchInput = styled.input`
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
   font-size: 16px;
+  text-indent: 10px; /* 텍스트를 왼쪽에서 10px 들여쓰기 */
 `;
 
 // 컴포넌트 외부에 libraries 배열을 정의
@@ -54,16 +54,6 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
   const mapRef = useRef(null);
   const searchBoxRef = useRef(null);
   const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
-
-  // const isValidMarkerData = (data) => {
-  //   return (
-  //     Array.isArray(data.markers) &&
-  //     data.markers.every(
-  //       (marker) =>
-  //         typeof marker.lat === "number" && typeof marker.lng === "number"
-  //     )
-  //   );
-  // };
 
   // 사용자 위치 정보를 백엔드로 전송하고 주변 마커를 받아오는 함수 (퀘스트데이터)
   const fetchMarkers = async (latitude, longitude) => {

@@ -39,7 +39,7 @@ const My = () => {
     window.location.href = authUrl;
   };
 
-  //access token의 유효성 검사 로직
+  //access token의 유효성 검사 로직  //"true","false"로 반환!?
   useEffect(() => {
     const checkAuthentication = async () => {
       console.log("tryingfetch");
@@ -64,9 +64,11 @@ const My = () => {
 
     checkAuthentication();
   }, []);
+
   return (
     <MyLayout>
-      My
+      {/* My 원래 마이페이지에서는 signIn이 안보여야함(토큰없음 login으로
+      넘어가니까) */}
       {accessToken ? (
         <LogoutButton onClick={logoutBtnClickHandler}>Sign Out</LogoutButton>
       ) : (

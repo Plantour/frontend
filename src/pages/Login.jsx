@@ -59,7 +59,7 @@ const Login = () => {
 
   const redirectToGoogleSSO = () => {
     const clientId = import.meta.env.VITE_GOOGLE_OAUTH_KEY_CLIENT_ID;
-    const redirectUri = "http://localhost:5173/oauth/callback"; //배포후 변경 필요
+    const redirectUri = `${API_URL}/oauth/callback`;
     const scope = "openid profile email";
     const responseType = "code"; //인가 코드(authorization code)를 받는다.
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
@@ -68,13 +68,14 @@ const Login = () => {
   };
 
   const handleSignOut = () => {
-    //localStorage.removeItem("accessToken");
-    //localStorage.removeItem("refreshToken");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     setIsAuthenticated(false);
   };
 
   return (
     <LoginLayout>
+      {/* 원래 로그인페이지에서는 signout이 안보여야함(토큰있음 my로 넘어가니까) */}
       {accessToken ? (
         <Button onClick={handleSignOut}>Sign Out</Button>
       ) : (

@@ -12,6 +12,7 @@ const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 `;
 
 const ModalContent = styled.div`
@@ -25,6 +26,7 @@ const ModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
+  z-index: 3;
 `;
 
 const SectionTopContainer = styled.div`
