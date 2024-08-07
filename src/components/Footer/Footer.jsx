@@ -58,6 +58,7 @@ const IconTextWrapper = styled(Link)`
   transform: translate(-50%, -50%);
   text-decoration: none; /*밑줄제거 */
   color: inherit; /*기본색상상속*/
+  white-space: nowrap; /*텍스트 줄바꿈 없이 한줄로 표시*/
 `;
 
 const StyledHiOutlineMap = styled(HiOutlineMap)`
