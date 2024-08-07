@@ -39,7 +39,7 @@ const GoogleOAuthCallback = () => {
 
           //테스트용 기본 fetch 코드
           const response = await fetch(
-            "https://plantour.site:8443/api/auth/google",
+            "https://plantour.site/api/auth/google",
             {
               method: "POST",
               headers: {
