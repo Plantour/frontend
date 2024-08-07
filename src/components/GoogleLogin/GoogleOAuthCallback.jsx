@@ -31,11 +31,21 @@ const GoogleOAuthCallback = () => {
         // 'code' 값이 존재할 때만 서버에 POST 요청을 보냄
         if (code) {
           // 액세스 토큰과 리프레시 토큰을 가져오기 위해 fetchData 호출
-          const response = await fetchData(
-            `${API_URL}/api/auth/google`,
-            "POST",
-            { code: code }
-          );
+          // const response = await fetchData(
+          //   `${API_URL}/api/auth/google`,
+          //   "POST",
+          //   { code: code }
+          // );
+
+          //테스트용 기본 fetch 코드
+
+          const response = await fetch(`${API_URL}/api/auth/google`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ code }),
+          });
 
           console.log("Server response:", response);
 
