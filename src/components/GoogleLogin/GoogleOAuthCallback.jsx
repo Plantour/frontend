@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { API_URL } from "../../api/apiUrl";
@@ -41,7 +40,8 @@ const GoogleOAuthCallback = () => {
           console.log("Server response:", response);
 
           // JWT 토큰 추출 및 저장
-          const { accessToken, refreshToken } = response;
+          const accessToken = response.accessToken;
+          const refreshToken = response.refreshToken;
           console.log(
             "access token:",
             accessToken,
@@ -87,7 +87,7 @@ const GoogleOAuthCallback = () => {
     fetchDataAndStoreTokens();
   }, [location, navigate]);
 
-  return <GoogleOAuthCallbackLayout>Redirecting...</GoogleOAuthCallbackLayout>;
+  return <GoogleOAuthCallbackLayout>Loading...</GoogleOAuthCallbackLayout>;
 };
 
 export default GoogleOAuthCallback;

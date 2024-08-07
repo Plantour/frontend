@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes, css } from "styled-components";
-import flowerSticker from "../../assets/flowerSticker.png";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { questDataState, selectedSeasonState } from "../../state/atom";
-import { fetchData } from "../../api/FetchData";
-import { API_URL } from "../../api/apiUrl";
 import quest_spring_01 from "../../assets/quest_spring_01.png";
 import quest_spring_02 from "../../assets/quest_spring_02.png";
 import quest_spring_03 from "../../assets/quest_spring_03.png";

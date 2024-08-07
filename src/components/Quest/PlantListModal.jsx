@@ -18,6 +18,7 @@ const ModalBackground = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 `;
 
 const ModalLayout = styled.div`
@@ -27,7 +28,7 @@ const ModalLayout = styled.div`
   flex-direction: column;
   background-color: white;
   border-radius: 40px;
-  padding: 40px 0;
+  padding: 30px 0;
   box-sizing: border-box;
   overflow: hidden;
 `;
@@ -35,7 +36,7 @@ const ModalLayout = styled.div`
 const ModalTitle = styled.div`
   text-align: start;
   font-size: 2.25rem;
-  padding: 10px 20px;
+  padding: 5px 20px;
 `;
 
 const PlantNameContainer = styled.div`
@@ -50,6 +51,13 @@ const PlantName = styled.div`
   background-color: lightgoldenrodyellow;
   border-radius: 10px;
   padding: 2px 8px;
+  font-size: 0.75rem;
+  max-width: 70px;
+
+  // 텍스트가 넘칠 경우 줄임표시
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   //css헬퍼. 선택된 PlantName버튼 색깔 바꾸기
   ${(props) =>
@@ -62,7 +70,7 @@ const PlantName = styled.div`
 const PlantInfoContainer = styled.div`
   width: 100%;
   display: flex;
-  padding: 20px 0 0 0;
+  padding: 10px 0 0 0;
   overflow: hidden;
   gap: 10px;
 `;
@@ -92,22 +100,17 @@ const PlantImage = styled.div`
 `;
 
 const PlantDesc = styled.div`
-  width: 95%;
-  height: 33%;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
-  margin-bottom: 5px;
-  border: 2px solid white;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
+  padding-top: 10px;
 `;
 
 const PlantNameOnDesc = styled.div`
   font-size: 1.1rem;
-
+  font-weight: 600;
   margin-left: 21px;
   color: black;
 `;
@@ -166,18 +169,15 @@ const PlantListModal = ({ isModalOpen, setIsModalOpen, questDataBySeason }) => {
               >
                 {questDataBySeason.plantData.plants.map((plant, index) => (
                   <div key={index}>
-                    <PlantImage image={plant.imgUrl}>
-                      <PlantDesc>
-                        <PlantNameOnDesc>{plant.plantName}</PlantNameOnDesc>
-                        <Ul>
-                          {plant.characteristics.map(
-                            (characteristic, index) => (
-                              <li key={index}>{characteristic}</li>
-                            )
-                          )}
-                        </Ul>
-                      </PlantDesc>
-                    </PlantImage>
+                    <PlantImage image={plant.imgUrl}></PlantImage>
+                    <PlantDesc>
+                      <PlantNameOnDesc>{plant.plantName}</PlantNameOnDesc>
+                      <Ul>
+                        {plant.characteristics.map((characteristic, index) => (
+                          <li key={index}>{characteristic}</li>
+                        ))}
+                      </Ul>
+                    </PlantDesc>
                   </div>
                 ))}
               </Slide>

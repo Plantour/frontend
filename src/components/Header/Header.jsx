@@ -69,16 +69,16 @@ const StyledLiaSmileWink = styled(LiaSmileWink)`
   height: 1.5rem;
 `;
 
-const checkLogin = () => {
-  // 로그인 여부를 확인하는 로직. (로컬 스토리지에서 토큰 확인)
-  const token = localStorage.getItem("jwt_token");
-  console.log(token);
-  return token !== null;
-};
-
 const Header = () => {
   const [isMyHovered, setIsMyHovered] = useState(false);
   const navigate = useNavigate();
+
+  //로그인 여부를 확인하는 로직 (로컬 스토리지에서 토큰 확인)
+  const checkLogin = () => {
+    const token = localStorage.getItem("jwt_token"); //accessToken이 아니고??
+    console.log(token);
+    return token !== null;
+  };
 
   const handleClick = (e) => {
     e.preventDefault(); // 기본 링크 동작을 막음
@@ -94,7 +94,6 @@ const Header = () => {
       <IconContainer>
         <Circle />
         <IconTextWrapper
-          to="/"
           onClick={handleClick}
           onMouseEnter={() => setIsMyHovered(true)}
           onMouseLeave={() => setIsMyHovered(false)}
