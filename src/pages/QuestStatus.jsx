@@ -8,6 +8,7 @@ import { questDataState, selectedSeasonState } from "../state/atom";
 import MapComponent from "../components/Map/MapComponent";
 import { fetchData } from "../api/FetchData";
 import { API_URL } from "../api/apiUrl";
+import { IoMdClose } from "react-icons/io";
 
 const QuestStatusForm = styled.form`
   width: 100%;
@@ -18,6 +19,7 @@ const QuestStatusForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.lightgrey1};
 `;
 
 const CompletedQuestViewContainer = styled.div`
@@ -30,25 +32,40 @@ const CompletedQuestViewContainer = styled.div`
 `;
 
 const ButtonsContainer = styled.div`
+  width: 100%;
   height: 5%;
-  background-color: black;
-  color: white;
+  background-color: #efefef;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
-const CancelBtn = styled(Link)`
-  text-decoration: none; /* 밑줄 제거 */
-  color: inherit; /* 부모 요소의 색상 상속 */
-  font-size: 1.25rem;
-  margin-left: 10px;
+const CancelBtnAndTextWrapper = styled.div`
+  display: flex;
+  font-weight: bold;
+  color: black;
+`;
+
+const CancelBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+`;
+
+const StyledIoMdClose = styled(IoMdClose)`
+  font-size: 1.5rem;
   cursor: pointer;
 `;
 
-const SubmitBtn = styled.button`
-  background-color: black;
-  color: white;
-  font-size: 1.25rem;
+const PostBtn = styled.button`
+  color: #289bff;
   margin-right: 10px;
   border: none;
   cursor: pointer;
@@ -63,9 +80,17 @@ const StyledMapComponent = styled(MapComponent)`
 `;
 
 const BtnMapClose = styled.button`
-  width: 100%;
+  width: 180px;
+  height: 45px;
   background-color: black;
   color: white;
+  border-radius: 25px;
+  position: absolute;
+  bottom: 100px;
+  z-index: 1000;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
 `;
 
 const ResponseMessage = styled.div`
@@ -111,7 +136,7 @@ const QuestStatus = () => {
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const { blockId } = useParams(); // URL에서 블록 번호를 가져옴
-  const [plant, setPlant] = useState("Select Plant");
+  const [plant, setPlant] = useState("Select a Plant");
   const [plantId, setPlantId] = useState(null);
   const [textData, setTextData] = useState(null);
   const [today, setToday] = useState(null);
@@ -120,8 +145,8 @@ const QuestStatus = () => {
   //const [imageDataURL, setImageDataURL] = useState(null);
   const [isMapOpen, setIsMapOpen] = useState(false);
   const [markerPosition, setMarkerPosition] = useState({
-    latitude: 51.341601163436756,
-    longitude: -0.2596770172482633,
+    latitude: null,
+    longitude: null,
   });
   const [doesCompletedQuestExist, setDoesCompletedQuestExist] = useState(false); // 글이 존재하는지 여부
   const [responseMessage, setResponseMessage] = useState(""); // 응답 메시지 상태
@@ -300,9 +325,19 @@ const QuestStatus = () => {
         // 데이터가 없는 경우 폼 표시
         <QuestStatusForm onSubmit={handleSubmit}>
           <ButtonsContainer>
+            <CancelBtnAndTextWrapper>
+              <CancelBtnWrapper to="/">
+                <StyledIoMdClose />
+              </CancelBtnWrapper>
+              <div>Completed a quest</div>
+            </CancelBtnAndTextWrapper>
+
+            <PostBtn type="submit">Post</PostBtn>
+          </ButtonsContainer>
+          {/* <ButtonsContainer>
             <CancelBtn to="/quest">X</CancelBtn>
             <SubmitBtn type="submit">V</SubmitBtn>
-          </ButtonsContainer>
+          </ButtonsContainer> */}
           <TextArea
             value={textData}
             onChange={handleTextChange}
@@ -312,6 +347,7 @@ const QuestStatus = () => {
             setPlantId={setPlantId}
             isMapOpen={isMapOpen}
             setIsMapOpen={setIsMapOpen}
+            markerPosition={markerPosition}
           />
           <CameraComponent
             imageBlob={imageBlob}
