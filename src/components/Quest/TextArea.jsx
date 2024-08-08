@@ -147,7 +147,7 @@ const TextArea = ({
           `${API_URL}/api/quests?season=${selectedSeason}`
         ); //fetchData함수 외부에선언함 (api폴더)
 
-        console.log(response);
+        console.log("seasonplantlist:", response);
         setSeasonplantList(response);
       } catch (error) {
         console.error("Error fetching plant data:", error);
