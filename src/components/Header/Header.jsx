@@ -75,9 +75,9 @@ const Header = () => {
 
   //로그인 여부를 확인하는 로직 (로컬 스토리지에서 토큰 확인)
   const checkLogin = () => {
-    const token = localStorage.getItem("jwt_token"); //accessToken이 아니고??
-    console.log(token);
-    return token !== null;
+    const accessToken = localStorage.getItem("accessToken");
+    console.log("acceess token:", accessToken);
+    return accessToken ? true : false;
   };
 
   const handleClick = (e) => {
