@@ -91,7 +91,7 @@ const GoogleOAuthCallback = () => {
           }
 
           // 인증 완료 후 '/my' 페이지로 리디렉션
-          navigate("/my");
+          //navigate("/my");
         }
       } catch (error) {
         console.error("Error during authentication", error);
