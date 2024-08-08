@@ -44,7 +44,7 @@ const My = () => {
     window.location.href = authUrl;
   };
 
-  //access token의 유효성 검사 로직  //"true","false"로 반환!?
+  //access token의 유효성 검사 로직
   useEffect(() => {
     const checkAuthentication = async () => {
       console.log("tryingfetch");
@@ -55,7 +55,7 @@ const My = () => {
             "GET"
           );
           console.log("accesstoken유효성검사:", response);
-          if (response.status === 200 && response.isValid) {
+          if (response.valid) {
             setIsAuthenticated(true);
           } else {
             handleSignOut();
