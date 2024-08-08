@@ -12,7 +12,12 @@ const MyLayout = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const LogoutButton = styled.button``;
+const LogoutButton = styled.button`
+  padding: 3px 10px;
+  font-size: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+`;
 
 const My = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

@@ -36,13 +36,12 @@ const Login = () => {
             `${API_URL}/api/auth/check-token`,
             "GET"
           );
-          console.log("aceesstoken유효성검사:", response);
-          if (response.status === 200 && response.valid) {
+          if (response.valid) {
             setIsAuthenticated(true);
-            console.log("유효성검사200응답");
+            console.log("유효성검사 true");
           } else {
             handleSignOut();
-            console.log("유효성검사200응답안옴");
+            console.log("유효성검사 false");
           }
         } catch (error) {
           console.error("Error validating token:", error);
@@ -51,6 +50,7 @@ const Login = () => {
       }
       if (!accessToken) {
         console.log("no accessToken");
+        handleSignOut();
       }
     };
 
