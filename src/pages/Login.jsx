@@ -37,7 +37,7 @@ const Login = () => {
             "GET"
           );
           console.log("aceesstoken유효성검사:", response);
-          if (response.status === 200 && response.isValid) {
+          if (response.status === 200 && response.valid) {
             setIsAuthenticated(true);
             console.log("유효성검사200응답");
           } else {
