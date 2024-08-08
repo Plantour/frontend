@@ -82,9 +82,9 @@ const GoogleOAuthCallback = () => {
               console.log("Tokens successfully stored in localStorage");
 
               // 저장 성공 확인 후 지연된 네비게이션
-              setTimeout(() => {
-                navigate("/my");
-              }, 100); // 100ms 지연
+              // setTimeout(() => {
+              //   navigate("/my");
+              // }, 100); // 100ms 지연
             }
           } else {
             throw new Error("Failed to store tokens in localStorage");
