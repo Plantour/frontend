@@ -30,10 +30,14 @@ const My = () => {
   // };
 
   const handleSignOut = () => {
+    console.log("Sign out triggered");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     setIsAuthenticated(false);
-    navigate("/login");
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 100); // 100ms 지연
   };
 
   // const redirectToGoogleSSO = () => {
