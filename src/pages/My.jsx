@@ -66,19 +66,15 @@ const My = () => {
         }
       }
     };
-
     checkAuthentication();
   }, []);
 
   return (
     <MyLayout>
+      <h1>My Page</h1>
       {/* My 원래 마이페이지에서는 signIn이 안보여야함(토큰없음 login으로
       넘어가니까) */}
-      {accessToken ? (
-        <LogoutButton onClick={logoutBtnClickHandler}>Sign Out</LogoutButton>
-      ) : (
-        <button onClick={redirectToGoogleSSO}>Sign In with Google</button>
-      )}
+      <LogoutButton onClick={logoutBtnClickHandler}>Sign Out</LogoutButton>
     </MyLayout>
   );
 };
