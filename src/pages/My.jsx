@@ -23,26 +23,32 @@ const My = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
-  const logoutBtnClickHandler = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
+
+  // const logoutBtnClickHandler = () => {
+  //   localStorage.removeItem("token");
+  //   navigate("/login");
+  // };
 
   const handleSignOut = () => {
+    console.log("Sign out triggered");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     setIsAuthenticated(false);
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 100); // 100ms 지연
   };
 
-  const redirectToGoogleSSO = () => {
-    const clientId = import.meta.env.VITE_GOOGLE_OAUTH_KEY_CLIENT_ID;
-    const redirectUri = "http://localhost:5173/oauth/callback"; //배포후 변경 필요
-    const scope = "openid profile email";
-    const responseType = "code"; //인가 코드(authorization code)를 받는다.
-    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
+  // const redirectToGoogleSSO = () => {
+  //   const clientId = import.meta.env.VITE_GOOGLE_OAUTH_KEY_CLIENT_ID;
+  //   const redirectUri = "http://localhost:5173/oauth/callback"; //배포후 변경 필요
+  //   const scope = "openid profile email";
+  //   const responseType = "code"; //인가 코드(authorization code)를 받는다.
+  //   const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
 
-    window.location.href = authUrl;
-  };
+  //   window.location.href = authUrl;
+  // };
 
   //access token의 유효성 검사 로직
   useEffect(() => {
@@ -74,7 +80,7 @@ const My = () => {
       <h1>My Page</h1>
       {/* My 원래 마이페이지에서는 signIn이 안보여야함(토큰없음 login으로
       넘어가니까) */}
-      <LogoutButton onClick={logoutBtnClickHandler}>Sign Out</LogoutButton>
+      <LogoutButton onClick={handleSignOut}>Sign Out</LogoutButton>
     </MyLayout>
   );
 };
