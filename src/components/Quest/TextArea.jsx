@@ -110,6 +110,8 @@ const TextArea = ({
 }) => {
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
+  const [questDataBySeason, setQuestDataBySeason] =
+    useRecoilState(questDataState);
   const [seasonplantList, setSeasonplantList] = useState(mockSeasonPlantList);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -139,23 +141,23 @@ const TextArea = ({
     console.log(isDropdownOpen); //함수가 비동기적으로 동작해서 열렸을때 false가 찍힘. 기능적으로는 이상이 없어서 수정하지 않음
   };
 
-  useEffect(() => {
-    const fetchplantData = async () => {
-      try {
-        console.log("trying fetch");
-        const response = await fetchData(
-          `${API_URL}/api/quests?season=${selectedSeason}`
-        ); //fetchData함수 외부에선언함 (api폴더)
+  // useEffect(() => {
+  //   const fetchplantData = async () => {
+  //     try {
+  //       console.log("trying fetch");
+  //       const response = await fetchData(
+  //         `${API_URL}/api/quests?season=${selectedSeason}`
+  //       ); //fetchData함수 외부에선언함 (api폴더)
 
-        console.log("seasonplantlist:", response);
-        setSeasonplantList(response);
-      } catch (error) {
-        console.error("Error fetching plant data:", error);
-      }
-    };
+  //       console.log("seasonplantlist:", response);
+  //       setSeasonplantList(response);
+  //     } catch (error) {
+  //       console.error("Error fetching plant data:", error);
+  //     }
+  //   };
 
-    fetchplantData();
-  }, []);
+  //   fetchplantData();
+  // }, []);
 
   return (
     <TextAreaLayout>
@@ -169,7 +171,7 @@ const TextArea = ({
       </PlantListToggle>
       {isDropdownOpen && (
         <PlantList>
-          {seasonplantList.plants.map((item) => (
+          {questDataBySeason.plantData.plants.map((item) => (
             <PlantListItem
               key={item.plantId}
               onClick={() => handleplantSelection(item.plantName, item.plantId)}
