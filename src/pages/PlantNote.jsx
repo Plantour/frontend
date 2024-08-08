@@ -51,14 +51,18 @@ const StyledMapComponent = styled(MapComponent)`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 60%;
 `;
 
 const BtnMapClose = styled.button`
-  width: 100%;
+  width: 150px;
+  height: 30px;
   background-color: black;
   color: white;
+  border-radius: 20px;
+  position: absolute;
+  top: 100px; /* 화면 상단에서 약간 아래에 위치 */
+  /* 화면 우측에서 약간 안쪽에 위치 */
+  z-index: 1000; /* 높은 z-index 값으로 맵 위에 오버레이 */
 `;
 
 const PlantNote = () => {

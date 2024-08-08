@@ -49,11 +49,14 @@ const GoogleOAuthCallback = () => {
             }
           );
 
+          // 응답을 JSON으로 변환
+          const data = await response.json();
+
           console.log("Server response:", response);
 
           // JWT 토큰 추출 및 저장
-          const accessToken = response.accessToken;
-          const refreshToken = response.refreshToken;
+          const accessToken = data.accessToken;
+          const refreshToken = data.refreshToken;
           console.log(
             "access token:",
             accessToken,
