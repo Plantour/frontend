@@ -20,13 +20,13 @@ const PlantNoteForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #efefef;
+  background-color: ${({ theme }) => theme.colors.lightgrey1};
 `;
 
 const ButtonsContainer = styled.div`
   width: 100%;
   height: 5%;
-  background-color: #efefef;
+  background-color: ${({ theme }) => theme.colors.lightgrey1};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,15 +70,17 @@ const StyledMapComponent = styled(MapComponent)`
 `;
 
 const BtnMapClose = styled.button`
-  width: 150px;
-  height: 30px;
+  width: 180px;
+  height: 45px;
   background-color: black;
   color: white;
-  border-radius: 20px;
+  border-radius: 25px;
   position: absolute;
-  top: 100px; /* 화면 상단에서 약간 아래에 위치 */
-  /* 화면 우측에서 약간 안쪽에 위치 */
-  z-index: 1000; /* 높은 z-index 값으로 맵 위에 오버레이 */
+  bottom: 100px;
+  z-index: 1000;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
 `;
 
 const PlantNote = () => {
@@ -201,7 +203,7 @@ const PlantNote = () => {
         <PlantNoteForm onSubmit={handleSubmit}>
           <ButtonsContainer>
             <CancelBtnAndTextWrapper>
-              <CancelBtnWrapper to="/quest">
+              <CancelBtnWrapper to="/">
                 <StyledIoMdClose />
               </CancelBtnWrapper>
               <div>Created a post</div>

@@ -1,3 +1,20 @@
+/* 전체 문서에 Verdana 폰트 설정 */
+:root {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.5; /* 가독성을 위한 줄 간격 설정 */
+}
+
+/* input, textarea, button에도 Verdana 폰트 적용 */
+input,
+textarea,
+button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 :root {
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

@@ -26,8 +26,9 @@ from{
 `;
 
 const TextAreaLayout = styled.div`
-  height: 25%;
-  background-color: white;
+  width: 100%;
+  height: 35%;
+  background-color: ${({ theme }) => theme.colors.lightgrey1};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,12 +36,12 @@ const TextAreaLayout = styled.div`
 `;
 
 const PlantListToggle = styled.div`
-  width: 100%;
-  height: 30px;
+  width: 95%;
+  height: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  border-bottom: 1px solid lightgrey;
+  cursor: pointer;
 `;
 
 const StyledIoMdArrowDropdown = styled(IoMdArrowDropdown)`
@@ -51,10 +52,11 @@ const PlantToggleEmoji = styled.span``;
 
 const PlantList = styled.div`
   position: absolute;
-  z-index: 10;
-  width: 120px;
-  padding: 10px 0;
-  top: 0px;
+  top: 10px;
+  left: 10px;
+  border-radius: 8px;
+  z-index: 1;
+  padding: 10px 15px 20px 15px;
   cursor: pointer;
   box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.25);
   animation: ${heightExpand} 0.2s ease-out forwards;
@@ -73,29 +75,32 @@ const TextAreaContainer = styled.textarea`
   font-size: 1rem;
   resize: none; /* 크기 조정 불가능 */
   box-sizing: border-box;
-
-  /* 밑줄효과 */
-  /* background-attachment: local;
-  background-image: linear-gradient(to right, white 10px, transparent 10px),
-    linear-gradient(to left, white 10px, transparent 10px),
-    repeating-linear-gradient(
-      white,
-      white 30px,
-      #ccc 30px,
-      #ccc 31px,
-      white 31px
-    ); */
+  background-color: ${({ theme }) => theme.colors.lightgrey1};
   line-height: 1.5;
   padding: 8px 10px;
 `;
 
 const DateLocationContainer = styled.div`
-  width: 100%;
+  width: 95%;
   height: 30px;
-  border-top: 1px solid lightgrey;
+  font-size: 0.875rem;
+  border-bottom: 1px solid lightgrey;
   display: flex;
   align-items: center;
   justify-content: end;
+`;
+
+const AddLocationBtn = styled.button`
+  background: none; /* 배경색 제거 */
+  border: none; /* 테두리 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+  margin: 0; /* 기본 마진 제거 */
+  font: inherit; /* 부모 요소의 폰트 스타일을 상속받음 */
+  cursor: pointer; /* 클릭할 수 있음을 나타내는 커서 */
+  box-shadow: none; /* 기본 박스 그림자 제거 */
+  text-align: inherit; /* 텍스트 정렬 상속 */
+  appearance: none; /* 브라우저 기본 스타일 제거 */
+  outline: none; /* 포커스 시 나타나는 외곽선 제거 */
 `;
 
 const TextArea = ({
@@ -107,6 +112,7 @@ const TextArea = ({
   setPlantId,
   isMapOpen,
   setIsMapOpen,
+  markerPosition,
 }) => {
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
@@ -165,7 +171,7 @@ const TextArea = ({
     <TextAreaLayout>
       <PlantListToggle onClick={handleDropdownToggle}>
         {plant}
-        {plant == "Select plant" ? (
+        {plant == "Select a plant" ? (
           <StyledIoMdArrowDropdown />
         ) : (
           <plantToggleEmoji>🌿</plantToggleEmoji>
@@ -190,9 +196,13 @@ const TextArea = ({
       />
       <DateLocationContainer>
         {formattedDate}/{" "}
-        <button type="button" onClick={locationBtnClickHandler}>
-          discovered from..
-        </button>
+        <AddLocationBtn type="button" onClick={locationBtnClickHandler}>
+          {markerPosition.latitude && markerPosition.longitude ? (
+            <div>Location Added</div>
+          ) : (
+            <div>Add Location</div>
+          )}
+        </AddLocationBtn>
       </DateLocationContainer>
     </TextAreaLayout>
   );

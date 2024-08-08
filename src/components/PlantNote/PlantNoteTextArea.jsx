@@ -6,6 +6,7 @@ import { fetchData } from "../../api/FetchData";
 import { useRecoilState } from "recoil";
 import { selectedSeasonState } from "../../state/atom";
 import { API_URL } from "../../api/apiUrl";
+import { FaChevronDown } from "react-icons/fa";
 
 const TextAreaLayout = styled.div`
   width: 100%;
@@ -21,9 +22,16 @@ const PlantListToggle = styled.div`
   width: 95%;
   height: 30px;
   display: flex;
-  justify-content: stat;
-
+  justify-content: start;
+  align-items: center;
   cursor: pointer;
+  gap: 3px;
+`;
+
+const FaChevronDownContainer = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const TextAreaContainer = styled.textarea`
@@ -41,11 +49,10 @@ const TextAreaContainer = styled.textarea`
 
 const TitleInput = styled.input`
   width: 95%;
-  height: 30px;
+  height: 25px;
   background-color: ${({ theme }) => theme.colors.lightgrey1};
   font-size: 1rem;
   padding: 8px;
-  margin: 10px 0;
   border: none;
   cursor: pointer;
 `;
@@ -233,12 +240,17 @@ const PlantNoteTextArea = ({
         value={title}
         onChange={(e) => setTitle(e.target.value)} // 제목 상태 변경
       />
-      <PlantListToggle onClick={handleModalToggle}>{plant}</PlantListToggle>
+      <PlantListToggle onClick={handleModalToggle}>
+        <span>{plant}</span>
+        <FaChevronDownContainer>
+          <FaChevronDown />
+        </FaChevronDownContainer>
+      </PlantListToggle>
       {isInputOpen && (
         <InputContainer>
           <InputField
             type="text"
-            placeholder="Enter the plant name"
+            placeholder="Enter a plant name"
             value={inputValue}
             onChange={handleInputChange}
             onBlur={handleInputBlur} // 포커스가 벗어나면 값 저장
