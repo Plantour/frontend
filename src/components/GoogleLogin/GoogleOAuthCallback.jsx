@@ -90,8 +90,8 @@ const GoogleOAuthCallback = () => {
             throw new Error("Failed to store tokens in localStorage");
           }
 
-          // 인증 완료 후 '/my' 페이지로 리디렉션
-          //navigate("/my");
+          // 인증 완료 후 '/' 페이지로 리디렉션
+          navigate("/");
         }
       } catch (error) {
         console.error("Error during authentication", error);
