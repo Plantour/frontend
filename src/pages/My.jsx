@@ -54,7 +54,7 @@ const My = () => {
             `${API_URL}/api/auth/check-token`,
             "GET"
           );
-          console.log("aceesstoken유효성검사:", response);
+          console.log("accesstoken유효성검사:", response);
           if (response.status === 200 && response.isValid) {
             setIsAuthenticated(true);
           } else {

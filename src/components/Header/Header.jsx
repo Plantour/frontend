@@ -75,6 +75,7 @@ const Header = () => {
 
   //로그인 여부를 확인하는 로직 (로컬 스토리지에서 토큰 확인)
   const checkLogin = () => {
+    console.log("trying checkLogin");
     const accessToken = localStorage.getItem("accessToken");
     console.log("acceess token:", accessToken);
     return accessToken ? true : false;
