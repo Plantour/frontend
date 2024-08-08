@@ -25,8 +25,9 @@ const Button = styled.button`
 const Login = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
+  const navigate = useNavigate();
 
-  //access token의 유효성 검사 로직
+  //access token의 유효성 검사 로직 (footer클릭시 토큰여부를 검사하지만 url로 바로 접속할경우를 위해서..)
   useEffect(() => {
     const checkAuthentication = async () => {
       console.log("tryingfetch for 유효성검사");
@@ -39,18 +40,18 @@ const Login = () => {
           if (response.valid) {
             setIsAuthenticated(true);
             console.log("유효성검사 true");
+            navigate("/my");
           } else {
-            handleSignOut();
             console.log("유효성검사 false");
           }
         } catch (error) {
           console.error("Error validating token:", error);
-          handleSignOut();
+          //handleSignOut();
         }
       }
       if (!accessToken) {
         console.log("no accessToken");
-        handleSignOut();
+        //handleSignOut();
       }
     };
 
@@ -67,23 +68,20 @@ const Login = () => {
     window.location.href = authUrl;
   };
 
-  const handleSignOut = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    setIsAuthenticated(false);
-  };
+  // const handleSignOut = () => {
+  //   localStorage.removeItem("accessToken");
+  //   localStorage.removeItem("refreshToken");
+  //   setIsAuthenticated(false);
+  // };
 
   return (
     <LoginLayout>
       {/* 원래 로그인페이지에서는 signout이 안보여야함(토큰있음 my로 넘어가니까) */}
-      {accessToken ? (
-        <Button onClick={handleSignOut}>Sign Out</Button>
-      ) : (
-        <Button onClick={redirectToGoogleSSO}>
-          <FcGoogle />
-          Sign In with Google
-        </Button>
-      )}
+
+      <Button onClick={redirectToGoogleSSO}>
+        <FcGoogle />
+        Sign In with Google
+      </Button>
     </LoginLayout>
   );
 };
