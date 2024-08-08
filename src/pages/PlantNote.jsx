@@ -9,6 +9,7 @@ import MapComponent from "../components/Map/MapComponent";
 import { fetchData } from "../api/FetchData";
 import { API_URL } from "../api/apiUrl";
 import PlantNoteTextArea from "../components/PlantNote/PlantNoteTextArea";
+import { IoMdClose } from "react-icons/io";
 
 const PlantNoteForm = styled.form`
   width: 100%;
@@ -19,29 +20,44 @@ const PlantNoteForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #efefef;
 `;
 
 const ButtonsContainer = styled.div`
   width: 100%;
   height: 5%;
-  background-color: black;
-  color: white;
+  background-color: #efefef;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
-const CancelBtn = styled(Link)`
-  text-decoration: none; /* 밑줄 제거 */
-  color: inherit; /* 부모 요소의 색상 상속 */
-  font-size: 1.25rem;
-  margin-left: 10px;
+const CancelBtnAndTextWrapper = styled.div`
+  display: flex;
+  font-weight: bold;
+  color: black;
+`;
+
+const CancelBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+`;
+
+const StyledIoMdClose = styled(IoMdClose)`
+  font-size: 1.5rem;
   cursor: pointer;
 `;
 
-const SubmitBtn = styled.button`
-  background-color: black;
-  color: white;
-  font-size: 1.25rem;
+const PostBtn = styled.button`
+  color: #289bff;
   margin-right: 10px;
   border: none;
   cursor: pointer;
@@ -70,7 +86,7 @@ const PlantNote = () => {
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const { blockId } = useParams(); // URL에서 블록 번호를 가져옴
-  const [plant, setPlant] = useState("Select Plant");
+  const [plant, setPlant] = useState("Select a plant");
   const [plantId, setPlantId] = useState(null);
   const [textData, setTextData] = useState(null);
   const [today, setToday] = useState(null);
@@ -184,8 +200,14 @@ const PlantNote = () => {
       ) : (
         <PlantNoteForm onSubmit={handleSubmit}>
           <ButtonsContainer>
-            <CancelBtn to="/quest">X</CancelBtn>
-            <SubmitBtn type="submit">V</SubmitBtn>
+            <CancelBtnAndTextWrapper>
+              <CancelBtnWrapper to="/quest">
+                <StyledIoMdClose />
+              </CancelBtnWrapper>
+              <div>Created a post</div>
+            </CancelBtnAndTextWrapper>
+
+            <PostBtn type="submit">Post</PostBtn>
           </ButtonsContainer>
           <PlantNoteTextArea
             value={textData}

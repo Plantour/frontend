@@ -10,12 +10,13 @@ import Footer from "./components/Footer/Footer";
 import QuestStatus from "./pages/QuestStatus";
 import GoogleOAuthCallback from "./components/GoogleLogin/GoogleOAuthCallback";
 import PlantNote from "./pages/PlantNote";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./styles/theme";
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Header />
-
       <Routes>
         <Route path="/" element={<Map />} />
         <Route path="/quest" element={<Quest />} />
@@ -29,9 +30,8 @@ function App() {
         <Route path="/oauth/callback" element={<GoogleOAuthCallback />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-
       <Footer />
-    </>
+    </ThemeProvider>
   );
 }
 

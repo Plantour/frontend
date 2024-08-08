@@ -4,7 +4,7 @@ import { MdAddAPhoto } from "react-icons/md";
 
 const CameraComponentLayout = styled.div`
   position: relative;
-  height: 70%;
+  height: 65%;
 `;
 
 const VideoOrPhotoContainer = styled.div`
@@ -18,14 +18,6 @@ const Video = styled.video`
   object-fit: cover; /*비디오 스트림이 컨테이너를 완전히 덮도록 하며, 비율이 맞지 않는 부분은 잘림, 여백없는 정사각형 스트림 위함*/
 `;
 
-const ButtonsContainer = styled.div`
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Canvas = styled.canvas`
   width: 100%;
   aspect-ratio: 1/1;
@@ -33,6 +25,14 @@ const Canvas = styled.canvas`
   position: absolute;
   top: 0;
   left: 0;
+`;
+
+const ButtonsContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ButtonOpenCamera = styled.button`
@@ -120,11 +120,6 @@ const CameraComponent = ({ onImageCapture, imageBlob, setImageBlob }) => {
     let ctx = photo.getContext("2d");
     ctx.drawImage(video, 0, 0, width, height);
     setHasPhoto(true);
-
-    //   // Convert canvas image to data URL
-    //   const imageDataURL = photo.toDataURL("image/jpeg");
-    //   onImageCapture(imageDataURL); // Callback to parent component
-    // };
 
     // Convert canvas image to Blob
     photo.toBlob((blob) => {

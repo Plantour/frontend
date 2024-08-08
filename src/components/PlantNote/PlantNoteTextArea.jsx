@@ -9,8 +9,8 @@ import { API_URL } from "../../api/apiUrl";
 
 const TextAreaLayout = styled.div`
   width: 100%;
-  height: 25%;
-  background-color: white;
+  height: 35%;
+  background-color: ${({ theme }) => theme.colors.lightgrey1};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,43 +18,47 @@ const TextAreaLayout = styled.div`
 `;
 
 const PlantListToggle = styled.div`
-  width: 100%;
+  width: 95%;
   height: 30px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid lightgrey;
+  justify-content: stat;
+
+  cursor: pointer;
 `;
 
 const TextAreaContainer = styled.textarea`
-  width: 100%;
-  height: 100px;
+  width: 95%;
   border: none;
   font-size: 1rem;
   resize: none; /* 크기 조정 불가능 */
   box-sizing: border-box;
   line-height: 1.5;
-  padding: 8px 10px;
+  padding: 8px 0;
+  background-color: ${({ theme }) => theme.colors.lightgrey1};
+  max-height: 6rem; /* 3줄 높이로 제한 (line-height * 3) */
+  overflow: hidden; /* 줄 수를 초과하는 내용 숨김 */
 `;
 
 const TitleInput = styled.input`
-  width: 100%;
+  width: 95%;
   height: 30px;
-  border: 1px solid lightgrey;
+  background-color: ${({ theme }) => theme.colors.lightgrey1};
   font-size: 1rem;
   padding: 8px;
   margin: 10px 0;
-  box-sizing: border-box;
-  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 `;
 
 const DateLocationContainer = styled.div`
-  width: 100%;
+  width: 95%;
   height: 30px;
-  border-top: 1px solid lightgrey;
+  font-size: 0.875rem;
+  border-bottom: 1px solid lightgrey;
   display: flex;
   align-items: center;
   justify-content: end;
+  gap: 5px;
 `;
 
 const AddLocationBtn = styled.button`
@@ -221,28 +225,11 @@ const PlantNoteTextArea = ({
     fetchAllSeasonPlantData();
   }, [selectedSeason]);
 
-  //   useEffect(() => {
-  //     const fetchplantData = async () => {
-  //       try {
-  //         const response = await fetchData(
-  //           `${API_URL}/api/quests?season=${selectedSeason}`
-  //         ); //fetchData함수 외부에선언함 (api폴더)
-
-  //         console.log("all season plant list:", response);
-  //         setAllSeasonPlantList(response);
-  //       } catch (error) {
-  //         console.error("Error fetching plant data:", error);
-  //       }
-  //     };
-
-  //     fetchplantData();
-  //   }, []);
-
   return (
     <TextAreaLayout>
       <TitleInput
         type="text"
-        placeholder="Enter the title"
+        placeholder="Add a title.."
         value={title}
         onChange={(e) => setTitle(e.target.value)} // 제목 상태 변경
       />
@@ -294,9 +281,10 @@ const PlantNoteTextArea = ({
       )}
 
       <TextAreaContainer
-        placeholder="Tell us about your discovery!"
+        placeholder="Add a description.."
         value={value}
         onChange={onChange}
+        rows={3}
       />
       <DateLocationContainer>
         {formattedDate}/{" "}
