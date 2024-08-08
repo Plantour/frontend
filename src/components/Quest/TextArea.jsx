@@ -125,6 +125,8 @@ const TextArea = ({
   handleDate(formattedDate);
 
   const handleplantSelection = (plantName, plantId) => {
+    console.log("trying handle plant selection");
+    console.log("questDataBySeason", questDataBySeason);
     setPlant(plantName); // 선택된 꽃으로 상태 업데이트
     setPlantId(plantId);
     setIsDropdownOpen(false); // 드롭다운 닫기
