@@ -4,7 +4,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { mockSeasonPlantList } from "../../list/mockData";
 import { fetchData } from "../../api/FetchData";
 import { useRecoilState } from "recoil";
-import { selectedSeasonState } from "../../state/atom";
+import { questDataState, selectedSeasonState } from "../../state/atom";
 import { API_URL } from "../../api/apiUrl";
 
 const heightExpand = keyframes`
