@@ -28,14 +28,14 @@ const Quest = () => {
   useEffect(() => {
     const fetchStamps = async () => {
       try {
-        const data = await fetchData(
+        const response = await fetchData(
           `${API_URL}/api/quests?season=${selectedSeason}`,
           "GET"
         );
-        if (data) {
+        if (response.data) {
           // 데이터가 있는 경우 상태 업데이트
-          setQuestDataBySeason(data);
-          console.log("questDataBySeason", data);
+          setQuestDataBySeason(response.data);
+          console.log("questDataBySeason", response.data);
         } else {
           // 데이터가 없는 경우 상태 업데이트
           console.log("no data");
