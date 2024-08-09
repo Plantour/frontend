@@ -268,11 +268,21 @@ const QuestStatus = () => {
         console.log(`${key}: ${value}`);
       }
 
-      const response = await fetchData(
-        `${API_URL}/api/quests/complete`,
-        "POST",
-        formData
-      );
+      // fetch를 사용한 POST 요청
+      const response = await fetch(`${API_URL}/api/quests/complete`, {
+        method: "POST",
+        body: formData,
+      });
+
+      // 응답 처리
+      const rawResponse = await response.text(); // 응답을 텍스트로 가져옴
+      console.log("Raw response:", rawResponse);
+
+      // const response = await fetchData(
+      //   `${API_URL}/api/quests/complete`,
+      //   "POST",
+      //   formData
+      // );
 
       if (response.ok) {
         // 성공적으로 처리된 경우
