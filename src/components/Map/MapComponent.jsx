@@ -59,10 +59,10 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
     try {
       const url = `${API_URL}/api/quests/nearby?latitude=${latitude}&longitude=${longitude}`;
 
-      const data = await fetchData(url);
+      const response = await fetchData(url);
 
-      console.log("fetched data:", data);
-      setFetchedData(data); // 받은 마커 데이터를 상태로 설정. 이부분맞는지확인필요
+      console.log("fetched data:", response);
+      setFetchedData(response.data); // 받은 마커 데이터를 상태로 설정. 이부분맞는지확인필요
     } catch (error) {
       console.error("Error fetching data:", error);
     }
