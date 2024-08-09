@@ -20,7 +20,7 @@ const IconContainer = styled.div`
   width: 100px;
   height: 100%;
   color: black;
-  font-size: 0.625rem;
+  font-size: 0.55rem;
   font-weight: bold;
   box-sizing: border-box;
   overflow: hidden;

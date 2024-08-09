@@ -199,6 +199,25 @@ const QuestStatus = () => {
     return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
   };
 
+  const settingQuestData = () => {
+    console.log("completedQuest", completedQuest);
+    setDoesCompletedQuestExist(true);
+    setSelectedSeason(questDataBySeason.quest.season);
+    setPlant(
+      questDataBySeason.plantData.plants.find(
+        (plant) => plant.plantId === completedQuest.plantId
+      ).plantName
+    );
+    setPlantId(completedQuest.plantId);
+    setImageBlob(completedQuest.imageData);
+    setTextData(completedQuest.content);
+    setToday(new Date(completedQuest.completedAt));
+    setMarkerPosition({
+      latitude: completedQuest.latitude,
+      longitude: completedQuest.longitude,
+    });
+  };
+
   // Check if there's a completed quest for this puzzleNumber
   useEffect(() => {
     const completedQuest = questDataBySeason.completedQuests.find(
@@ -206,22 +225,7 @@ const QuestStatus = () => {
     );
 
     if (completedQuest) {
-      console.log("completedQuest", completedQuest);
-      setDoesCompletedQuestExist(true);
-      setSelectedSeason(questDataBySeason.quest.season);
-      setPlant(
-        questDataBySeason.plantData.plants.find(
-          (plant) => plant.plantId === completedQuest.plantId
-        ).plantName
-      );
-      setPlantId(completedQuest.plantId);
-      setImageBlob(completedQuest.imageData);
-      setTextData(completedQuest.content);
-      setToday(new Date(completedQuest.completedAt));
-      setMarkerPosition({
-        latitude: completedQuest.latitude,
-        longitude: completedQuest.longitude,
-      });
+      settingQuestData();
     } else {
       setDoesCompletedQuestExist(false);
     }
@@ -257,7 +261,6 @@ const QuestStatus = () => {
       formData.append("textData", textData);
       formData.append("today", today);
       formData.append("imageData", imageBlob);
-      //formData.append("imageData", imageDataURL);
       formData.append("markerLatitude", markerPosition.latitude);
       formData.append("markerLongitude", markerPosition.longitude);
 
@@ -266,17 +269,6 @@ const QuestStatus = () => {
         console.log(`${key}: ${value}`);
       }
 
-      //확인용
-      // console.log(formData.get("selectedSeason"));
-      // console.log(formData.get("puzzleNumber"));
-      // console.log(formData.get("plantId"));
-      // console.log(formData.get("textData"));
-      // console.log(formData.get("today"));
-      // console.log(formData.get("imageData"));
-      // console.log(formData.get("markerLatitude"));
-      // console.log(formData.get("markerLongitude"));
-
-      // POST 요청 보내기
       const response = await fetchData(
         `${API_URL}/api/quests/complete`,
         "POST",
@@ -286,7 +278,8 @@ const QuestStatus = () => {
       if (response.ok) {
         // 성공적으로 처리된 경우
         setResponseMessage("Data submitted successfully!");
-        navigate(`/quest?animateId=${blockId}`); // Stamp 컴포넌트로 이동
+        //navigate(`/quest?animateId=${blockId}`); // Stamp 컴포넌트로 이동
+        settingQuestData();
       } else {
         // 오류 처리
         setResponseMessage("Failed to submit data.");
