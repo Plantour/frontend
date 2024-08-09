@@ -125,18 +125,16 @@ const ModalOption = styled.div`
 const AllFlowerListModalBackground = styled(ModalBackground)``;
 
 const AllFlowerListModalContainer = styled(ModalContainer)`
-  width: 200px;
+  width: 220px;
   max-height: 80%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
 `;
 
 const EachItemOnAllPlantList = styled.div`
   width: 100%;
-  padding: 10px;
+  padding: 10px 0px;
   cursor: pointer;
   gap: 5px;
   border-bottom: 1px solid lightgrey;
@@ -146,8 +144,8 @@ const EachItemOnAllPlantList = styled.div`
 `;
 
 const PlantListImg = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 10px;
   object-fit: cover;
   overflow: hidden;
