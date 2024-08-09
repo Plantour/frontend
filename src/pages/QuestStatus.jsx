@@ -275,8 +275,8 @@ const QuestStatus = () => {
       });
 
       // 응답 처리
-      const rawResponse = await response.text(); // 응답을 텍스트로 가져옴
-      console.log("Raw response:", rawResponse);
+      // const rawResponse = await response.text(); // 응답을 텍스트로 가져옴
+      // console.log("Raw response:", rawResponse);
 
       // const response = await fetchData(
       //   `${API_URL}/api/quests/complete`,
