@@ -289,7 +289,9 @@ const QuestStatus = () => {
       // const contentType = response.headers.get("Content-Type");
       // console.log("Response Content-Type:", contentType);
 
-      if (response.status === 200) {
+      console.log("Response from fetchData:", response);
+
+      if (response.ok) {
         // 성공적으로 처리된 경우
         setResponseMessage("Data submitted successfully!");
         console.log("Data received from fetchData:", response);
