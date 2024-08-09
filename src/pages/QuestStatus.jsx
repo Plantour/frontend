@@ -288,6 +288,7 @@ const QuestStatus = () => {
 
       // const contentType = response.headers.get("Content-Type");
       // console.log("Response Content-Type:", contentType);
+      console.log("response ok:", response.ok);
 
       if (response.ok) {
         // 성공적으로 처리된 경우
