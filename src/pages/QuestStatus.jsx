@@ -285,8 +285,6 @@ const QuestStatus = () => {
       }
     } catch (error) {
       console.error("Error submitting data:", error);
-
-      console.log("raw data:", response.text());
       setResponseMessage("Error submitting data: " + error.message);
     }
   };
