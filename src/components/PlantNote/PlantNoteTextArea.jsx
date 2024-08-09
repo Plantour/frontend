@@ -113,7 +113,6 @@ const ModalBackground = styled.div`
 const ModalContainer = styled.div`
   background: white;
   padding: 20px;
-  border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 `;
 
@@ -128,11 +127,17 @@ const AllFlowerListModalBackground = styled(ModalBackground)``;
 const AllFlowerListModalContainer = styled(ModalContainer)`
   max-height: 80%;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
 `;
 
 const EachItemOnAllPlantList = styled.div`
   padding: 10px;
   cursor: pointer;
+  gap: 5px;
+  border-bottom: 1px solid lightgrey;
   &:hover {
     background-color: #f0f0f0;
   }
@@ -141,7 +146,12 @@ const EachItemOnAllPlantList = styled.div`
 const PlantListImg = styled.img`
   width: 100px;
   height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  overflow: hidden;
 `;
+
+const PlantListName = styled.div``;
 
 const PlantNoteTextArea = ({
   value,
@@ -288,8 +298,8 @@ const PlantNoteTextArea = ({
                 key={item.id}
                 onClick={() => handlePlantSelection(item.name, item.id)}
               >
-                {item.name}
                 <PlantListImg src={item.image}></PlantListImg>
+                <PlantListName>{item.name}</PlantListName>
               </EachItemOnAllPlantList>
             ))}
           </AllFlowerListModalContainer>
