@@ -94,24 +94,12 @@ export async function fetchData(url, method = "GET", body = null) {
     const contentType = response.headers.get("Content-Type");
 
     if (contentType && contentType.startsWith("application/json")) {
-      //   return response.json(); // JSON 응답을 처리
-      // } else if (contentType && contentType.startsWith("image/")) {
-      //   return response.blob(); // Blob 응답을 처리 (이미지, 파일 등)
-      // } else {
-      //   // 기타 응답 처리 (텍스트 등)
-      //   return response.text();
-
-      const jsonResponse = await response.json();
-      console.log("JSON response:", jsonResponse);
-      return jsonResponse; // JSON 응답을 처리
+      return response.json(); // JSON 응답을 처리
     } else if (contentType && contentType.startsWith("image/")) {
-      const blobResponse = await response.blob();
-      console.log("Blob response:", blobResponse);
-      return blobResponse; // Blob 응답을 처리 (이미지, 파일 등)
+      return response.blob(); // Blob 응답을 처리 (이미지, 파일 등)
     } else {
-      const textResponse = await response.text();
-      console.log("Text response:", textResponse);
-      return textResponse; // 기타 응답 처리 (텍스트 등)
+      // 기타 응답 처리 (텍스트 등)
+      return response.text();
     }
 
     // // Log the raw response text
