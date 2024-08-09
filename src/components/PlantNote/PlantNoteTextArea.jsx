@@ -18,14 +18,29 @@ const TextAreaLayout = styled.div`
   position: relative;
 `;
 
-const PlantListToggle = styled.div`
+const PlantListAndInputContainer = styled.div`
   width: 95%;
+  display: flex;
+  justify-content: start;
+  gap: 5px;
+`;
+
+const PlantListToggle = styled.div`
   height: 30px;
   display: flex;
   justify-content: start;
   align-items: center;
   cursor: pointer;
   gap: 3px;
+`;
+
+const InputField = styled.input`
+  width: 60%;
+  padding: 3px;
+  font-size: 1rem;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.colors.lightgrey1};
 `;
 
 const FaChevronDownContainer = styled.span`
@@ -126,17 +141,6 @@ const EachItemOnAllPlantList = styled.div`
 const PlantListImg = styled.img`
   width: 100px;
   height: 100px;
-`;
-
-const InputContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const InputField = styled.input`
-  padding: 8px;
-  font-size: 1rem;
 `;
 
 const PlantNoteTextArea = ({
@@ -240,14 +244,14 @@ const PlantNoteTextArea = ({
         value={title}
         onChange={(e) => setTitle(e.target.value)} // 제목 상태 변경
       />
-      <PlantListToggle onClick={handleModalToggle}>
-        <span>{plant}</span>
-        <FaChevronDownContainer>
-          <FaChevronDown />
-        </FaChevronDownContainer>
-      </PlantListToggle>
-      {isInputOpen && (
-        <InputContainer>
+      <PlantListAndInputContainer>
+        <PlantListToggle onClick={handleModalToggle}>
+          <span>{plant}</span>
+          <FaChevronDownContainer>
+            <FaChevronDown />
+          </FaChevronDownContainer>
+        </PlantListToggle>
+        {isInputOpen && (
           <InputField
             type="text"
             placeholder="Enter a plant name"
@@ -255,8 +259,8 @@ const PlantNoteTextArea = ({
             onChange={handleInputChange}
             onBlur={handleInputBlur} // 포커스가 벗어나면 값 저장
           />
-        </InputContainer>
-      )}
+        )}
+      </PlantListAndInputContainer>
 
       {isModalOpen && (
         <ModalBackground onClick={handleModalToggle}>
