@@ -291,20 +291,35 @@ const QuestStatus = () => {
 
       console.log("Response from fetchData:", response);
 
-      if (response.ok) {
-        // 성공적으로 처리된 경우
-        setResponseMessage("Data submitted successfully!");
-        console.log("Data received from fetchData:", response);
-        console.log("submit response ok:", response.ok);
+      console.log("Response from fetchData:", response);
 
+      if (response.ok) {
+        setResponseMessage("Data submitted successfully!");
+        console.log("Data received from fetchData:", response.data);
         navigate("/quest");
-        // 오류 처리
-        setResponseMessage("Failed to submit data.");
+      } else {
+        setResponseMessage(`Failed to submit data. Status: ${response.status}`);
+        console.error("Server responded with an error:", response.data);
       }
     } catch (error) {
       console.error("Error submitting data:", error);
       setResponseMessage("Error submitting data: " + error.message);
     }
+
+    //   if (response.ok) {
+    //     // 성공적으로 처리된 경우
+    //     setResponseMessage("Data submitted successfully!");
+    //     console.log("Data received from fetchData:", response);
+    //     console.log("submit response ok:", response.ok);
+
+    //     navigate("/quest");
+    //     // 오류 처리
+    //     setResponseMessage("Failed to submit data.");
+    //   }
+    // } catch (error) {
+    //   console.error("Error submitting data:", error);
+    //   setResponseMessage("Error submitting data: " + error.message);
+    // }
   };
 
   return (
