@@ -290,11 +290,15 @@ const QuestStatus = () => {
       //   formData
       // );
 
+      const contentType = response.headers.get("Content-Type");
+      console.log("Response Content-Type:", contentType);
+
       if (response.ok) {
         // 성공적으로 처리된 경우
         setResponseMessage("Data submitted successfully!");
         console.log("Data received from fetchData:", response);
         console.log("submit response ok:", response.ok);
+
         navigate("/quest");
         // 오류 처리
         setResponseMessage("Failed to submit data.");
