@@ -278,8 +278,7 @@ const QuestStatus = () => {
         // 성공적으로 처리된 경우
         setResponseMessage("Data submitted successfully!");
         console.log("submit response ok:", response.ok);
-        navigate(`/quest?animateId=${blockId}`); // Stamp 컴포넌트로 이동
-      } else {
+        navigate("/quest");
         // 오류 처리
         setResponseMessage("Failed to submit data.");
       }
