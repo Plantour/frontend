@@ -268,9 +268,15 @@ const QuestStatus = () => {
         console.log(`${key}: ${value}`);
       }
 
+      // 액세스 토큰 준비
+      const token = localStorage.getItem("accessToken"); // 또는 다른 방식으로 토큰을 가져옴
+
       // fetch를 사용한 POST 요청
       const response = await fetch(`${API_URL}/api/quests/complete`, {
         method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`, // 인증 헤더 추가
+        },
         body: formData,
       });
 
