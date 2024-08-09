@@ -223,7 +223,6 @@ const QuestStatus = () => {
     const completedQuest = questDataBySeason.completedQuests.find(
       (quest) => quest.puzzleNumber === parseInt(blockId, 10)
     );
-
     if (completedQuest) {
       settingQuestData();
     } else {
@@ -278,9 +277,8 @@ const QuestStatus = () => {
       if (response.ok) {
         // 성공적으로 처리된 경우
         setResponseMessage("Data submitted successfully!");
-        //navigate(`/quest?animateId=${blockId}`); // Stamp 컴포넌트로 이동
         console.log("submit response ok:", response.ok);
-        settingQuestData();
+        navigate(`/quest?animateId=${blockId}`); // Stamp 컴포넌트로 이동
       } else {
         // 오류 처리
         setResponseMessage("Failed to submit data.");
