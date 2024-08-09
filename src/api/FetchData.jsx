@@ -70,7 +70,8 @@ export async function fetchData(url, method = "GET", body = null) {
   try {
     let response = await fetch(url, options);
     console.log("response", response);
-    console.log("respose.ok:", response.ok);
+    const rawResponse = response.text();
+    console.log("raw response:", rawResponse);
 
     // 액세스 토큰이 만료된 경우
     if (response.status === 401) {
