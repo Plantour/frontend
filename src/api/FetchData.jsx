@@ -91,23 +91,28 @@ export async function fetchData(url, method = "GET", body = null) {
     //content-type 헤더를 확인하여 응답을 처리
     const contentType = response.headers.get("Content-Type");
 
+    let parsedResponse;
     if (contentType && contentType.startsWith("application/json")) {
-      return response.json(); // JSON 응답을 처리
+      parsedResponse = await response.json();
     } else if (contentType && contentType.startsWith("image/")) {
-      return response.blob(); // Blob 응답을 처리 (이미지, 파일 등)
+      parsedResponse = await response.blob();
     } else {
-      // 기타 응답 처리 (텍스트 등)
-      return response.text();
+      parsedResponse = await response.text();
     }
 
-    // // Log the raw response text
-    // const rawText = await response.text();
-    // console.log("Raw response:", rawText); //에러확인용
+    return {
+      ok: response.ok,
+      status: response.status,
+      data: parsedResponse,
+    };
 
-    // if (contentType && contentType.includes("application/json")) {
-    //   return JSON.parse(rawText);
+    // if (contentType && contentType.startsWith("application/json")) {
+    //   return response.json(); // JSON 응답을 처리
+    // } else if (contentType && contentType.startsWith("image/")) {
+    //   return response.blob(); // Blob 응답을 처리 (이미지, 파일 등)
     // } else {
-    //   return rawText;
+    //   // 기타 응답 처리 (텍스트 등)
+    //   return response.text();
     // }
   } catch (error) {
     console.error("There was a problem with the fetch operation:", error);
