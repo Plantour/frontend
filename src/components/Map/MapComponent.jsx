@@ -73,10 +73,10 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
     try {
       const url = `${API_URL}/api/plant-notes/nearby?latitude=${latitude}&longitude=${longitude}`;
 
-      const data = await fetchData(url);
+      const response = await fetchData(url);
 
-      console.log("plantNoteFetchedDatafetched data:", data);
-      setPlantNoteFetchedData(data);
+      console.log("plantNoteFetchedDatafetched data:", response);
+      setPlantNoteFetchedData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
