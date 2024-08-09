@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 import TextArea from "../components/Quest/TextArea";
 import CameraComponent from "../components/Quest/CameraComponent";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { questDataState, selectedSeasonState } from "../state/atom";
+import {
+  questDataState,
+  selectedSeasonState,
+  userLocationState,
+} from "../state/atom";
 import MapComponent from "../components/Map/MapComponent";
 import { fetchData } from "../api/FetchData";
 import { API_URL } from "../api/apiUrl";
@@ -135,6 +139,7 @@ const QuestStatus = () => {
   const questDataBySeason = useRecoilValue(questDataState);
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
+  const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const { blockId } = useParams(); // URL에서 블록 번호를 가져옴
   const [plant, setPlant] = useState("Select a Plant");
   const [plantId, setPlantId] = useState(null);
@@ -235,6 +240,8 @@ const QuestStatus = () => {
   };
 
   const handleBtnClose = () => {
+    setMarkerPosition(userLocation);
+    console.log("marker position:", markerPosition);
     setIsMapOpen(false);
   };
 
@@ -295,7 +302,7 @@ const QuestStatus = () => {
       {isMapOpen ? (
         <>
           <BtnMapClose type="button" onClick={handleBtnClose}>
-            Confirm Selection
+            Confirm Location
           </BtnMapClose>
           <StyledMapComponent
             markerPosition={markerPosition}

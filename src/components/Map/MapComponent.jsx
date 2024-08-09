@@ -14,6 +14,8 @@ import {
 import { fetchData } from "../../api/FetchData";
 import { API_URL } from "../../api/apiUrl";
 import MapModal from "./MapModal";
+import { useRecoilState } from "recoil";
+import { userLocationState } from "../../state/atom";
 
 const MapContainer = styled.div`
   width: 100%;
@@ -41,10 +43,7 @@ const SearchInput = styled.input`
 const libraries = ["places"];
 
 export default function MapComponent({ markerPosition, setMarkerPosition }) {
-  const [userLocation, setUserLocation] = useState({
-    latitude: 51.51107406616211,
-    longitude: -0.11715872585773468,
-  });
+  const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const [fetchedData, setFetchedData] = useState(mockDataforMapComponent); //식물위치마커들(퀘스트)
   const [plantNoteFetchedData, setPlantNoteFetchedData] =
     useState(mockDataPlantNote); //식물위치마커들(plantNote)

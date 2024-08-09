@@ -1,5 +1,13 @@
 import { atom, selector } from "recoil";
 
+export const userLocationState = atom({
+  key: "userLocationState",
+  default: {
+    latitude: null,
+    longitude: null,
+  },
+});
+
 //현재 날짜에 따라 시즌을 계산하는 Selector
 const currentSeasonSelector = selector({
   key: "currentSeasonSelector",

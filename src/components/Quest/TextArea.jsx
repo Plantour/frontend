@@ -139,9 +139,8 @@ const TextArea = ({
   };
 
   const locationBtnClickHandler = () => {
-    console.log("Button clicked"); // 상태 업데이트 로그
     setIsMapOpen(true);
-    console.log("isMapOpen:", true);
+    console.log("markerPosition:", markerPosition);
   };
 
   const handleDropdownToggle = () => {
