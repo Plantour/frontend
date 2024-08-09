@@ -125,6 +125,7 @@ const ModalOption = styled.div`
 const AllFlowerListModalBackground = styled(ModalBackground)``;
 
 const AllFlowerListModalContainer = styled(ModalContainer)`
+  width: 200px;
   max-height: 80%;
   overflow-y: auto;
   display: flex;
@@ -134,6 +135,7 @@ const AllFlowerListModalContainer = styled(ModalContainer)`
 `;
 
 const EachItemOnAllPlantList = styled.div`
+  width: 100%;
   padding: 10px;
   cursor: pointer;
   gap: 5px;
@@ -144,8 +146,8 @@ const EachItemOnAllPlantList = styled.div`
 `;
 
 const PlantListImg = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 10px;
   object-fit: cover;
   overflow: hidden;
