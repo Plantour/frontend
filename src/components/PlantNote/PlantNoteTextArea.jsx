@@ -229,14 +229,13 @@ const PlantNoteTextArea = ({
   useEffect(() => {
     const fetchAllSeasonPlantData = async () => {
       try {
-        const data = await fetchData(`${API_URL}/api/plants`, "GET");
-        if (data) {
+        const response = await fetchData(`${API_URL}/api/plants`, "GET");
+        if (response.data) {
           // 데이터가 있는 경우 상태 업데이트
-          setAllSeasonPlantList(data);
-          console.log(data);
+          setAllSeasonPlantList(response.data);
         } else {
           // 데이터가 없는 경우 상태 업데이트
-          console.log("no data");
+          console.log("no all season plant data");
         }
       } catch (error) {
         console.error("Error fetching data:", error);
