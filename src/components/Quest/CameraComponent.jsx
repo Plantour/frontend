@@ -95,8 +95,18 @@ const CameraComponent = ({ onImageCapture, imageBlob, setImageBlob }) => {
 
   const getVideo = (event) => {
     event.preventDefault();
+
+    const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent); // 모바일 기기인지 확인
+    const facingMode = isMobileDevice ? "environment" : "user"; // 모바일이면 전면 카메라, 아니면 사용자 카메라
+
+    const constraints = {
+      video: {
+        facingMode: facingMode,
+      },
+    };
+
     navigator.mediaDevices
-      .getUserMedia({ video: true })
+      .getUserMedia(constraints)
       .then((stream) => {
         let video = videoRef.current;
         video.srcObject = stream;
