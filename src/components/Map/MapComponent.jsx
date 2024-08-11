@@ -62,7 +62,7 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
       const response = await fetchData(url);
 
       console.log("fetched data:", response);
-      setFetchedData(response.data); // 받은 마커 데이터를 상태로 설정. 이부분맞는지확인필요
+      setFetchedData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
