@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { MdAddAPhoto } from "react-icons/md";
 
 const CameraComponentLayout = styled.div`
+  width: 100%;
   position: relative;
-  height: 65%;
+  height: 70%;
 `;
 
 const VideoOrPhotoContainer = styled.div`
-  height: 100%;
+  position: relative;
 `;
 
 const Video = styled.video`
@@ -37,8 +38,9 @@ const ButtonsContainer = styled.div`
 
 const ButtonOpenCamera = styled.button`
   position: absolute;
-  top: 130px;
-  left: 140px;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
   z-index: 10;
   font-size: 1rem;
   background-color: grey;
@@ -108,8 +110,8 @@ const CameraComponent = ({ onImageCapture, imageBlob, setImageBlob }) => {
 
   const takePhoto = (event) => {
     event.preventDefault();
-    const width = 400;
-    const height = 300;
+    const width = 375;
+    const height = 375;
 
     let video = videoRef.current;
     let photo = photoRef.current;
@@ -164,7 +166,7 @@ const CameraComponent = ({ onImageCapture, imageBlob, setImageBlob }) => {
 
   return (
     <CameraComponentLayout>
-      <div>
+      <VideoOrPhotoContainer>
         <Video ref={videoRef}></Video>
         <ButtonsContainer>
           {!isCameraOpen && (
@@ -182,7 +184,7 @@ const CameraComponent = ({ onImageCapture, imageBlob, setImageBlob }) => {
             </ButtonClearPhoto>
           )}
         </ButtonsContainer>
-      </div>
+      </VideoOrPhotoContainer>
       <div>
         <Canvas ref={photoRef}></Canvas>
       </div>
