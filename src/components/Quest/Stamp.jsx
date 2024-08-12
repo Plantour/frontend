@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled, { keyframes, css } from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { questDataState, selectedSeasonState } from "../../state/atom";
@@ -67,7 +67,7 @@ const GridContainer = styled.div`
   gap: 10px;
 `;
 
-const StampBlock = styled(Link)`
+const StampBlock = styled.div`
   background-color: #ffffff;
   display: flex;
   justify-content: center;
@@ -138,7 +138,7 @@ const Stamp = ({ animateId, setAnimateId, isLoggedIn }) => {
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const questDataBySeason = useRecoilValue(questDataState);
-  //const [completedQuests, setCompletedQuests] = useState([]);
+  const navigate = useNavigate();
 
   // 9개의 블록 초기화
   const [allBlocks, setAllBlocks] = useState(
@@ -166,13 +166,22 @@ const Stamp = ({ animateId, setAnimateId, isLoggedIn }) => {
   // 선택된 시즌에 맞는 이미지 맵 선택
   const currentImageMap = imageMap[selectedSeason] || {};
 
+  const handleBlockClick = (blockId) => {
+    if (!isLoggedIn) {
+      alert("로그인 후 이용해주세요");
+      navigate("/login"); // 로그인 페이지로 이동
+    } else {
+      navigate(`/queststatus/${selectedSeason}/${blockId}`); // 해당 퀘스트 페이지로 이동
+    }
+  };
+
   return (
     <StampLayout>
       <GridContainer>
         {allBlocks.map((block) => (
           <StampBlock
             key={block.blockId}
-            to={`/queststatus/${selectedSeason}/${block.blockId}`}
+            onClick={() => handleBlockClick(block.blockId)} // 클릭 시 로직 실행
           >
             <ImgSticker
               animate={block.blockId === parseInt(animateId, 10)} // 애니메이션 적용 조건
