@@ -32,11 +32,12 @@ const Login = () => {
     const checkAuthentication = async () => {
       if (accessToken) {
         try {
+          //fetchData응답형태수정함
           const response = await fetchData(
             `${API_URL}/api/auth/check-token`,
             "GET"
           );
-          if (response.valid) {
+          if (response.data.valid) {
             setIsAuthenticated(true);
             console.log("유효성검사 true");
             navigate("/my");

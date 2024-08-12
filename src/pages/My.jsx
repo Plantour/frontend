@@ -55,12 +55,13 @@ const My = () => {
     const checkAuthentication = async () => {
       if (accessToken) {
         try {
+          //fetchData응답형태수정함
           const response = await fetchData(
             `${API_URL}/api/auth/check-token`,
             "GET"
           );
           console.log("accesstoken유효성검사:", response);
-          if (response.valid) {
+          if (response.data.valid) {
             setIsAuthenticated(true);
           } else {
             handleSignOut();
