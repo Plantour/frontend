@@ -36,7 +36,7 @@ const Quest = () => {
             "GET"
           );
           console.log("accesstoken유효성검사:", response);
-          if (response.valid) {
+          if (response.data.valid) {
             setIsLoggedIn(true);
           } else {
             setIsLoggedIn(false);
