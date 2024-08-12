@@ -145,43 +145,6 @@ const Stamp = ({ animateId, setAnimateId }) => {
     Array.from({ length: 9 }, (_, i) => ({ blockId: i + 1 })) // 9개의 블록 초기화
   );
 
-  // const [stamps, setStamps] = useState([
-  //   { id: 1, completed: true },
-  //   { id: 2, completed: false },
-  //   { id: 3, completed: true },
-  //   { id: 4, completed: false },
-  //   { id: 5, completed: true },
-  //   { id: 6, completed: false },
-  //   { id: 7, completed: true },
-  //   { id: 8, completed: false },
-  //   { id: 9, completed: true },
-  // ]);
-
-  //서버에서 해당 시즌 stamp정보 받아오기
-  // useEffect(() => {
-  //   const fetchStamps = async () => {
-  //     try {
-  //       const response = await fetchData(`${API_URL}/api/quests?season=${selectedSeason}`,"GET");
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         if (data) {
-  //           // 데이터가 있는 경우 상태 업데이트
-
-  //         }
-  //       } else {
-  //         // 데이터가 없는 경우 상태 업데이트
-  //         setIsEditing(false);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //       setResponseMessage("Error fetching data: " + error.message);
-  //     }
-  //   };
-
-  //   fetchStamps();
-  //   console.log(animateId);
-  // }, [selectedSeason]);
-
   // 애니메이션 후 animateId를 초기화하는 로직
   useEffect(() => {
     if (animateId !== null) {

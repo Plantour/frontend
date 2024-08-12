@@ -30,7 +30,6 @@ const Login = () => {
   //access token의 유효성 검사 로직 (footer클릭시 토큰여부를 검사하지만 url로 바로 접속할경우를 위해서..)
   useEffect(() => {
     const checkAuthentication = async () => {
-      console.log("tryingfetch for 유효성검사");
       if (accessToken) {
         try {
           const response = await fetchData(
