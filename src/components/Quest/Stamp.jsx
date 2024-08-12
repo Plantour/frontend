@@ -134,7 +134,7 @@ const imageMap = {
   },
 };
 
-const Stamp = ({ animateId, setAnimateId }) => {
+const Stamp = ({ animateId, setAnimateId, isLoggedIn }) => {
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const questDataBySeason = useRecoilValue(questDataState);
@@ -178,7 +178,7 @@ const Stamp = ({ animateId, setAnimateId }) => {
               animate={block.blockId === parseInt(animateId, 10)} // 애니메이션 적용 조건
               src={currentImageMap[block.blockId]}
               alt={`block-${block.blockId}`}
-              completed={completedBlockIds.has(block.blockId)} //완료된 블록 여부전달
+              completed={isLoggedIn && completedBlockIds.has(block.blockId)} //완료된 블록 여부전달
             />
           </StampBlock>
         ))}

@@ -23,7 +23,7 @@ const Quest = () => {
   const [animateId, setAnimateId] = useState(null);
   const [questDataBySeason, setQuestDataBySeason] =
     useRecoilState(questDataState);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null); // 초기값을 null로 설정하여 로그인 상태 확인 전을 구분
 
   // 토큰 유효성 검사 및 로그인 상태 확인
   useEffect(() => {
@@ -52,7 +52,7 @@ const Quest = () => {
     checkAuthentication();
   }, []);
 
-  //데이터 받아오기
+  //로그인 상태에 따라 데이터 받아오기
   useEffect(() => {
     const fetchStamps = async () => {
       try {
@@ -72,10 +72,10 @@ const Quest = () => {
         console.error("Error fetching data:", error);
       }
     };
-
-    fetchStamps();
-    console.log(animateId);
-  }, [selectedSeason]);
+    if (isLoggedIn) {
+      fetchStamps();
+    }
+  }, [isLoggedIn, selectedSeason]);
 
   // URL 쿼리 파라미터에서 animateId를 가져오는 로직
   const location = useLocation();
@@ -90,7 +90,11 @@ const Quest = () => {
   return (
     <QuestLayout>
       <Seasons />
-      <Stamp animateId={animateId} setAnimateId={setAnimateId} />
+      <Stamp
+        animateId={animateId}
+        setAnimateId={setAnimateId}
+        isLoggedIn={isLoggedIn}
+      />
     </QuestLayout>
   );
 };
