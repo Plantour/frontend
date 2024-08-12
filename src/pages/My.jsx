@@ -53,7 +53,6 @@ const My = () => {
   //access token의 유효성 검사 로직
   useEffect(() => {
     const checkAuthentication = async () => {
-      console.log("tryingfetch");
       if (accessToken) {
         try {
           const response = await fetchData(

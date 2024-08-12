@@ -23,8 +23,36 @@ const Quest = () => {
   const [animateId, setAnimateId] = useState(null);
   const [questDataBySeason, setQuestDataBySeason] =
     useRecoilState(questDataState);
-  // const [questDataBySeason, setQuestDataBySeason] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // 토큰 유효성 검사 및 로그인 상태 확인
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      let accessToken = localStorage.getItem("accessToken");
+      if (accessToken) {
+        try {
+          const response = await fetchData(
+            `${API_URL}/api/auth/check-token`,
+            "GET"
+          );
+          console.log("accesstoken유효성검사:", response);
+          if (response.valid) {
+            setIsLoggedIn(true);
+          } else {
+            setIsLoggedIn(false);
+          }
+        } catch (error) {
+          console.error("Error validating token:", error);
+          setIsLoggedIn(false); // 오류 발생 시 로그인 상태를 false로 설정
+        }
+      } else {
+        setIsLoggedIn(false); // 액세스 토큰이 없을 때도 false로 설정
+      }
+    };
+    checkAuthentication();
+  }, []);
+
+  //데이터 받아오기
   useEffect(() => {
     const fetchStamps = async () => {
       try {
