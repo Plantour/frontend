@@ -3,6 +3,7 @@ import { LiaSmileSolid } from "react-icons/lia";
 import { LiaSmileWink } from "react-icons/lia";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const Layout = styled.div`
   height: 50px;
@@ -70,6 +71,7 @@ const StyledLiaSmileWink = styled(LiaSmileWink)`
 `;
 
 const Header = () => {
+  const { translations, changeLanguage } = useLanguage();
   const [isMyHovered, setIsMyHovered] = useState(false);
   const navigate = useNavigate();
 
@@ -92,6 +94,8 @@ const Header = () => {
 
   return (
     <Layout>
+      <button onClick={() => changeLanguage("en")}>English</button>
+      <button onClick={() => changeLanguage("kr")}>한국어</button>
       <IconContainer>
         <Circle />
         <IconTextWrapper
@@ -100,7 +104,7 @@ const Header = () => {
           onMouseLeave={() => setIsMyHovered(false)}
         >
           {isMyHovered ? <StyledLiaSmileWink /> : <StyledLiaSmileSolid />}
-          <div>MY</div>
+          <div>{translations.menu.my}</div>
         </IconTextWrapper>
       </IconContainer>
     </Layout>
