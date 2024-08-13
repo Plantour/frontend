@@ -4,6 +4,7 @@ import { HiOutlineMap, HiMiniMap } from "react-icons/hi2";
 import { IoFlowerOutline, IoFlower } from "react-icons/io5";
 import { RiImageAddLine, RiImageAddFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const Layout = styled.div`
   height: 50px;
@@ -92,6 +93,7 @@ const StyledRiImageAddFill = styled(RiImageAddFill)`
 `;
 
 const Footer = () => {
+  const { translations, changeLanguage } = useLanguage();
   const [isMapHovered, setIsMapHovered] = useState(false);
   const [isQuestHovered, setIsQuestHovered] = useState(false);
   const [isPostHovered, setIsPostHovered] = useState(false);
@@ -106,7 +108,7 @@ const Footer = () => {
           onMouseLeave={() => setIsMapHovered(false)}
         >
           {isMapHovered ? <StyledHiMiniMap /> : <StyledHiOutlineMap />}
-          <div>MAP</div>
+          <div>{translations.menu.map}</div>
         </IconTextWrapper>
       </IconContainer>
 
@@ -118,7 +120,7 @@ const Footer = () => {
           onMouseLeave={() => setIsQuestHovered(false)}
         >
           {isQuestHovered ? <StyledIoFlower /> : <StyledIoFlowerOutline />}
-          <div>QUEST</div>
+          <div>{translations.menu.quest}</div>
         </IconTextWrapper>
       </IconContainer>
 
@@ -130,7 +132,7 @@ const Footer = () => {
           onMouseLeave={() => setIsPostHovered(false)}
         >
           {isPostHovered ? <StyledRiImageAddFill /> : <StyledRiImageAddLine />}
-          <div>PLANT NOTE</div>
+          <div>{translations.menu.plantNote}</div>
         </IconTextWrapper>
       </IconContainer>
     </Layout>
