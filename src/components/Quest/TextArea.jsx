@@ -6,6 +6,8 @@ import { fetchData } from "../../api/FetchData";
 import { useRecoilState } from "recoil";
 import { questDataState, selectedSeasonState } from "../../state/atom";
 import { API_URL } from "../../api/apiUrl";
+import { translations } from "../../list/translations";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const heightExpand = keyframes`
   from{
@@ -114,6 +116,7 @@ const TextArea = ({
   setIsMapOpen,
   markerPosition,
 }) => {
+  const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const [questDataBySeason, setQuestDataBySeason] =
@@ -122,11 +125,16 @@ const TextArea = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const formattedDate =
+    language === "en"
+      ? today.toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        })
+      : `${today.getFullYear()}년 ${
+          today.getMonth() + 1
+        }월 ${today.getDate()}일`;
 
   handleDate(formattedDate);
 
@@ -189,7 +197,7 @@ const TextArea = ({
         </PlantList>
       )}
       <TextAreaContainer
-        placeholder="Tell us about your discovery!"
+        placeholder={translations.textArea.addDescription}
         value={value}
         onChange={onChange}
       />
@@ -197,9 +205,9 @@ const TextArea = ({
         {formattedDate}/{" "}
         <AddLocationBtn type="button" onClick={locationBtnClickHandler}>
           {markerPosition.latitude && markerPosition.longitude ? (
-            <div>Location Added</div>
+            <div>{translations.textArea.locationAdded}</div>
           ) : (
-            <div>Add Location</div>
+            <div>{translations.textArea.locationAdded}</div>
           )}
         </AddLocationBtn>
       </DateLocationContainer>
