@@ -242,41 +242,6 @@ const QuestStatus = () => {
     setTextData(event.target.value);
   };
 
-  //유효성검사
-  let isValid = true;
-
-  if (!plant || plant === "Select a plant" || plant === "식물 선택") {
-    setIsPlantValid(false);
-    isValid = false;
-  } else {
-    setIsPlantValid(true);
-  }
-
-  if (!imageBlob) {
-    setIsImageValid(false);
-    isValid = false;
-  } else {
-    setIsImageValid(true);
-  }
-
-  if (!textData || textData.trim().length === 0) {
-    setIsTextValid(false);
-    isValid = false;
-  } else {
-    setIsTextValid(true);
-  }
-
-  if (!markerPosition.latitude || !markerPosition.longitude) {
-    setIsLocationValid(false);
-    isValid = false;
-  } else {
-    setIsLocationValid(true);
-  }
-
-  if (!isValid) {
-    return; // 유효성 검사 실패 시 제출 중단
-  }
-
   const handleImageChange = (blob) => {
     setImageBlob(blob);
   };
@@ -293,6 +258,41 @@ const QuestStatus = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // 폼 제출 기본 동작 방지
+
+    //유효성검사
+    let isValid = true;
+
+    if (!plant || plant === "Select a plant" || plant === "식물 선택") {
+      setIsPlantValid(false);
+      isValid = false;
+    } else {
+      setIsPlantValid(true);
+    }
+
+    if (!imageBlob) {
+      setIsImageValid(false);
+      isValid = false;
+    } else {
+      setIsImageValid(true);
+    }
+
+    if (!textData || textData.trim().length === 0) {
+      setIsTextValid(false);
+      isValid = false;
+    } else {
+      setIsTextValid(true);
+    }
+
+    if (!markerPosition.latitude || !markerPosition.longitude) {
+      setIsLocationValid(false);
+      isValid = false;
+    } else {
+      setIsLocationValid(true);
+    }
+
+    if (!isValid) {
+      return; // 유효성 검사 실패 시 제출 중단
+    }
 
     try {
       // 서버에 보낼 데이터 준비
