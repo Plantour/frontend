@@ -238,49 +238,44 @@ const QuestStatus = () => {
     }
   }, [blockId, questDataBySeason]);
 
-
-  //유효성검사
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-  
-    let isValid = true;
-  
-    if (!imageBlob) {
-      setIsImageValid(false);
-      isValid = false;
-    } else {
-      setIsImageValid(true);
-    }
-  
-    if (!plant || plant === "Select a Plant") {
-      setIsPlantValid(false);
-      isValid = false;
-    } else {
-      setIsPlantValid(true);
-    }
-  
-    if (!textData || textData.trim().length === 0) {
-      setIsTextValid(false);
-      isValid = false;
-    } else {
-      setIsTextValid(true);
-    }
-  
-    if (!markerPosition.latitude || !markerPosition.longitude) {
-      setIsLocationValid(false);
-      isValid = false;
-    } else {
-      setIsLocationValid(true);
-    }
-  
-    if (!isValid) {
-      return; // 유효성 검사 실패 시 제출 중단
-    }
-  
-
   const handleTextChange = (event) => {
     setTextData(event.target.value);
   };
+
+  //유효성검사
+  let isValid = true;
+
+  if (!imageBlob) {
+    setIsImageValid(false);
+    isValid = false;
+  } else {
+    setIsImageValid(true);
+  }
+
+  if (!plant || plant === "Select a Plant") {
+    setIsPlantValid(false);
+    isValid = false;
+  } else {
+    setIsPlantValid(true);
+  }
+
+  if (!textData || textData.trim().length === 0) {
+    setIsTextValid(false);
+    isValid = false;
+  } else {
+    setIsTextValid(true);
+  }
+
+  if (!markerPosition.latitude || !markerPosition.longitude) {
+    setIsLocationValid(false);
+    isValid = false;
+  } else {
+    setIsLocationValid(true);
+  }
+
+  if (!isValid) {
+    return; // 유효성 검사 실패 시 제출 중단
+  }
 
   const handleImageChange = (blob) => {
     setImageBlob(blob);
