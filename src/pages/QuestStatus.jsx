@@ -270,18 +270,18 @@ const QuestStatus = () => {
       setIsPlantValid(true);
     }
 
-    if (!imageBlob) {
-      setIsImageValid(false);
-      isValid = false;
-    } else {
-      setIsImageValid(true);
-    }
-
     if (!textData || textData.trim().length === 0) {
       setIsTextValid(false);
       isValid = false;
     } else {
       setIsTextValid(true);
+    }
+
+    if (!imageBlob) {
+      setIsImageValid(false);
+      isValid = false;
+    } else {
+      setIsImageValid(true);
     }
 
     if (!markerPosition.latitude || !markerPosition.longitude) {
@@ -430,6 +430,7 @@ const QuestStatus = () => {
             setIsMapOpen={setIsMapOpen}
             markerPosition={markerPosition}
             isPlantValid={isPlantValid}
+            isTextValid={isTextValid}
           />
           <CameraComponent
             imageBlob={imageBlob}
