@@ -44,6 +44,7 @@ const PlantListToggle = styled.div`
   justify-content: start;
   align-items: center;
   cursor: pointer;
+  border: 1px solid ${(props) => (props.isValid ? "transparent" : "red")};
 `;
 
 const StyledIoMdArrowDropdown = styled(IoMdArrowDropdown)`
@@ -115,6 +116,7 @@ const TextArea = ({
   isMapOpen,
   setIsMapOpen,
   markerPosition,
+  isPlantValid,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -176,7 +178,7 @@ const TextArea = ({
 
   return (
     <TextAreaLayout>
-      <PlantListToggle onClick={handleDropdownToggle}>
+      <PlantListToggle onClick={handleDropdownToggle} isValid={isPlantValid}>
         {plant}
         {plant == "Select a plant" ? (
           <StyledIoMdArrowDropdown />
