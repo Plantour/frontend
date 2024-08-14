@@ -4,13 +4,15 @@ import { LiaSmileWink } from "react-icons/lia";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useLanguage } from "../../helpers/languageUtils";
+import LanguageToggle from "./LanguageToggle";
 
 const Layout = styled.div`
   height: 50px;
   background-color: ivory;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: space-between;
+  padding: 0 10px;
 `;
 
 const IconContainer = styled.div`
@@ -71,7 +73,7 @@ const StyledLiaSmileWink = styled(LiaSmileWink)`
 `;
 
 const Header = () => {
-  const { translations, changeLanguage } = useLanguage();
+  const { language, translations, changeLanguage } = useLanguage();
   const [isMyHovered, setIsMyHovered] = useState(false);
   const navigate = useNavigate();
 
@@ -92,10 +94,22 @@ const Header = () => {
     }
   };
 
+  // const toggleLanguage = () => {
+  //   changeLanguage((prevLanguage) => (prevLanguage === "en" ? "KR" : "EN"));
+  // };
+
   return (
     <Layout>
-      <button onClick={() => changeLanguage("en")}>English</button>
-      <button onClick={() => changeLanguage("kr")}>한국어</button>
+      {/* <button onClick={() => changeLanguage("en")}>English</button>
+      <button onClick={() => changeLanguage("kr")}>한국어</button> */}
+
+      {/* <ToggleContainer onClick={toggleLanguage}>
+        <ToggleButton language={language}>
+          <LanguageLabel>KR</LanguageLabel>
+          <LanguageLabel>EN</LanguageLabel>
+        </ToggleButton>
+      </ToggleContainer> */}
+      <LanguageToggle />
       <IconContainer>
         <Circle />
         <IconTextWrapper
