@@ -44,7 +44,7 @@ const PlantListToggle = styled.div`
   justify-content: start;
   align-items: center;
   cursor: pointer;
-  color: ${(props) => (props.isValid ? "transparent" : "red")};
+  color: ${(props) => (props.isValid ? "black" : "#ff6347")};
 `;
 
 const StyledIoMdArrowDropdown = styled(IoMdArrowDropdown)`
@@ -81,6 +81,9 @@ const TextAreaContainer = styled.textarea`
   background-color: ${({ theme }) => theme.colors.lightgrey1};
   line-height: 1.5;
   padding: 8px 10px;
+  &::placeholder {
+    color: ${(props) => (props.isValid ? "black" : "#ff6347")};
+  }
 `;
 
 const DateLocationContainer = styled.div`
@@ -117,6 +120,7 @@ const TextArea = ({
   setIsMapOpen,
   markerPosition,
   isPlantValid,
+  isTextValid,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -202,6 +206,7 @@ const TextArea = ({
         placeholder={translations.textArea.addDescription}
         value={value}
         onChange={onChange}
+        isValid={isTextValid}
       />
       <DateLocationContainer>
         {formattedDate}/{" "}
