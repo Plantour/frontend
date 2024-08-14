@@ -146,33 +146,6 @@ const CameraComponent = ({ onImageCapture, imageBlob, setImageBlob }) => {
     ctx.clearRect(0, 0, photo.width, photo.height);
     setHasPhoto(false);
   };
-  // return (
-  //   <CameraComponentLayout>
-  //     <VideoOrPhotoContainer>
-  //       <div>
-  //         {/* 조건부 렌더링을 통해 비디오 스트림 또는 캡처된 사진을 표시 */}
-  //         {!hasPhoto ? (
-  //           <Video ref={videoRef}></Video>
-  //         ) : (
-  //           <Canvas ref={photoRef}></Canvas>
-  //         )}
-  //         <ButtonsContainer>
-  //           {!isCameraOpen && (
-  //             <ButtonOpenCamera onClick={getVideo}>
-  //               <StyledMdAddAPhoto />
-  //               <div>Add photo</div> {/* 카메라 열기 */}
-  //             </ButtonOpenCamera>
-  //           )}
-  //           {isCameraOpen && !hasPhoto && (
-  //             <ButtonTakePhoto onClick={takePhoto}>Take Photo</ButtonTakePhoto>
-  //           )}
-  //         </ButtonsContainer>
-  //       </div>
-  //     </VideoOrPhotoContainer>
-
-  //     <div>{hasPhoto && <button onClick={clearPhoto}>Clear Photo</button>}</div>
-  //   </CameraComponentLayout>
-  // );
 
   return (
     <CameraComponentLayout>
@@ -182,7 +155,6 @@ const CameraComponent = ({ onImageCapture, imageBlob, setImageBlob }) => {
           {!isCameraOpen && (
             <ButtonOpenCamera onClick={getVideo}>
               <StyledMdAddAPhoto />
-              <div>Add photo</div> {/*open camera*/}
             </ButtonOpenCamera>
           )}
           {isCameraOpen && !hasPhoto && (

@@ -14,6 +14,7 @@ import { fetchData } from "../api/FetchData";
 import { API_URL } from "../api/apiUrl";
 import PlantNoteTextArea from "../components/PlantNote/PlantNoteTextArea";
 import { IoMdClose } from "react-icons/io";
+import { useLanguage } from "../helpers/languageUtils";
 
 const PlantNoteForm = styled.form`
   width: 100%;
@@ -88,9 +89,10 @@ const BtnMapClose = styled.button`
 `;
 
 const PlantNote = () => {
+  const { translations } = useLanguage();
   const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const { blockId } = useParams(); // URL에서 블록 번호를 가져옴
-  const [plant, setPlant] = useState("Select a plant");
+  const [plant, setPlant] = useState(translations.plantNote.selectPlant);
   const [plantId, setPlantId] = useState(null);
   const [textData, setTextData] = useState(null);
   const [today, setToday] = useState(null);
@@ -194,7 +196,7 @@ const PlantNote = () => {
       {isMapOpen ? (
         <>
           <BtnMapClose type="button" onClick={handleBtnClose}>
-            Confirm Location
+            {translations.plantNote.confirmLocation}
           </BtnMapClose>
           <StyledMapComponent
             markerPosition={markerPosition}
@@ -208,10 +210,10 @@ const PlantNote = () => {
               <CancelBtnWrapper to="/">
                 <StyledIoMdClose />
               </CancelBtnWrapper>
-              <div>Created a post</div>
+              <div>{translations.plantNote.createPost}</div>
             </CancelBtnAndTextWrapper>
 
-            <PostBtn type="submit">Post</PostBtn>
+            <PostBtn type="submit">{translations.plantNote.post}</PostBtn>
           </ButtonsContainer>
           <PlantNoteTextArea
             value={textData}

@@ -3,6 +3,7 @@ import PlantListModal from "./PlantListModal";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { questDataState, selectedSeasonState } from "../../state/atom";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const SeasonsLayout = styled.div`
   height: 40%;
@@ -47,7 +48,7 @@ const InnerCircle = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  font-size: 2.35rem;
+  font-size: 1rem;
   background-color: #b2dccd;
   color: #6a8b81;
   display: flex;
@@ -55,7 +56,6 @@ const InnerCircle = styled.div`
   align-items: center;
   font-weight: bold;
   overflow: hidden;
-  /* box-shadow: 0px 5px 6px rgba(128, 128, 128, 0.3); */
   transition: all 0.3s ease-in-out;
 
   ${(props) =>
@@ -65,7 +65,7 @@ const InnerCircle = styled.div`
       color: white;
       width: 75px;
       height: 75px;
-      font-size: 2.75rem;
+      font-size: 2rem;
     `}
 `;
 
@@ -86,10 +86,12 @@ const PlantListBtn = styled.button`
 `;
 
 const Seasons = () => {
+  const { translations } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const questDataBySeason = useRecoilValue(questDataState);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const listBtnHandler = () => {
     setIsModalOpen(true);
   };
@@ -107,7 +109,7 @@ const Seasons = () => {
           isSelected={selectedSeason === "SPRING"}
         >
           <InnerCircle isSelected={selectedSeason === "SPRING"}>
-            Spr
+            {translations.seasons.spring}
           </InnerCircle>
         </SeasonContainer>
         <SeasonContainer
@@ -115,7 +117,7 @@ const Seasons = () => {
           isSelected={selectedSeason === "SUMMER"}
         >
           <InnerCircle isSelected={selectedSeason === "SUMMER"}>
-            Sum
+            {translations.seasons.summer}
           </InnerCircle>
         </SeasonContainer>
         <SeasonContainer
@@ -123,7 +125,7 @@ const Seasons = () => {
           isSelected={selectedSeason === "AUTUMN"}
         >
           <InnerCircle isSelected={selectedSeason === "AUTUMN"}>
-            Aut
+            {translations.seasons.autumn}
           </InnerCircle>
         </SeasonContainer>
         <SeasonContainer
@@ -131,11 +133,13 @@ const Seasons = () => {
           isSelected={selectedSeason === "WINTER"}
         >
           <InnerCircle isSelected={selectedSeason === "WINTER"}>
-            Win
+            {translations.seasons.winter}
           </InnerCircle>
         </SeasonContainer>
       </FourSeasons>
-      <PlantListBtn onClick={listBtnHandler}>Plant List</PlantListBtn>
+      <PlantListBtn onClick={listBtnHandler}>
+        {translations.seasons.plantList}
+      </PlantListBtn>
       <PlantListModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
