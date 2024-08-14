@@ -16,6 +16,11 @@ export const translations = {
       winter: "Win",
       plantList: "Plant List",
     },
+    questStatus: {
+      completedQuest: "Completed a quest",
+      selectPlant: "Select a plant",
+    },
+
     plantNote: {
       createPost: "Create a post",
       post: "post",
@@ -49,6 +54,10 @@ export const translations = {
       autumn: "가을",
       winter: "겨울",
       plantList: "식물 목록",
+    },
+    questStatus: {
+      completedQuest: "퀘스트 작성",
+      selectPlant: "식물 선택",
     },
     plantNote: {
       createPost: "게시글 작성",
