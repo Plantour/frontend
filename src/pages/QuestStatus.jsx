@@ -13,6 +13,7 @@ import MapComponent from "../components/Map/MapComponent";
 import { fetchData } from "../api/FetchData";
 import { API_URL } from "../api/apiUrl";
 import { IoMdClose } from "react-icons/io";
+import { useLanguage } from "../helpers/languageUtils";
 
 const QuestStatusForm = styled.form`
   width: 100%;
@@ -136,12 +137,13 @@ const ContentCompletedQuest = styled.p`
 
 //작성된 글이 있을 경우 받아오고 없으면 글작성 UI띄우기
 const QuestStatus = () => {
+  const { translations } = useLanguage();
   const questDataBySeason = useRecoilValue(questDataState);
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const { blockId } = useParams(); // URL에서 블록 번호를 가져옴
-  const [plant, setPlant] = useState("Select a Plant");
+  const [plant, setPlant] = useState(translations.questStatus.selectPlant);
   const [plantId, setPlantId] = useState(null);
   const [textData, setTextData] = useState(null);
   const [today, setToday] = useState(null);
@@ -361,7 +363,7 @@ const QuestStatus = () => {
               <CancelBtnWrapper to="/">
                 <StyledIoMdClose />
               </CancelBtnWrapper>
-              <div>Completed a quest</div>
+              <div>{translations.questStatus.completedQuest}</div>
             </CancelBtnAndTextWrapper>
 
             <PostBtn type="submit">Post</PostBtn>
