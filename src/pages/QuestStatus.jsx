@@ -366,7 +366,7 @@ const QuestStatus = () => {
               <div>{translations.questStatus.completedQuest}</div>
             </CancelBtnAndTextWrapper>
 
-            <PostBtn type="submit">Post</PostBtn>
+            <PostBtn type="submit">제출</PostBtn>
           </ButtonsContainer>
           {/* <ButtonsContainer>
             <CancelBtn to="/quest">X</CancelBtn>
