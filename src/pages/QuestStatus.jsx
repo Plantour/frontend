@@ -245,18 +245,18 @@ const QuestStatus = () => {
   //유효성검사
   let isValid = true;
 
+  if (!plant || plant === "Select a plant" || plant === "식물 선택") {
+    setIsPlantValid(false);
+    isValid = false;
+  } else {
+    setIsPlantValid(true);
+  }
+
   if (!imageBlob) {
     setIsImageValid(false);
     isValid = false;
   } else {
     setIsImageValid(true);
-  }
-
-  if (!plant || plant === "Select a Plant") {
-    setIsPlantValid(false);
-    isValid = false;
-  } else {
-    setIsPlantValid(true);
   }
 
   if (!textData || textData.trim().length === 0) {
