@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import { selectedSeasonState } from "../../state/atom";
 import { API_URL } from "../../api/apiUrl";
 import { FaChevronDown } from "react-icons/fa";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const TextAreaLayout = styled.div`
   width: 100%;
@@ -166,6 +167,7 @@ const PlantNoteTextArea = ({
   title,
   setTitle,
 }) => {
+  const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const [allSeasonPlantList, setAllSeasonPlantList] =
@@ -177,11 +179,16 @@ const PlantNoteTextArea = ({
   const [inputValue, setInputValue] = useState("");
 
   const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const formattedDate =
+    language === "en"
+      ? today.toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        })
+      : `${today.getFullYear()}년 ${
+          today.getMonth() + 1
+        }월 ${today.getDate()}일`;
 
   handleDate(formattedDate);
 
@@ -246,11 +253,16 @@ const PlantNoteTextArea = ({
     fetchAllSeasonPlantData();
   }, [selectedSeason]);
 
+  // 언어 변경 시 plant 상태 업데이트
+  useEffect(() => {
+    setPlant(translations.plantNote.selectPlant);
+  }, [translations]);
+
   return (
     <TextAreaLayout>
       <TitleInput
         type="text"
-        placeholder="Add a title.."
+        placeholder={translations.plantNoteTextArea.addTitle}
         value={title}
         onChange={(e) => setTitle(e.target.value)} // 제목 상태 변경
       />
@@ -264,7 +276,7 @@ const PlantNoteTextArea = ({
         {isInputOpen && (
           <InputField
             type="text"
-            placeholder="Enter a plant name"
+            placeholder={translations.plantNoteTextArea.enterPlantName}
             value={inputValue}
             onChange={handleInputChange}
             onBlur={handleInputBlur} // 포커스가 벗어나면 값 저장
@@ -276,13 +288,13 @@ const PlantNoteTextArea = ({
         <ModalBackground onClick={handleModalToggle}>
           <ModalContainer onClick={(e) => e.stopPropagation()}>
             <ModalOption onClick={() => handleModalOptionSelect("list")}>
-              목록에서 고르기
+              {translations.plantNoteTextArea.selectFromList}
             </ModalOption>
             <ModalOption onClick={() => handleModalOptionSelect("input")}>
-              직접 입력
+              {translations.plantNoteTextArea.enterManually}
             </ModalOption>
             <ModalOption onClick={() => handleModalOptionSelect("unknown")}>
-              모르겠음
+              {translations.plantNoteTextArea.iDontKnow}
             </ModalOption>
           </ModalContainer>
         </ModalBackground>
@@ -307,7 +319,7 @@ const PlantNoteTextArea = ({
       )}
 
       <TextAreaContainer
-        placeholder="Add a description.."
+        placeholder={translations.plantNoteTextArea.addDescription}
         value={value}
         onChange={onChange}
         rows={3}
@@ -316,9 +328,9 @@ const PlantNoteTextArea = ({
         {formattedDate}/{" "}
         <AddLocationBtn type="button" onClick={locationBtnClickHandler}>
           {markerPosition.latitude && markerPosition.longitude ? (
-            <div>Location Added</div>
+            <div>{translations.plantNoteTextArea.locationAdded}</div>
           ) : (
-            <div>Add Location</div>
+            <div>{translations.plantNoteTextArea.addLocation}</div>
           )}
         </AddLocationBtn>
       </DateLocationContainer>

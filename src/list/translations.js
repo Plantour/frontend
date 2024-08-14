@@ -6,6 +6,32 @@ export const translations = {
       quest: "QUEST",
       plantNote: "PLANT NOTE",
     },
+    mapComponent: {
+      searchPlaces: "Search for places...",
+    },
+    seasons: {
+      spring: "Spr",
+      summer: "Sum",
+      autumn: "Aut",
+      winter: "Win",
+      plantList: "Plant List",
+    },
+    plantNote: {
+      createPost: "Create a post",
+      post: "post",
+      selectPlant: "Select a plant",
+      confirmLocation: "Confirm Location",
+    },
+    plantNoteTextArea: {
+      addTitle: "Add a title..",
+      addDescription: "Add a description..",
+      addLocation: "Add Location",
+      selectFromList: "Select from list",
+      enterManually: "Enter manually",
+      iDontKnow: "I don't know",
+      enterPlantName: "Enter a plant name",
+      locationAdded: "Location added",
+    },
   },
   kr: {
     menu: {
@@ -13,6 +39,32 @@ export const translations = {
       map: "지도",
       quest: "퀘스트",
       plantNote: "기록",
+    },
+    mapComponent: {
+      searchPlaces: "장소 검색",
+    },
+    seasons: {
+      spring: "봄",
+      summer: "여름",
+      autumn: "가을",
+      winter: "겨울",
+      plantList: "식물 목록",
+    },
+    plantNote: {
+      createPost: "게시글 작성",
+      post: "제출",
+      selectPlant: "식물 선택",
+      confirmLocation: "위치 확인",
+    },
+    plantNoteTextArea: {
+      addTitle: "제목을 작성해주세요.",
+      addDescription: "내용을 작성해주세요.",
+      addLocation: "위치선택",
+      selectFromList: "목록에서 고르기",
+      enterManually: "직접입력",
+      iDontKnow: "모르겠음",
+      enterPlantName: "입력해주세요.",
+      locationAdded: "위치선택 완료",
     },
   },
 };

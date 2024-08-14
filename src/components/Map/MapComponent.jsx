@@ -16,6 +16,7 @@ import { API_URL } from "../../api/apiUrl";
 import MapModal from "./MapModal";
 import { useRecoilState } from "recoil";
 import { userLocationState } from "../../state/atom";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const MapContainer = styled.div`
   width: 100%;
@@ -43,6 +44,7 @@ const SearchInput = styled.input`
 const libraries = ["places"];
 
 export default function MapComponent({ markerPosition, setMarkerPosition }) {
+  const { translations, language } = useLanguage();
   const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const [fetchedData, setFetchedData] = useState(mockDataforMapComponent); //식물위치마커들(퀘스트)
   const [plantNoteFetchedData, setPlantNoteFetchedData] =
@@ -145,7 +147,10 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
               }
             }}
           >
-            <SearchInput type="text" placeholder="Search for places..." />
+            <SearchInput
+              type="text"
+              placeholder={translations.mapComponent.searchPlaces}
+            />
           </Autocomplete>
         </SearchBoxContainer>
         <GoogleMap
@@ -163,6 +168,10 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
           }}
           onLoad={(map) => {
             mapRef.current = map;
+          }}
+          options={{
+            mapTypeControl: false, // 맵 타입 컨트롤을 숨김
+            language: language === "kr" ? "ko" : "en", //언어설정 적용 안되는듯..
           }}
         >
           {/* quest 마커 */}
