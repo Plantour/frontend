@@ -160,7 +160,7 @@ const QuestStatus = () => {
   const [isPlantValid, setIsPlantValid] = useState(true);
   const [isTextValid, setIsTextValid] = useState(true);
   const [isLocationValid, setIsLocationValid] = useState(true);
-  const [isImageValid, setIsImageValid] = useState(true);
+  const [isQuestImageValid, setIsQuestImageValid] = useState(true);
 
   const [responseMessage, setResponseMessage] = useState(""); // 응답 메시지 상태
 
@@ -278,10 +278,10 @@ const QuestStatus = () => {
     }
 
     if (!imageBlob) {
-      setIsImageValid(false);
+      setIsQuestImageValid(false);
       isValid = false;
     } else {
-      setIsImageValid(true);
+      setIsQuestImageValid(true);
     }
 
     if (!markerPosition.latitude || !markerPosition.longitude) {
@@ -436,6 +436,7 @@ const QuestStatus = () => {
             imageBlob={imageBlob}
             setImageBlob={setImageBlob}
             onImageCapture={handleImageChange}
+            isQuestImageValid={isQuestImageValid}
           />
           {isMapOpen && <StyledMapComponent />}
         </QuestStatusForm>
