@@ -45,7 +45,7 @@ const ButtonOpenCamera = styled.button`
   font-size: 1rem;
   background-color: grey;
   border: none;
-  color: ${(props) => (props.isValid ? "black" : "#ff6347")};
+  color: ${(props) => (props.isValid ? "white" : "#ff6347")};
   cursor: pointer;
 `;
 

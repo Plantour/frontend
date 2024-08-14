@@ -97,9 +97,10 @@ const DateLocationContainer = styled.div`
 `;
 
 const AddLocationBtn = styled.button`
-  background: none; /* 배경색 제거 */
-  border: none; /* 테두리 제거 */
-  padding: 0; /* 기본 패딩 제거 */
+  color: ${(props) => (props.isValid ? "black" : "#ff6347")};
+  background: none;
+  border: none;
+  padding: 0;
   margin: 0; /* 기본 마진 제거 */
   font: inherit; /* 부모 요소의 폰트 스타일을 상속받음 */
   cursor: pointer; /* 클릭할 수 있음을 나타내는 커서 */
@@ -210,7 +211,11 @@ const TextArea = ({
       />
       <DateLocationContainer>
         {formattedDate}/{" "}
-        <AddLocationBtn type="button" onClick={locationBtnClickHandler}>
+        <AddLocationBtn
+          type="button"
+          onClick={locationBtnClickHandler}
+          isValid={isLocationValid}
+        >
           {markerPosition.latitude && markerPosition.longitude ? (
             <div>{translations.textArea.locationAdded}</div>
           ) : (
