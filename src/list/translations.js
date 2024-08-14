@@ -66,8 +66,8 @@ export const translations = {
     },
     textArea: {
       addDescription: "발견 스토리를 들려주세요!",
-      addLocation: "위치선택",
-      locationAdded: "위치선택 완료",
+      addLocation: "위치 선택",
+      locationAdded: "위치 선택 완료",
     },
     plantNote: {
       createPost: "게시글 작성",
@@ -78,8 +78,8 @@ export const translations = {
     plantNoteTextArea: {
       addTitle: "제목을 작성해주세요.",
       addDescription: "내용을 작성해주세요.",
-      addLocation: "위치선택",
-      locationAdded: "위치선택 완료",
+      addLocation: "위치 선택",
+      locationAdded: "위치 선택 완료",
       selectFromList: "목록에서 고르기",
       enterManually: "직접입력",
       iDontKnow: "모르겠음",

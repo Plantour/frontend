@@ -45,7 +45,7 @@ const ButtonOpenCamera = styled.button`
   font-size: 1rem;
   background-color: grey;
   border: none;
-  color: white;
+  color: ${(props) => (props.isValid ? "black" : "#ff6347")};
   cursor: pointer;
 `;
 
@@ -87,7 +87,12 @@ const ButtonClearPhoto = styled.button`
   }
 `;
 
-const CameraComponent = ({ onImageCapture, imageBlob, setImageBlob }) => {
+const CameraComponent = ({
+  onImageCapture,
+  imageBlob,
+  setImageBlob,
+  isQuestImageValid,
+}) => {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
   const [hasPhoto, setHasPhoto] = useState(false);
@@ -153,7 +158,7 @@ const CameraComponent = ({ onImageCapture, imageBlob, setImageBlob }) => {
         <Video ref={videoRef}></Video>
         <ButtonsContainer>
           {!isCameraOpen && (
-            <ButtonOpenCamera onClick={getVideo}>
+            <ButtonOpenCamera onClick={getVideo} isValid={isQuestImageValid}>
               <StyledMdAddAPhoto />
             </ButtonOpenCamera>
           )}
