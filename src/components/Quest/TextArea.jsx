@@ -44,7 +44,7 @@ const PlantListToggle = styled.div`
   justify-content: start;
   align-items: center;
   cursor: pointer;
-  border: 1px solid ${(props) => (props.isValid ? "transparent" : "red")};
+  color: ${(props) => (props.isValid ? "transparent" : "red")};
 `;
 
 const StyledIoMdArrowDropdown = styled(IoMdArrowDropdown)`
