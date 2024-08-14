@@ -324,6 +324,11 @@ const QuestStatus = () => {
     // }
   };
 
+  // 언어 변경 시 plant 상태 업데이트
+  useEffect(() => {
+    setPlant(translations.questStatus.selectPlant);
+  }, [translations]);
+
   return (
     <>
       {isMapOpen ? (
