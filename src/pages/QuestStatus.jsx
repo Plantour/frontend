@@ -156,6 +156,12 @@ const QuestStatus = () => {
     longitude: null,
   });
   const [doesCompletedQuestExist, setDoesCompletedQuestExist] = useState(false); // 글이 존재하는지 여부
+
+  const [isPlantValid, setIsPlantValid] = useState(true);
+  const [isTextValid, setIsTextValid] = useState(true);
+  const [isLocationValid, setIsLocationValid] = useState(true);
+  const [isImageValid, setIsImageValid] = useState(true);
+
   const [responseMessage, setResponseMessage] = useState(""); // 응답 메시지 상태
 
   const navigate = useNavigate();
@@ -231,6 +237,46 @@ const QuestStatus = () => {
       setDoesCompletedQuestExist(false);
     }
   }, [blockId, questDataBySeason]);
+
+
+  //유효성검사
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    let isValid = true;
+  
+    if (!imageBlob) {
+      setIsImageValid(false);
+      isValid = false;
+    } else {
+      setIsImageValid(true);
+    }
+  
+    if (!plant || plant === "Select a Plant") {
+      setIsPlantValid(false);
+      isValid = false;
+    } else {
+      setIsPlantValid(true);
+    }
+  
+    if (!textData || textData.trim().length === 0) {
+      setIsTextValid(false);
+      isValid = false;
+    } else {
+      setIsTextValid(true);
+    }
+  
+    if (!markerPosition.latitude || !markerPosition.longitude) {
+      setIsLocationValid(false);
+      isValid = false;
+    } else {
+      setIsLocationValid(true);
+    }
+  
+    if (!isValid) {
+      return; // 유효성 검사 실패 시 제출 중단
+    }
+  
 
   const handleTextChange = (event) => {
     setTextData(event.target.value);
@@ -387,6 +433,7 @@ const QuestStatus = () => {
             isMapOpen={isMapOpen}
             setIsMapOpen={setIsMapOpen}
             markerPosition={markerPosition}
+            isPlantValid={isPlantValid}
           />
           <CameraComponent
             imageBlob={imageBlob}
