@@ -121,8 +121,12 @@ const TextArea = ({
   setIsMapOpen,
   markerPosition,
   isPlantValid,
+  setIsPlantValid
   isTextValid,
+  setIsTextValid,
   isLocationValid,
+  formSubmitted,
+  setIsLocationValid
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -146,17 +150,33 @@ const TextArea = ({
 
   handleDate(formattedDate);
 
+  const handleTextChange = (e) => {
+    onChange(e);
+    if (formSubmitted) {
+      // Validate text input on change after form submission
+      setIsTextValid(e.target.value.trim().length > 0);
+    }
+  };
+
   const handleplantSelection = (plantName, plantId) => {
     console.log("trying handle plant selection");
     console.log("questDataBySeason", questDataBySeason);
     setPlant(plantName); // 선택된 꽃으로 상태 업데이트
     setPlantId(plantId);
     setIsDropdownOpen(false); // 드롭다운 닫기
+    if (formSubmitted) {
+      // Validate plant selection on change after form submission
+      setIsPlantValid(plantName !== "Select a plant" && plantName !== "식물 선택");
+    }
   };
 
   const locationBtnClickHandler = () => {
     setIsMapOpen(true);
-    console.log("markerPosition:", markerPosition);
+    
+    if (formSubmitted) {
+      // Validate location on change after form submission
+      setIsLocationValid(markerPosition.latitude && markerPosition.longitude);
+    }
   };
 
   const handleDropdownToggle = () => {
@@ -208,7 +228,7 @@ const TextArea = ({
         placeholder={translations.textArea.addDescription}
         value={value}
         onChange={onChange}
-        isValid={isTextValid}
+        isValid={!formSubmitted || isTextValid}
       />
       <DateLocationContainer>
         {formattedDate}/{" "}
