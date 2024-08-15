@@ -161,6 +161,7 @@ const QuestStatus = () => {
   const [isTextValid, setIsTextValid] = useState(true);
   const [isLocationValid, setIsLocationValid] = useState(true);
   const [isQuestImageValid, setIsQuestImageValid] = useState(true);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [responseMessage, setResponseMessage] = useState(""); // 응답 메시지 상태
 
@@ -256,43 +257,60 @@ const QuestStatus = () => {
     setIsMapOpen(false);
   };
 
+  //유효성검사
+  const validateForm = () => {
+    setIsPlantValid(
+      !!plant && plant !== "Select a plant" && plant !== "식물 선택"
+    );
+    setIsTextValid(!!textData && textData.trim().length > 0);
+    setIsQuestImageValid(!!imageBlob);
+    setIsLocationValid(!!markerPosition.latitude && !!markerPosition.longitude);
+
+    return isPlantValid && isTextValid && isQuestImageValid && isLocationValid;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault(); // 폼 제출 기본 동작 방지
+    setFormSubmitted(true);
 
-    //유효성검사
-    let isValid = true;
-
-    if (!plant || plant === "Select a plant" || plant === "식물 선택") {
-      setIsPlantValid(false);
-      isValid = false;
-    } else {
-      setIsPlantValid(true);
+    if (!validateForm()) {
+      return;
     }
 
-    if (!textData || textData.trim().length === 0) {
-      setIsTextValid(false);
-      isValid = false;
-    } else {
-      setIsTextValid(true);
-    }
+    // //유효성검사
+    // let isValid = true;
 
-    if (!imageBlob) {
-      setIsQuestImageValid(false);
-      isValid = false;
-    } else {
-      setIsQuestImageValid(true);
-    }
+    // if (!plant || plant === "Select a plant" || plant === "식물 선택") {
+    //   setIsPlantValid(false);
+    //   isValid = false;
+    // } else {
+    //   setIsPlantValid(true);
+    // }
 
-    if (!markerPosition.latitude || !markerPosition.longitude) {
-      setIsLocationValid(false);
-      isValid = false;
-    } else {
-      setIsLocationValid(true);
-    }
+    // if (!textData || textData.trim().length === 0) {
+    //   setIsTextValid(false);
+    //   isValid = false;
+    // } else {
+    //   setIsTextValid(true);
+    // }
 
-    if (!isValid) {
-      return; // 유효성 검사 실패 시 제출 중단
-    }
+    // if (!imageBlob) {
+    //   setIsQuestImageValid(false);
+    //   isValid = false;
+    // } else {
+    //   setIsQuestImageValid(true);
+    // }
+
+    // if (!markerPosition.latitude || !markerPosition.longitude) {
+    //   setIsLocationValid(false);
+    //   isValid = false;
+    // } else {
+    //   setIsLocationValid(true);
+    // }
+
+    // if (!isValid) {
+    //   return; // 유효성 검사 실패 시 제출 중단
+    // }
 
     try {
       // 서버에 보낼 데이터 준비
@@ -365,6 +383,13 @@ const QuestStatus = () => {
     // }
   };
 
+  // Update validation states when form fields change
+  useEffect(() => {
+    if (formSubmitted) {
+      validateForm();
+    }
+  }, [plant, textData, imageBlob, markerPosition]);
+
   // 언어 변경 시 plant 상태 업데이트
   useEffect(() => {
     setPlant(translations.questStatus.selectPlant);
@@ -429,14 +454,19 @@ const QuestStatus = () => {
             setIsMapOpen={setIsMapOpen}
             markerPosition={markerPosition}
             isPlantValid={isPlantValid}
+            setIsPlantValid={setIsPlantValid}
             isTextValid={isTextValid}
             isLocationValid={isLocationValid}
+            setIsLocationValid={setIsLocationValid}
+            formSubmitted={formSubmitted}
+            setIsTextValid={setIsTextValid}
           />
           <CameraComponent
             imageBlob={imageBlob}
             setImageBlob={setImageBlob}
             onImageCapture={handleImageChange}
             isQuestImageValid={isQuestImageValid}
+            formSubmitted={formSubmitted}
           />
           {isMapOpen && <StyledMapComponent />}
         </QuestStatusForm>
