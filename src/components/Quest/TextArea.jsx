@@ -121,12 +121,12 @@ const TextArea = ({
   setIsMapOpen,
   markerPosition,
   isPlantValid,
-  setIsPlantValid
+  setIsPlantValid,
   isTextValid,
   setIsTextValid,
   isLocationValid,
   formSubmitted,
-  setIsLocationValid
+  setIsLocationValid,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -166,13 +166,15 @@ const TextArea = ({
     setIsDropdownOpen(false); // 드롭다운 닫기
     if (formSubmitted) {
       // Validate plant selection on change after form submission
-      setIsPlantValid(plantName !== "Select a plant" && plantName !== "식물 선택");
+      setIsPlantValid(
+        plantName !== "Select a plant" && plantName !== "식물 선택"
+      );
     }
   };
 
   const locationBtnClickHandler = () => {
     setIsMapOpen(true);
-    
+
     if (formSubmitted) {
       // Validate location on change after form submission
       setIsLocationValid(markerPosition.latitude && markerPosition.longitude);
