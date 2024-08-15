@@ -62,6 +62,9 @@ const TextAreaContainer = styled.textarea`
   background-color: ${({ theme }) => theme.colors.lightgrey1};
   max-height: 6rem; /* 3줄 높이로 제한 (line-height * 3) */
   overflow: hidden; /* 줄 수를 초과하는 내용 숨김 */
+  &::placeholder {
+    color: ${(props) => (props.isValid ? "black" : "#ff6347")};
+  }
 `;
 
 const TitleInput = styled.input`
@@ -172,6 +175,7 @@ const PlantNoteTextArea = ({
   setTitle,
   isTitleValid,
   isPlantValid,
+  isTextValid,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -330,6 +334,7 @@ const PlantNoteTextArea = ({
         value={value}
         onChange={onChange}
         rows={3}
+        isValid={isTextValid}
       />
       <DateLocationContainer>
         {formattedDate}/{" "}
