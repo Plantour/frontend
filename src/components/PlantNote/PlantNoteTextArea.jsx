@@ -33,6 +33,7 @@ const PlantListToggle = styled.div`
   align-items: center;
   cursor: pointer;
   gap: 3px;
+  color: ${(props) => (props.isValid ? "black" : "#ff6347")};
 `;
 
 const InputField = styled.input`
@@ -170,6 +171,7 @@ const PlantNoteTextArea = ({
   title,
   setTitle,
   isTitleValid,
+  isPlantValid,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -272,7 +274,7 @@ const PlantNoteTextArea = ({
         isValid={isTitleValid}
       />
       <PlantListAndInputContainer>
-        <PlantListToggle onClick={handleModalToggle}>
+        <PlantListToggle onClick={handleModalToggle} isValid={isPlantValid}>
           <span>{plant}</span>
           <FaChevronDownContainer>
             <FaChevronDown />

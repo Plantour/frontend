@@ -112,7 +112,7 @@ const PlantNote = () => {
   const [isPlantValid, setIsPlantValid] = useState(true);
   const [isTextValid, setIsTextValid] = useState(true);
   const [isLocationValid, setIsLocationValid] = useState(true);
-  const [isQuestImageValid, setIsQuestImageValid] = useState(true);
+  const [isPlantNoteImageValid, setIsPlantNoteImageValid] = useState(true);
 
   const navigate = useNavigate();
 
@@ -165,10 +165,10 @@ const PlantNote = () => {
     }
 
     if (!imageBlob) {
-      setIsQuestImageValid(false);
+      setIsPlantNoteImageValid(false);
       isValid = false;
     } else {
-      setIsQuestImageValid(true);
+      setIsPlantNoteImageValid(true);
     }
 
     if (!markerPosition.latitude || !markerPosition.longitude) {
@@ -276,6 +276,7 @@ const PlantNote = () => {
             title={title}
             setTitle={setTitle}
             isTitleValid={isTitleValid}
+            isPlantValid={isPlantValid}
           />
           <CameraComponent
             imageBlob={imageBlob}
