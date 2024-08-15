@@ -122,6 +122,7 @@ const TextArea = ({
   markerPosition,
   isPlantValid,
   isTextValid,
+  isLocationValid,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =

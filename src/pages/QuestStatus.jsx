@@ -431,6 +431,7 @@ const QuestStatus = () => {
             markerPosition={markerPosition}
             isPlantValid={isPlantValid}
             isTextValid={isTextValid}
+            isLocationValid={isLocationValid}
           />
           <CameraComponent
             imageBlob={imageBlob}
