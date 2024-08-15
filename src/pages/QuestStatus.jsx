@@ -242,7 +242,7 @@ const QuestStatus = () => {
 
   const handleTextChange = (event) => {
     setTextData(event.target.value);
-    setCurrentTextLength(e.target.value.length); // 글자 수 업데이트
+    setCurrentTextLength(event.target.value.length); // 글자 수 업데이트
   };
 
   const handleImageChange = (blob) => {
