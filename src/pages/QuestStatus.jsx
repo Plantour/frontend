@@ -162,6 +162,7 @@ const QuestStatus = () => {
   const [isLocationValid, setIsLocationValid] = useState(true);
   const [isQuestImageValid, setIsQuestImageValid] = useState(true);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [currentTextLength, setCurrentTextLength] = useState(0);
 
   const [responseMessage, setResponseMessage] = useState(""); // 응답 메시지 상태
 
@@ -241,6 +242,7 @@ const QuestStatus = () => {
 
   const handleTextChange = (event) => {
     setTextData(event.target.value);
+    setCurrentTextLength(e.target.value.length); // 글자 수 업데이트
   };
 
   const handleImageChange = (blob) => {
@@ -460,6 +462,7 @@ const QuestStatus = () => {
             setIsLocationValid={setIsLocationValid}
             formSubmitted={formSubmitted}
             setIsTextValid={setIsTextValid}
+            currentTextLength={currentTextLength}
           />
           <CameraComponent
             imageBlob={imageBlob}
