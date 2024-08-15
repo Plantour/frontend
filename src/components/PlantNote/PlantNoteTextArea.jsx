@@ -71,6 +71,9 @@ const TitleInput = styled.input`
   padding: 8px;
   border: none;
   cursor: pointer;
+  &::placeholder {
+    color: ${(props) => (props.isValid ? "black" : "#ff6347")};
+  }
 `;
 
 const DateLocationContainer = styled.div`
@@ -166,6 +169,7 @@ const PlantNoteTextArea = ({
   markerPosition,
   title,
   setTitle,
+  isTitleValid,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -265,6 +269,7 @@ const PlantNoteTextArea = ({
         placeholder={translations.plantNoteTextArea.addTitle}
         value={title}
         onChange={(e) => setTitle(e.target.value)} // 제목 상태 변경
+        isValid={isTitleValid}
       />
       <PlantListAndInputContainer>
         <PlantListToggle onClick={handleModalToggle}>

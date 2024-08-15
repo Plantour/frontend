@@ -108,6 +108,12 @@ const PlantNote = () => {
   const [responseMessage, setResponseMessage] = useState(""); // 응답 메시지 상태
   const [title, setTitle] = useState("");
 
+  const [isTitleValid, setIsTitleValid] = useState(true);
+  const [isPlantValid, setIsPlantValid] = useState(true);
+  const [isTextValid, setIsTextValid] = useState(true);
+  const [isLocationValid, setIsLocationValid] = useState(true);
+  const [isQuestImageValid, setIsQuestImageValid] = useState(true);
+
   const navigate = useNavigate();
 
   const handleTextChange = (event) => {
@@ -133,6 +139,48 @@ const PlantNote = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // 폼 제출 기본 동작 방지
+
+    //유효성검사
+    let isValid = true;
+
+    if (!title.trim()) {
+      setIsTitleValid(false);
+      isValid = false;
+    } else {
+      setIsTitleValid(true);
+    }
+
+    if (!plant || plant === "Select a plant" || plant === "식물 선택") {
+      setIsPlantValid(false);
+      isValid = false;
+    } else {
+      setIsPlantValid(true);
+    }
+
+    if (!textData || textData.trim().length === 0) {
+      setIsTextValid(false);
+      isValid = false;
+    } else {
+      setIsTextValid(true);
+    }
+
+    if (!imageBlob) {
+      setIsQuestImageValid(false);
+      isValid = false;
+    } else {
+      setIsQuestImageValid(true);
+    }
+
+    if (!markerPosition.latitude || !markerPosition.longitude) {
+      setIsLocationValid(false);
+      isValid = false;
+    } else {
+      setIsLocationValid(true);
+    }
+
+    if (!isValid) {
+      return; // 유효성 검사 실패 시 제출 중단
+    }
 
     // Determine infoType and plantInfo based on plant state
     let infoType = "";
@@ -227,6 +275,7 @@ const PlantNote = () => {
             markerPosition={markerPosition}
             title={title}
             setTitle={setTitle}
+            isTitleValid={isTitleValid}
           />
           <CameraComponent
             imageBlob={imageBlob}
