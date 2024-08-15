@@ -92,6 +92,7 @@ const CameraComponent = ({
   imageBlob,
   setImageBlob,
   isQuestImageValid,
+  isPlantNoteImageValid,
 }) => {
   const videoRef = useRef(null);
   const photoRef = useRef(null);

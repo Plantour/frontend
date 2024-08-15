@@ -277,11 +277,13 @@ const PlantNote = () => {
             setTitle={setTitle}
             isTitleValid={isTitleValid}
             isPlantValid={isPlantValid}
+            isTextValid={isTextValid}
           />
           <CameraComponent
             imageBlob={imageBlob}
             setImageBlob={setImageBlob}
             onImageCapture={handleImageChange}
+            isPlantNoteImageValid={isPlantNoteImageValid}
           />
           {isMapOpen && <StyledMapComponent />}
         </PlantNoteForm>
