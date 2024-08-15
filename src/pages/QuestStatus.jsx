@@ -265,7 +265,6 @@ const QuestStatus = () => {
     if (!plant || plant === "Select a plant" || plant === "식물 선택") {
       setIsPlantValid(false);
       isValid = false;
-      console.log("isPlant is not valid:", isPlantValid);
     } else {
       setIsPlantValid(true);
     }

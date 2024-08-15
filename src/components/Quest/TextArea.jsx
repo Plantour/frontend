@@ -220,7 +220,7 @@ const TextArea = ({
           {markerPosition.latitude && markerPosition.longitude ? (
             <div>{translations.textArea.locationAdded}</div>
           ) : (
-            <div>{translations.textArea.locationAdded}</div>
+            <div>{translations.textArea.addLocation}</div>
           )}
         </AddLocationBtn>
       </DateLocationContainer>
