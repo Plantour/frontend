@@ -92,7 +92,9 @@ const CameraComponent = ({
   imageBlob,
   setImageBlob,
   isQuestImageValid,
+  setIsQuestImageValid,
   isPlantNoteImageValid,
+  formSubmitted,
 }) => {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
@@ -143,6 +145,10 @@ const CameraComponent = ({
     photo.toBlob((blob) => {
       console.log("Captured image blob:", blob); // 블랍 확인용
       onImageCapture(blob); // Callback to parent component with Blob
+      if (formSubmitted) {
+        // Validate image on capture after form submission
+        setIsQuestImageValid(!!imageBlob);
+      }
     }, "image/jpeg"); // MIME type 지정
   };
 
@@ -159,7 +165,10 @@ const CameraComponent = ({
         <Video ref={videoRef}></Video>
         <ButtonsContainer>
           {!isCameraOpen && (
-            <ButtonOpenCamera onClick={getVideo} isValid={isQuestImageValid}>
+            <ButtonOpenCamera
+              onClick={getVideo}
+              isValid={!formSubmitted || isQuestImageValid}
+            >
               <StyledMdAddAPhoto />
             </ButtonOpenCamera>
           )}
