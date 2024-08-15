@@ -466,6 +466,7 @@ const QuestStatus = () => {
             setImageBlob={setImageBlob}
             onImageCapture={handleImageChange}
             isQuestImageValid={isQuestImageValid}
+            setIsQuestImageValid={setIsQuestImageValid}
             formSubmitted={formSubmitted}
           />
           {isMapOpen && <StyledMapComponent />}
