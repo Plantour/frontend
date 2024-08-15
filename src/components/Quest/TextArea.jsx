@@ -231,6 +231,7 @@ const TextArea = ({
         value={value}
         onChange={onChange}
         isValid={!formSubmitted || isTextValid}
+        maxLength={100} // 글자 수 제한 설정
       />
       <DateLocationContainer>
         {formattedDate}/{" "}
