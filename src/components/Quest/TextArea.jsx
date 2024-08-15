@@ -127,6 +127,7 @@ const TextArea = ({
   isLocationValid,
   formSubmitted,
   setIsLocationValid,
+  currentTextLength,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -152,6 +153,7 @@ const TextArea = ({
 
   const handleTextChange = (e) => {
     onChange(e);
+    setCurrentTextLength(e.target.value.length); // 글자 수 업데이트
     if (formSubmitted) {
       // Validate text input on change after form submission
       setIsTextValid(e.target.value.trim().length > 0);
@@ -226,6 +228,7 @@ const TextArea = ({
           ))}
         </PlantList>
       )}
+      <div>{currentTextLength}/100</div>
       <TextAreaContainer
         placeholder={translations.textArea.addDescription}
         value={value}
