@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     const hasSeenLanding = localStorage.getItem("hasSeenLanding");
-
+    localStorage.removeItem("hasSeenLanding"); //나중에 지워야함.
     if (!hasSeenLanding) {
       setShowLanding(true);
     }
