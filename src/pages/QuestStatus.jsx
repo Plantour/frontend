@@ -241,8 +241,11 @@ const QuestStatus = () => {
   }, [blockId, questDataBySeason]);
 
   const handleTextChange = (event) => {
-    setTextData(event.target.value);
-    setCurrentTextLength(event.target.value.length); // 글자 수 업데이트
+    const text = event.target.value;
+    const textLength = text.length > 100 ? 100 : text.length; // currentTextLength가 최대 100까지만 보이도록 (101이 아니라)
+
+    setTextData(text);
+    setCurrentTextLength(textLength); // 글자 수 업데이트
   };
 
   const handleImageChange = (blob) => {
