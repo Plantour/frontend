@@ -38,9 +38,10 @@ const TextAreaLayout = styled.div`
 `;
 
 const PlantListAndTextLengthWrapper = styled.div`
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const PlantListToggle = styled.div`
