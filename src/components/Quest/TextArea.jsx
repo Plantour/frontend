@@ -208,27 +208,31 @@ const TextArea = ({
 
   return (
     <TextAreaLayout>
-      <PlantListToggle onClick={handleDropdownToggle} isValid={isPlantValid}>
-        {plant}
-        {plant == "Select a plant" ? (
-          <StyledIoMdArrowDropdown />
-        ) : (
-          <plantToggleEmoji>🌿</plantToggleEmoji>
+      <div>
+        <PlantListToggle onClick={handleDropdownToggle} isValid={isPlantValid}>
+          {plant}
+          {plant == "Select a plant" ? (
+            <StyledIoMdArrowDropdown />
+          ) : (
+            <plantToggleEmoji>🌿</plantToggleEmoji>
+          )}
+        </PlantListToggle>
+        {isDropdownOpen && (
+          <PlantList>
+            {questDataBySeason.plantData.plants.map((item) => (
+              <PlantListItem
+                key={item.plantId}
+                onClick={() =>
+                  handleplantSelection(item.plantName, item.plantId)
+                }
+              >
+                {item.plantName}
+              </PlantListItem>
+            ))}
+          </PlantList>
         )}
-      </PlantListToggle>
-      {isDropdownOpen && (
-        <PlantList>
-          {questDataBySeason.plantData.plants.map((item) => (
-            <PlantListItem
-              key={item.plantId}
-              onClick={() => handleplantSelection(item.plantName, item.plantId)}
-            >
-              {item.plantName}
-            </PlantListItem>
-          ))}
-        </PlantList>
-      )}
-      <div>{currentTextLength}/100</div>
+        <span>{currentTextLength}/100</span>
+      </div>
       <TextAreaContainer
         placeholder={translations.textArea.addDescription}
         value={value}
