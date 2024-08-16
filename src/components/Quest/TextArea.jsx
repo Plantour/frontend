@@ -37,6 +37,12 @@ const TextAreaLayout = styled.div`
   position: relative;
 `;
 
+const PlantListAndTextLengthWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
 const PlantListToggle = styled.div`
   width: 95%;
   height: 40px;
@@ -208,7 +214,7 @@ const TextArea = ({
 
   return (
     <TextAreaLayout>
-      <div>
+      <PlantListAndTextLengthWrapper>
         <PlantListToggle onClick={handleDropdownToggle} isValid={isPlantValid}>
           {plant}
           {plant == "Select a plant" ? (
@@ -232,7 +238,7 @@ const TextArea = ({
           </PlantList>
         )}
         <span>{currentTextLength}/100</span>
-      </div>
+      </PlantListAndTextLengthWrapper>
       <TextAreaContainer
         placeholder={translations.textArea.addDescription}
         value={value}
