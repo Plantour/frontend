@@ -282,41 +282,6 @@ const QuestStatus = () => {
       return;
     }
 
-    // //유효성검사
-    // let isValid = true;
-
-    // if (!plant || plant === "Select a plant" || plant === "식물 선택") {
-    //   setIsPlantValid(false);
-    //   isValid = false;
-    // } else {
-    //   setIsPlantValid(true);
-    // }
-
-    // if (!textData || textData.trim().length === 0) {
-    //   setIsTextValid(false);
-    //   isValid = false;
-    // } else {
-    //   setIsTextValid(true);
-    // }
-
-    // if (!imageBlob) {
-    //   setIsQuestImageValid(false);
-    //   isValid = false;
-    // } else {
-    //   setIsQuestImageValid(true);
-    // }
-
-    // if (!markerPosition.latitude || !markerPosition.longitude) {
-    //   setIsLocationValid(false);
-    //   isValid = false;
-    // } else {
-    //   setIsLocationValid(true);
-    // }
-
-    // if (!isValid) {
-    //   return; // 유효성 검사 실패 시 제출 중단
-    // }
-
     try {
       // 서버에 보낼 데이터 준비
       const formData = new FormData();
@@ -466,6 +431,7 @@ const QuestStatus = () => {
             formSubmitted={formSubmitted}
             setIsTextValid={setIsTextValid}
             currentTextLength={currentTextLength}
+            setCurrentTextLength={setCurrentTextLength}
           />
           <CameraComponent
             imageBlob={imageBlob}

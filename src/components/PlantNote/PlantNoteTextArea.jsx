@@ -60,8 +60,6 @@ const TextAreaContainer = styled.textarea`
   line-height: 1.5;
   padding: 8px 0;
   background-color: ${({ theme }) => theme.colors.lightgrey1};
-  max-height: 6rem; /* 3줄 높이로 제한 (line-height * 3) */
-  overflow: hidden; /* 줄 수를 초과하는 내용 숨김 */
   &::placeholder {
     color: ${(props) => (props.isValid ? "black" : "#ff6347")};
   }
@@ -80,6 +78,13 @@ const TitleInput = styled.input`
   }
 `;
 
+const PlantAndTextLengthWrapper = styled.div`
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const DateLocationContainer = styled.div`
   width: 95%;
   height: 30px;
@@ -92,13 +97,14 @@ const DateLocationContainer = styled.div`
 `;
 
 const AddLocationBtn = styled.button`
-  background: none; /* 배경색 제거 */
-  border: none; /* 테두리 제거 */
-  padding: 0; /* 기본 패딩 제거 */
-  margin: 0; /* 기본 마진 제거 */
+  color: ${(props) => (props.isValid ? "black" : "#ff6347")};
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
   font: inherit; /* 부모 요소의 폰트 스타일을 상속받음 */
   cursor: pointer; /* 클릭할 수 있음을 나타내는 커서 */
-  box-shadow: none; /* 기본 박스 그림자 제거 */
+  box-shadow: none;
   text-align: inherit; /* 텍스트 정렬 상속 */
   appearance: none; /* 브라우저 기본 스타일 제거 */
   outline: none; /* 포커스 시 나타나는 외곽선 제거 */
@@ -176,6 +182,8 @@ const PlantNoteTextArea = ({
   isTitleValid,
   isPlantValid,
   isTextValid,
+  isLocationValid,
+  currentTextLength,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -277,23 +285,26 @@ const PlantNoteTextArea = ({
         onChange={(e) => setTitle(e.target.value)} // 제목 상태 변경
         isValid={isTitleValid}
       />
-      <PlantListAndInputContainer>
-        <PlantListToggle onClick={handleModalToggle} isValid={isPlantValid}>
-          <span>{plant}</span>
-          <FaChevronDownContainer>
-            <FaChevronDown />
-          </FaChevronDownContainer>
-        </PlantListToggle>
-        {isInputOpen && (
-          <InputField
-            type="text"
-            placeholder={translations.plantNoteTextArea.enterPlantName}
-            value={inputValue}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur} // 포커스가 벗어나면 값 저장
-          />
-        )}
-      </PlantListAndInputContainer>
+      <PlantAndTextLengthWrapper>
+        <PlantListAndInputContainer>
+          <PlantListToggle onClick={handleModalToggle} isValid={isPlantValid}>
+            <span>{plant}</span>
+            <FaChevronDownContainer>
+              <FaChevronDown />
+            </FaChevronDownContainer>
+          </PlantListToggle>
+          {isInputOpen && (
+            <InputField
+              type="text"
+              placeholder={translations.plantNoteTextArea.enterPlantName}
+              value={inputValue}
+              onChange={handleInputChange}
+              onBlur={handleInputBlur} // 포커스가 벗어나면 값 저장
+            />
+          )}
+        </PlantListAndInputContainer>
+        <span>{currentTextLength}/100</span>
+      </PlantAndTextLengthWrapper>
 
       {isModalOpen && (
         <ModalBackground onClick={handleModalToggle}>
@@ -335,10 +346,15 @@ const PlantNoteTextArea = ({
         onChange={onChange}
         rows={3}
         isValid={isTextValid}
+        maxLength={100} // 글자 수 제한 설정
       />
       <DateLocationContainer>
         {formattedDate}/{" "}
-        <AddLocationBtn type="button" onClick={locationBtnClickHandler}>
+        <AddLocationBtn
+          type="button"
+          onClick={locationBtnClickHandler}
+          isValid={isLocationValid}
+        >
           {markerPosition.latitude && markerPosition.longitude ? (
             <div>{translations.plantNoteTextArea.locationAdded}</div>
           ) : (

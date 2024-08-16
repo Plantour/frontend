@@ -158,14 +158,14 @@ const TextArea = ({
 
   handleDate(formattedDate);
 
-  const handleTextChange = (e) => {
-    onChange(e);
-    setCurrentTextLength(e.target.value.length); // 글자 수 업데이트
-    if (formSubmitted) {
-      // Validate text input on change after form submission
-      setIsTextValid(e.target.value.trim().length > 0);
-    }
-  };
+  // const handleTextChange = (e) => {
+  //   onChange(e);
+  //   setCurrentTextLength(e.target.value.length); // 글자 수 업데이트
+  //   if (formSubmitted) {
+  //     // Validate text input on change after form submission
+  //     setIsTextValid(e.target.value.trim().length > 0);
+  //   }
+  // };
 
   const handleplantSelection = (plantName, plantId) => {
     console.log("trying handle plant selection");

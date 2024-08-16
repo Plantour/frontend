@@ -113,11 +113,17 @@ const PlantNote = () => {
   const [isTextValid, setIsTextValid] = useState(true);
   const [isLocationValid, setIsLocationValid] = useState(true);
   const [isPlantNoteImageValid, setIsPlantNoteImageValid] = useState(true);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [currentTextLength, setCurrentTextLength] = useState(0);
 
   const navigate = useNavigate();
 
   const handleTextChange = (event) => {
-    setTextData(event.target.value);
+    const text = event.target.value;
+    const textLength = text.length > 100 ? 100 : text.length; // currentTextLength가 최대 100까지만 보이도록 (101이 아니라)
+
+    setTextData(text);
+    setCurrentTextLength(textLength); // 글자 수 업데이트
   };
 
   const handleImageChange = (blob) => {
@@ -137,50 +143,70 @@ const PlantNote = () => {
     setIsMapOpen(false);
   };
 
+  //유효성검사
+  const validateForm = () => {
+    setIsTitleValid(!!title && title.trim().length > 0);
+    setIsPlantValid(
+      !!plant && plant !== "Select a plant" && plant !== "식물 선택"
+    );
+    setIsTextValid(!!textData && textData.trim().length > 0);
+    setIsPlantNoteImageValid(!!imageBlob);
+    setIsLocationValid(!!markerPosition.latitude && !!markerPosition.longitude);
+
+    return (
+      isPlantValid && isTextValid && isPlantNoteImageValid && isLocationValid
+    );
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault(); // 폼 제출 기본 동작 방지
+    setFormSubmitted(true);
 
-    //유효성검사
-    let isValid = true;
-
-    if (!title.trim()) {
-      setIsTitleValid(false);
-      isValid = false;
-    } else {
-      setIsTitleValid(true);
+    if (!validateForm()) {
+      return;
     }
 
-    if (!plant || plant === "Select a plant" || plant === "식물 선택") {
-      setIsPlantValid(false);
-      isValid = false;
-    } else {
-      setIsPlantValid(true);
-    }
+    // //유효성검사
+    // let isValid = true;
 
-    if (!textData || textData.trim().length === 0) {
-      setIsTextValid(false);
-      isValid = false;
-    } else {
-      setIsTextValid(true);
-    }
+    // if (!title.trim()) {
+    //   setIsTitleValid(false);
+    //   isValid = false;
+    // } else {
+    //   setIsTitleValid(true);
+    // }
 
-    if (!imageBlob) {
-      setIsPlantNoteImageValid(false);
-      isValid = false;
-    } else {
-      setIsPlantNoteImageValid(true);
-    }
+    // if (!plant || plant === "Select a plant" || plant === "식물 선택") {
+    //   setIsPlantValid(false);
+    //   isValid = false;
+    // } else {
+    //   setIsPlantValid(true);
+    // }
 
-    if (!markerPosition.latitude || !markerPosition.longitude) {
-      setIsLocationValid(false);
-      isValid = false;
-    } else {
-      setIsLocationValid(true);
-    }
+    // if (!textData || textData.trim().length === 0) {
+    //   setIsTextValid(false);
+    //   isValid = false;
+    // } else {
+    //   setIsTextValid(true);
+    // }
 
-    if (!isValid) {
-      return; // 유효성 검사 실패 시 제출 중단
-    }
+    // if (!imageBlob) {
+    //   setIsPlantNoteImageValid(false);
+    //   isValid = false;
+    // } else {
+    //   setIsPlantNoteImageValid(true);
+    // }
+
+    // if (!markerPosition.latitude || !markerPosition.longitude) {
+    //   setIsLocationValid(false);
+    //   isValid = false;
+    // } else {
+    //   setIsLocationValid(true);
+    // }
+
+    // if (!isValid) {
+    //   return; // 유효성 검사 실패 시 제출 중단
+    // }
 
     // Determine infoType and plantInfo based on plant state
     let infoType = "";
@@ -239,6 +265,13 @@ const PlantNote = () => {
     }
   };
 
+  // Update validation states when form fields change
+  useEffect(() => {
+    if (formSubmitted) {
+      validateForm();
+    }
+  }, [title, plant, textData, imageBlob, markerPosition]);
+
   return (
     <>
       {isMapOpen ? (
@@ -278,12 +311,16 @@ const PlantNote = () => {
             isTitleValid={isTitleValid}
             isPlantValid={isPlantValid}
             isTextValid={isTextValid}
+            isLocationValid={isLocationValid}
+            currentTextLength={currentTextLength}
           />
           <CameraComponent
             imageBlob={imageBlob}
             setImageBlob={setImageBlob}
             onImageCapture={handleImageChange}
             isPlantNoteImageValid={isPlantNoteImageValid}
+            setIsPlantNoteImageValid={setIsPlantNoteImageValid}
+            formSubmitted={formSubmitted}
           />
           {isMapOpen && <StyledMapComponent />}
         </PlantNoteForm>

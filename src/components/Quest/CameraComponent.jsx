@@ -95,6 +95,7 @@ const CameraComponent = ({
   setIsQuestImageValid,
   isPlantNoteImageValid,
   formSubmitted,
+  setIsPlantNoteImageValid,
 }) => {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
