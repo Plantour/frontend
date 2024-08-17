@@ -3,23 +3,32 @@ import styled from "styled-components";
 
 // 각 페이지 컴포넌트
 const Page1 = () => (
-  <>
+  <Page1Layout>
     <div>
       <UserMarker>
         <UserMarkerRound></UserMarkerRound>
       </UserMarker>
+      <OtherMarkers1>
+        <OtherMarkersDrop1>
+          <OtherMarkersRound1></OtherMarkersRound1>
+        </OtherMarkersDrop1>
+      </OtherMarkers1>
     </div>
     <Title>내 주변 식물들의 위치를 확인해보세요!</Title>
     <Desc>
       다른 사용자가 찾은 식물들의 위치를 볼 수 있고, 마커를 클릭하면 식물 사진과
       설명을 볼 수 있어요.
     </Desc>
-  </>
+  </Page1Layout>
 );
 const Page2 = () => <div>미션을 수행해보세요!</div>;
 const Page3 = () => <div>식물 노트를 작성해보세요!</div>;
 
 const pages = [Page1, Page2, Page3];
+
+const Page1Layout = styled.div`
+  position: relative;
+`;
 
 const LandingPageLayout = styled.div`
   width: 100%;
@@ -56,6 +65,27 @@ const UserMarkerRound = styled.div`
   position: absolute;
   bottom: 15px;
   right: 15px;
+`;
+
+const OtherMarkers1 = styled.div``;
+
+const OtherMarkersDrop1 = styled.div`
+  width: 40px;
+  height: 40px;
+  background-color: #f18696;
+  border-radius: 50% 50% 50% 50% / 0% 50% 50% 50%;
+  transform: rotate(-135deg);
+  position: relative;
+`;
+
+const OtherMarkersRound1 = styled.div`
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #971a1a;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
 `;
 
 const ButtonContainer = styled.div`
