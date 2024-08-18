@@ -1,0 +1,192 @@
+import React from "react";
+import styled, { keyframes } from "styled-components";
+
+const fadeInDown = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100px);
+  }
+  60% {
+    transform: translate(-50%, -40%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+const fadeInDownMarker = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  60% {
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const scaleShadow = keyframes`
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+`;
+
+const Page1Layout = styled.div`
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding-bottom: 10px;
+  gap: 5px;
+`;
+
+const IllustContainer = styled.div`
+  width: 100%;
+  height: 70%;
+  position: relative;
+`;
+
+const UserMarkerContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: ${fadeInDown} 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+`;
+
+const UserMarkerArrow = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  border-radius: 50% 50% 50% 50% / 0% 50% 50% 50%;
+  transform: rotate(-135deg);
+  position: relative;
+`;
+
+const UserMarkerRound = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #971a1a;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+`;
+
+const UserMarkerShadow = styled.div`
+  width: 40px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: ${scaleShadow} 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+`;
+
+const MarkerContainer = styled.div`
+  position: absolute;
+  top: ${(props) => props.top};
+  left: ${(props) => props.left};
+  opacity: 0;
+  animation: ${fadeInDownMarker} 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    forwards;
+  animation-delay: ${(props) => props.delay}s;
+`;
+
+const MarkerArrow = styled.div`
+  width: 40px;
+  height: 40px;
+  background-color: #f18696;
+  border-radius: 50% 50% 50% 50% / 0% 50% 50% 50%;
+  transform: rotate(-135deg);
+  position: relative;
+`;
+
+const MarkerRound = styled.div`
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #971a1a;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+`;
+
+const MarkerShadow = styled.div`
+  width: 30px;
+  height: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: ${scaleShadow} 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  animation-delay: ${(props) => props.delay}s;
+`;
+
+const Title = styled.h1`
+  font-size: 1rem;
+`;
+
+const Desc = styled.p`
+  font-size: 0.875rem;
+`;
+
+// 마커 위치 데이터
+const markerPositions = [
+  { top: "45%", left: "30%" },
+  { top: "30%", left: "60%" },
+  { top: "70%", left: "20%" },
+  { top: "60%", left: "80%" },
+  { top: "20%", left: "40%" },
+];
+
+const Page1 = () => (
+  <Page1Layout>
+    <IllustContainer>
+      <UserMarkerContainer>
+        <UserMarkerArrow>
+          <UserMarkerRound></UserMarkerRound>
+        </UserMarkerArrow>
+        <UserMarkerShadow></UserMarkerShadow>
+      </UserMarkerContainer>
+
+      {markerPositions.map((position, index) => (
+        <MarkerContainer
+          key={index}
+          top={position.top}
+          left={position.left}
+          delay={1 + index * 0.2}
+        >
+          <MarkerArrow>
+            <MarkerRound></MarkerRound>
+          </MarkerArrow>
+          <MarkerShadow delay={1 + index * 0.2}></MarkerShadow>
+        </MarkerContainer>
+      ))}
+    </IllustContainer>
+    <Title>내 주변 식물들의 위치를 확인해보세요!</Title>
+    <Desc>
+      다른 사용자가 찾은 식물들의 위치를 볼 수 있고, 마커를 클릭하면 식물 사진과
+      설명을 볼 수 있어요.
+    </Desc>
+  </Page1Layout>
+);
+
+export default Page1;
