@@ -21,6 +21,8 @@ const LogoutButton = styled.button`
 
 const My = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isFirstLogin, setIsFirstLogin] = useState(false);
+  const [nickname, setNickname] = useState("");
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
 
@@ -40,16 +42,6 @@ const My = () => {
     }, 100); // 100ms 지연
   };
 
-  // const redirectToGoogleSSO = () => {
-  //   const clientId = import.meta.env.VITE_GOOGLE_OAUTH_KEY_CLIENT_ID;
-  //   const redirectUri = "http://localhost:5173/oauth/callback"; //배포후 변경 필요
-  //   const scope = "openid profile email";
-  //   const responseType = "code"; //인가 코드(authorization code)를 받는다.
-  //   const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
-
-  //   window.location.href = authUrl;
-  // };
-
   //access token의 유효성 검사 로직
   useEffect(() => {
     const checkAuthentication = async () => {
@@ -60,9 +52,17 @@ const My = () => {
             `${API_URL}/api/auth/check-token`,
             "GET"
           );
-          console.log("accesstoken유효성검사:", response);
+          console.log("Access Token유효성검사:", response);
+
           if (response.data.valid) {
             setIsAuthenticated(true);
+
+            // 첫 로그인 여부 및 닉네임 확인  //응답 데이터 키,값을 확인후 수정해야함.
+            if (response.data.isFirstLogin) {
+              setIsFirstLogin(true);
+            } else {
+              setNickname(response.data.nickname);
+            }
           } else {
             handleSignOut();
           }
@@ -77,9 +77,15 @@ const My = () => {
 
   return (
     <MyLayout>
-      <h1>My Page</h1>
-      {/* My 원래 마이페이지에서는 signIn이 안보여야함(토큰없음 login으로
-      넘어가니까) */}
+      {isAuthenticated ? (
+        isFirstLogin ? (
+          <h1>닉네임을 설정해주세요</h1>
+        ) : (
+          <h1>안녕하세요, {nickname}님!</h1>
+        )
+      ) : (
+        <h1>로딩 중...</h1>
+      )}
       <LogoutButton onClick={handleSignOut}>Sign Out</LogoutButton>
     </MyLayout>
   );
