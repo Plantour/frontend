@@ -64,7 +64,7 @@ const UserMarkerContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  animation: ${fadeInDown} 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  animation: ${fadeInDown} 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 `;
 
 const UserMarkerArrow = styled.div`
@@ -95,7 +95,7 @@ const UserMarkerShadow = styled.div`
   bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
-  animation: ${scaleShadow} 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  animation: ${scaleShadow} 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 `;
 
 const MarkerContainer = styled.div`
@@ -103,8 +103,7 @@ const MarkerContainer = styled.div`
   top: ${(props) => props.top};
   left: ${(props) => props.left};
   opacity: 0;
-  animation: ${fadeInDownMarker} 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)
-    forwards;
+  animation: ${fadeInDownMarker} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   animation-delay: ${(props) => props.delay}s;
 `;
 
@@ -136,7 +135,7 @@ const MarkerShadow = styled.div`
   bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
-  animation: ${scaleShadow} 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  animation: ${scaleShadow} 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   animation-delay: ${(props) => props.delay}s;
 `;
 
