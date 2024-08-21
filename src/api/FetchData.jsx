@@ -1,3 +1,4 @@
+import { useLanguage } from "../helpers/languageUtils";
 import { API_URL } from "./apiUrl";
 
 //저장된 리프레시 토큰을 사용하여 새로운 액세스 토큰을 얻는 함수
@@ -27,6 +28,7 @@ async function refreshAccessToken() {
 }
 
 export async function fetchData(url, method = "GET", body = null) {
+  const { language, translations, changeLanguage } = useLanguage();
   let token = localStorage.getItem("accessToken");
 
   // 유효한 HTTP 메서드 값인지 확인
@@ -46,6 +48,8 @@ export async function fetchData(url, method = "GET", body = null) {
         ? { "Content-Type": "application/json" }
         : {}),
       Authorization: `Bearer ${token}`,
+      // 언어 설정
+      "Accept-Language": language === "kr" ? "KOR" : "ENG",
     },
     credentials: "include", //서버에서 쿠키를 포함시키기 위한 설정??
   };
