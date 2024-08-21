@@ -78,7 +78,7 @@ const Quest = () => {
     if (isLoggedIn) {
       fetchStamps();
     }
-  }, [isLoggedIn, selectedSeason]);
+  }, [isLoggedIn, selectedSeason, language]);
 
   // URL 쿼리 파라미터에서 animateId를 가져오는 로직
   const location = useLocation();
