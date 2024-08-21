@@ -254,7 +254,11 @@ const PlantNoteTextArea = ({
   useEffect(() => {
     const fetchAllSeasonPlantData = async () => {
       try {
-        const response = await fetchData(`${API_URL}/api/plants`, "GET");
+        const response = await fetchData(
+          `${API_URL}/api/plants`,
+          "GET",
+          language
+        );
         if (response.ok) {
           // 데이터가 있는 경우 상태 업데이트
           setAllSeasonPlantList(response.data);
