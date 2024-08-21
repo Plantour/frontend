@@ -72,7 +72,7 @@ const My = () => {
         `${API_URL}/api/users/nickname`,
         "PUT",
         language,
-        { customNickname: editNickname }
+        editNickname
       );
       console.log("닉네임 수정 응답:", response);
       setNickname(editNickname);
