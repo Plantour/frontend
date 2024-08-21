@@ -60,7 +60,8 @@ const Quest = () => {
       try {
         const response = await fetchData(
           `${API_URL}/api/quests?season=${selectedSeason}`,
-          "GET"
+          "GET",
+          language
         );
         if (response.data) {
           // 데이터가 있는 경우 상태 업데이트
