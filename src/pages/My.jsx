@@ -51,21 +51,14 @@ const My = () => {
           const response = await fetchData(`${API_URL}/api/users/my`, "GET");
           console.log("Access Token유효성검사:", response);
 
-          // if (response.data.valid) {
-          //   setIsAuthenticated(true);
-
           setNickname(
             response.data.customNickname
               ? response.data.customNickname
               : response.data.nickname
           );
-
-          // } else {
-          //   handleSignOut();
-          // }
         } catch (error) {
           console.error("Error validating token:", error);
-          handleSignOut();
+          //handleSignOut(); //나중에 다시 활성화?
         }
       }
     };
