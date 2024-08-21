@@ -89,7 +89,7 @@ const BtnMapClose = styled.button`
 `;
 
 const PlantNote = () => {
-  const { translations } = useLanguage();
+  const { language, translations } = useLanguage();
   const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const { blockId } = useParams(); // URL에서 블록 번호를 가져옴
   const [plant, setPlant] = useState(translations.plantNote.selectPlant);
@@ -248,6 +248,7 @@ const PlantNote = () => {
       const response = await fetchData(
         `${API_URL}/api/plant-notes/create`,
         "POST",
+        language,
         formData
       );
 

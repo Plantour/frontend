@@ -7,6 +7,7 @@ import { useRecoilState } from "recoil";
 import { questDataState, selectedSeasonState } from "../state/atom";
 import { fetchData } from "../api/FetchData";
 import { API_URL } from "../api/apiUrl";
+import { useLanguage } from "../helpers/languageUtils";
 
 const QuestLayout = styled.div`
   width: 100%;
@@ -18,6 +19,7 @@ const QuestLayout = styled.div`
 `;
 
 const Quest = () => {
+  const { language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const [animateId, setAnimateId] = useState(null);
@@ -33,7 +35,8 @@ const Quest = () => {
         try {
           const response = await fetchData(
             `${API_URL}/api/auth/check-token`,
-            "GET"
+            "GET",
+            language
           );
           console.log("accesstoken유효성검사:", response);
           if (response.data.valid) {

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { fetchData } from "../api/FetchData";
 import { FcGoogle } from "react-icons/fc";
 import { API_URL } from "../api/apiUrl";
+import { useLanguage } from "../helpers/languageUtils";
 
 const LoginLayout = styled.div`
   width: 100%;
@@ -26,6 +27,7 @@ const Login = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
+  const { language } = useLanguage();
 
   //access token의 유효성 검사 로직 (footer클릭시 토큰여부를 검사하지만 url로 바로 접속할경우를 위해서..)
   useEffect(() => {
@@ -35,7 +37,8 @@ const Login = () => {
           //fetchData응답형태수정함
           const response = await fetchData(
             `${API_URL}/api/auth/check-token`,
-            "GET"
+            "GET",
+            language
           );
           if (response.data.valid) {
             setIsAuthenticated(true);

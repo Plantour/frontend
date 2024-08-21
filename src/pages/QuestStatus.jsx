@@ -137,7 +137,7 @@ const ContentCompletedQuest = styled.p`
 
 //작성된 글이 있을 경우 받아오고 없으면 글작성 UI띄우기
 const QuestStatus = () => {
-  const { translations } = useLanguage();
+  const { language, translations } = useLanguage();
   const questDataBySeason = useRecoilValue(questDataState);
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
@@ -314,6 +314,7 @@ const QuestStatus = () => {
       const response = await fetchData(
         `${API_URL}/api/quests/complete`,
         "POST",
+        language,
         formData
       );
 
