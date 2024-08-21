@@ -13,6 +13,7 @@ const MyLayout = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const LogoutButton = styled.button`
   padding: 3px 10px;
   font-size: 1rem;
@@ -35,20 +36,20 @@ const NicknameInput = styled.input`
   border-radius: 5px;
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+`;
+
 const My = () => {
-  //const [isAuthenticated, setIsAuthenticated] = useState(false);
-  //const [isFirstLogin, setIsFirstLogin] = useState(false);
   const [nickname, setNickname] = useState("");
   const [editNickname, setEditNickname] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [error, setError] = useState("");
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
   const { language } = useLanguage();
-
-  // const logoutBtnClickHandler = () => {
-  //   localStorage.removeItem("token");
-  //   navigate("/login");
-  // };
 
   const handleSignOut = () => {
     console.log("Sign out triggered");
@@ -66,7 +67,23 @@ const My = () => {
     setIsEditing(true);
   };
 
+  const validateNickname = (nickname) => {
+    if (nickname.length < 3) {
+      return "닉네임은 최소 3글자 이상이어야 합니다.";
+    }
+    if (nickname.length > 15) {
+      return "닉네임은 최대 15글자까지 입력할 수 있습니다.";
+    }
+    return "";
+  };
+
   const handleSaveNickname = async () => {
+    const validationError = validateNickname(editNickname);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     try {
       const response = await fetchData(
         `${API_URL}/api/users/nickname`,
@@ -80,6 +97,11 @@ const My = () => {
     } catch (error) {
       console.error("닉네임 수정 중 오류 발생:", error);
     }
+  };
+
+  const handleBlur = () => {
+    const validationError = validateNickname(editNickname);
+    setError(validationError);
   };
 
   //access token의 유효성 검사, 사용자 정보 받기
@@ -107,7 +129,7 @@ const My = () => {
       }
     };
     checkAuthentication();
-  }, []);
+  }, [accessToken, language]);
 
   return (
     <MyLayout>
@@ -118,7 +140,9 @@ const My = () => {
             type="text"
             value={editNickname}
             onChange={(e) => setEditNickname(e.target.value)}
+            onBlur={handleBlur} // 포커스가 벗어날 때 유효성 검사
           />
+          {error && <ErrorMessage>{error}</ErrorMessage>}
           <EditButton onClick={handleSaveNickname}>저장</EditButton>
         </>
       ) : (
