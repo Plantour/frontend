@@ -1,4 +1,3 @@
-import { useLanguage } from "../helpers/languageUtils";
 import { API_URL } from "./apiUrl";
 
 //저장된 리프레시 토큰을 사용하여 새로운 액세스 토큰을 얻는 함수
@@ -27,8 +26,12 @@ async function refreshAccessToken() {
   return accessToken;
 }
 
-export async function fetchData(url, method = "GET", body = null) {
-  const { language, translations, changeLanguage } = useLanguage();
+export async function fetchData(
+  url,
+  method = "GET",
+  language = "en",
+  body = null
+) {
   let token = localStorage.getItem("accessToken");
 
   // 유효한 HTTP 메서드 값인지 확인

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { fetchData } from "../api/FetchData";
 import { API_URL } from "../api/apiUrl";
+import { useLanguage } from "../helpers/languageUtils";
 
 const MyLayout = styled.div`
   width: 100%;
@@ -25,6 +26,7 @@ const My = () => {
   const [nickname, setNickname] = useState("");
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
+  const { language } = useLanguage();
 
   // const logoutBtnClickHandler = () => {
   //   localStorage.removeItem("token");
@@ -47,8 +49,12 @@ const My = () => {
     const checkAuthentication = async () => {
       if (accessToken) {
         try {
-          //fetchData응답형태수정함
-          const response = await fetchData(`${API_URL}/api/users/my`, "GET");
+          const response = await fetchData(
+            `${API_URL}/api/users/my`,
+            "GET",
+            language,
+            null
+          );
           console.log("Access Token유효성검사:", response);
 
           setNickname(
