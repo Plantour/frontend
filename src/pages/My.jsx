@@ -20,8 +20,8 @@ const LogoutButton = styled.button`
 `;
 
 const My = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isFirstLogin, setIsFirstLogin] = useState(false);
+  //const [isAuthenticated, setIsAuthenticated] = useState(false);
+  //const [isFirstLogin, setIsFirstLogin] = useState(false);
   const [nickname, setNickname] = useState("");
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const My = () => {
     console.log("Sign out triggered");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    setIsAuthenticated(false);
+    //setIsAuthenticated(false);
 
     setTimeout(() => {
       navigate("/login");
@@ -48,24 +48,21 @@ const My = () => {
       if (accessToken) {
         try {
           //fetchData응답형태수정함
-          const response = await fetchData(
-            `${API_URL}/api/auth/check-token`,
-            "GET"
-          );
+          const response = await fetchData(`${API_URL}/api/users/my`, "GET");
           console.log("Access Token유효성검사:", response);
 
-          if (response.data.valid) {
-            setIsAuthenticated(true);
+          // if (response.data.valid) {
+          //   setIsAuthenticated(true);
 
-            // 첫 로그인 여부 및 닉네임 확인  //응답 데이터 키,값을 확인후 수정해야함.
-            if (response.data.isFirstLogin) {
-              setIsFirstLogin(true);
-            } else {
-              setNickname(response.data.nickname);
-            }
-          } else {
-            handleSignOut();
-          }
+          setNickname(
+            response.data.customNickname
+              ? response.data.customNickname
+              : response.data.nickname
+          );
+
+          // } else {
+          //   handleSignOut();
+          // }
         } catch (error) {
           console.error("Error validating token:", error);
           handleSignOut();
@@ -77,15 +74,8 @@ const My = () => {
 
   return (
     <MyLayout>
-      {isAuthenticated ? (
-        isFirstLogin ? (
-          <h1>닉네임을 설정해주세요</h1>
-        ) : (
-          <h1>안녕하세요, {nickname}님!</h1>
-        )
-      ) : (
-        <h1>로딩 중...</h1>
-      )}
+      <h1>안녕하세요, {nickname}님!</h1>
+
       <LogoutButton onClick={handleSignOut}>Sign Out</LogoutButton>
     </MyLayout>
   );

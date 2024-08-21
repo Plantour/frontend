@@ -94,10 +94,6 @@ const Header = () => {
     }
   };
 
-  // const toggleLanguage = () => {
-  //   changeLanguage((prevLanguage) => (prevLanguage === "en" ? "KR" : "EN"));
-  // };
-
   return (
     <Layout>
       {/* <button onClick={() => changeLanguage("en")}>English</button>
