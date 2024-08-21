@@ -170,7 +170,7 @@ const PlantListModal = ({ isModalOpen, setIsModalOpen, questDataBySeason }) => {
               >
                 {questDataBySeason.plants.map((plant, index) => (
                   <div key={index}>
-                    <PlantImage image={plant.imgUrl}></PlantImage>
+                    <PlantImage image={plant.imageUrl}></PlantImage>
                     <PlantDesc>
                       <PlantNameOnDesc>{plant.plantName}</PlantNameOnDesc>
                       <Ul>
