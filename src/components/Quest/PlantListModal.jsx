@@ -9,7 +9,7 @@ import { API_URL } from "../../api/apiUrl";
 
 const ModalBackground = styled.button`
   width: 100%;
-  height: calc(100vh - 100px);
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   position: absolute;
   top: 0;
@@ -18,14 +18,15 @@ const ModalBackground = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 1000;
 `;
 
 const ModalLayout = styled.div`
   width: 80%;
-  height: 80%;
+  height: 70%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: white;
   border-radius: 40px;
   padding: 30px 0;
