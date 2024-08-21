@@ -26,7 +26,7 @@ const MapContainer = styled.div`
 
 const SearchBoxContainer = styled.div`
   position: absolute;
-  top: 80px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
