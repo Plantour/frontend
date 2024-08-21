@@ -10,10 +10,14 @@ import Footer from "./components/Footer/Footer";
 import QuestStatus from "./pages/QuestStatus";
 import GoogleOAuthCallback from "./components/GoogleLogin/GoogleOAuthCallback";
 import PlantNote from "./pages/PlantNote";
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import LandingPage from "./pages/LandingPage";
 import { useEffect, useState } from "react";
+
+const Layout = styled.div`
+  position: relative;
+`;
 
 function App() {
   const [showLanding, setShowLanding] = useState(false);
@@ -35,7 +39,7 @@ function App() {
       {showLanding ? (
         <LandingPage onComplete={handleLandingComplete} />
       ) : (
-        <>
+        <Layout>
           <Header />
           <Routes>
             <Route path="/" element={<Map />} />
@@ -51,7 +55,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
-        </>
+        </Layout>
       )}
     </ThemeProvider>
   );

@@ -15,7 +15,6 @@ const QuestLayout = styled.div`
     100vh - 100px
   ); /* 100vh에서 Header와 Footer의 높이(50px씩)를 뺀 값 */
   background-color: white;
-  position: relative;
 `;
 
 const Quest = () => {
@@ -92,12 +91,14 @@ const Quest = () => {
 
   return (
     <QuestLayout>
-      <Seasons />
-      <Stamp
-        animateId={animateId}
-        setAnimateId={setAnimateId}
-        isLoggedIn={isLoggedIn}
-      />
+      <QuestLayout>
+        <Seasons />
+        <Stamp
+          animateId={animateId}
+          setAnimateId={setAnimateId}
+          isLoggedIn={isLoggedIn}
+        />
+      </QuestLayout>
     </QuestLayout>
   );
 };
