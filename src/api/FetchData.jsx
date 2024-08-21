@@ -49,7 +49,7 @@ export async function fetchData(url, method = "GET", body = null) {
         : {}),
       Authorization: `Bearer ${token}`,
       // 언어 설정
-      "Accept-Language": language === "en" ? "ENG" : "KOR",
+      "X-User-Language": language === "en" ? "ENG" : "KOR",
     },
     credentials: "include", //서버에서 쿠키를 포함시키기 위한 설정??
   };
