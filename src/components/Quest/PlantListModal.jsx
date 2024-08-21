@@ -150,9 +150,9 @@ const PlantListModal = ({ isModalOpen, setIsModalOpen, questDataBySeason }) => {
               e.stopPropagation();
             }} //이벤트 버블링 막기
           >
-            <ModalTitle>{questDataBySeason.quest.season}</ModalTitle>
+            <ModalTitle>{questDataBySeason.season}</ModalTitle>
             <PlantNameContainer>
-              {questDataBySeason.plantData.plants.map((plant, index) => (
+              {questDataBySeason.plants.map((plant, index) => (
                 <PlantName
                   key={index}
                   onClick={() => plantClickHandler(index)}
@@ -168,7 +168,7 @@ const PlantListModal = ({ isModalOpen, setIsModalOpen, questDataBySeason }) => {
                   transform: `translateX(${selectedPlantIndex * -300}px)`,
                 }}
               >
-                {questDataBySeason.plantData.plants.map((plant, index) => (
+                {questDataBySeason.plants.map((plant, index) => (
                   <div key={index}>
                     <PlantImage image={plant.imgUrl}></PlantImage>
                     <PlantDesc>
