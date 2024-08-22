@@ -223,7 +223,12 @@ const QuestStatus = () => {
       ).plantName
     );
     setPlantId(completedQuest.plantId);
-    setImageBlob(completedQuest.imageUrl);
+
+    const imageUrl = completedQuest.imageUrl;
+    const fullImageUrl = imageUrl.startsWith("http")
+      ? imageUrl
+      : `https://${imageUrl}`;
+    setImageBlob(fullImageUrl);
     setTextData(completedQuest.content);
     setToday(new Date(completedQuest.completedAt));
     setMarkerPosition({
