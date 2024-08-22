@@ -336,7 +336,7 @@ const PlantNoteTextArea = ({
                 key={item.id}
                 onClick={() => handlePlantSelection(item.name, item.id)}
               >
-                <PlantListImg src={item.image}></PlantListImg>
+                <PlantListImg src={item.imageUrl}></PlantListImg>
                 <PlantListName>{item.name}</PlantListName>
               </EachItemOnAllPlantList>
             ))}
