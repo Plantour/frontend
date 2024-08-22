@@ -124,8 +124,8 @@ const MapModal = ({ showModal, onClose, markerData }) => {
       <ModalContent>
         <SectionTopContainer onClick={onClose}>
           <SectionTopLeft>
-            <div>{markerData.nickName}</div>
-            <div>{showDDMMYY(markerData.createdAt)}</div>
+            <div>{markerData.nickname}</div>
+            <div>{showDDMMYY(markerData.completedAt)}</div>
           </SectionTopLeft>
           <StyledIoCloseCircleOutline />
         </SectionTopContainer>
