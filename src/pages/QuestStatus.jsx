@@ -414,12 +414,8 @@ const QuestStatus = () => {
               <div>{translations.questStatus.completedQuest}</div>
             </CancelBtnAndTextWrapper>
 
-            <PostBtn type="submit">제출</PostBtn>
+            <PostBtn type="submit">{translations.questStaus.submit}</PostBtn>
           </ButtonsContainer>
-          {/* <ButtonsContainer>
-            <CancelBtn to="/quest">X</CancelBtn>
-            <SubmitBtn type="submit">V</SubmitBtn>
-          </ButtonsContainer> */}
           <TextArea
             value={textData}
             onChange={handleTextChange}

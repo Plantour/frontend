@@ -226,7 +226,7 @@ const TextArea = ({
         </PlantListToggle>
         {isDropdownOpen && (
           <PlantList>
-            {questDataBySeason.plantData.plants.map((item) => (
+            {questDataBySeason.plants.map((item) => (
               <PlantListItem
                 key={item.plantId}
                 onClick={() =>
