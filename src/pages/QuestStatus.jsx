@@ -217,11 +217,7 @@ const QuestStatus = () => {
     console.log("completedQuest", completedQuest);
     setDoesCompletedQuestExist(true);
     setSelectedSeason(questDataBySeason.season);
-    setPlant(
-      questDataBySeason.plants.find(
-        (plant) => plant.plantId === completedQuest.plantId
-      ).plantName
-    );
+    setPlant(completedQuest.plantName);
     setPlantId(completedQuest.plantId);
 
     const imageUrl = completedQuest.imageUrl;
