@@ -36,11 +36,11 @@ function App() {
   };
   return (
     <ThemeProvider theme={theme}>
-      {showLanding ? (
-        <LandingPage onComplete={handleLandingComplete} />
-      ) : (
-        <Layout>
-          <Header />
+      <Layout>
+        <Header />
+        {showLanding ? (
+          <LandingPage onComplete={handleLandingComplete} />
+        ) : (
           <Routes>
             <Route path="/" element={<Map />} />
             <Route path="/quest" element={<Quest />} />
@@ -54,9 +54,9 @@ function App() {
             <Route path="/oauth/callback" element={<GoogleOAuthCallback />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <Footer />
-        </Layout>
-      )}
+        )}
+        <Footer />
+      </Layout>
     </ThemeProvider>
   );
 }

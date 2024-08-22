@@ -67,6 +67,7 @@ const UserMarkerContainer = styled.div`
   top: 50%;
   left: 50%;
   animation: ${fadeInDown} 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  z-index: 10;
 `;
 
 const UserMarkerArrow = styled.div`
@@ -163,30 +164,32 @@ const Page1 = () => {
 
   return (
     <Page1Layout>
-      <IllustContainer>
-        <UserMarkerContainer>
-          <UserMarkerArrow>
-            <UserMarkerRound></UserMarkerRound>
-          </UserMarkerArrow>
-          <UserMarkerShadow></UserMarkerShadow>
-        </UserMarkerContainer>
+      <Page1Layout>
+        <IllustContainer>
+          <UserMarkerContainer>
+            <UserMarkerArrow>
+              <UserMarkerRound></UserMarkerRound>
+            </UserMarkerArrow>
+            <UserMarkerShadow></UserMarkerShadow>
+          </UserMarkerContainer>
 
-        {markerPositions.map((position, index) => (
-          <MarkerContainer
-            key={index}
-            top={position.top}
-            left={position.left}
-            delay={1 + index * 0.2}
-          >
-            <MarkerArrow>
-              <MarkerRound></MarkerRound>
-            </MarkerArrow>
-            <MarkerShadow delay={1 + index * 0.2}></MarkerShadow>
-          </MarkerContainer>
-        ))}
-      </IllustContainer>
-      <Title>{translations.page1.title}</Title>
-      <Desc>{translations.page1.desc}</Desc>
+          {markerPositions.map((position, index) => (
+            <MarkerContainer
+              key={index}
+              top={position.top}
+              left={position.left}
+              delay={1 + index * 0.2}
+            >
+              <MarkerArrow>
+                <MarkerRound></MarkerRound>
+              </MarkerArrow>
+              <MarkerShadow delay={1 + index * 0.2}></MarkerShadow>
+            </MarkerContainer>
+          ))}
+        </IllustContainer>
+        <Title>{translations.page1.title}</Title>
+        <Desc>{translations.page1.desc}</Desc>
+      </Page1Layout>
     </Page1Layout>
   );
 };
