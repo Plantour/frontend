@@ -209,17 +209,21 @@ const QuestStatus = () => {
     return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
   };
 
+  const completedQuest = questDataBySeason.completedQuests.find(
+    (quest) => quest.puzzleNumber === parseInt(blockId, 10)
+  );
+
   const settingQuestData = () => {
     console.log("completedQuest", completedQuest);
     setDoesCompletedQuestExist(true);
-    setSelectedSeason(questDataBySeason.quest.season);
+    setSelectedSeason(questDataBySeason.season);
     setPlant(
-      questDataBySeason.plantData.plants.find(
+      questDataBySeason.plants.find(
         (plant) => plant.plantId === completedQuest.plantId
       ).plantName
     );
     setPlantId(completedQuest.plantId);
-    setImageBlob(completedQuest.imageData);
+    setImageBlob(completedQuest.imageUrl);
     setTextData(completedQuest.content);
     setToday(new Date(completedQuest.completedAt));
     setMarkerPosition({
@@ -230,9 +234,6 @@ const QuestStatus = () => {
 
   // Check if there's a completed quest for this puzzleNumber
   useEffect(() => {
-    const completedQuest = questDataBySeason.completedQuests.find(
-      (quest) => quest.puzzleNumber === parseInt(blockId, 10)
-    );
     if (completedQuest) {
       settingQuestData();
     } else {
