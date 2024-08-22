@@ -3,6 +3,8 @@ import landing_pg2_3_freepik from "../../assets/landing_pg2_3_freepik.jpg";
 
 import React, { useState, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
+import { translations } from "../../list/translations";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const GridContainer = styled.div`
   width: 90%;
@@ -107,6 +109,7 @@ const Page2 = () => {
   const [clicking, setClicking] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
+  const { translations } = useLanguage();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -174,8 +177,8 @@ const Page2 = () => {
         </GridContainer>
         <Attribution>designed by Freepik</Attribution>
       </IllustContainer>
-      <Title>미션을 수행해보세요!</Title>
-      <Desc>시즌 별 식물리스트를 확인하고 식물들을 찾아보세요.</Desc>
+      <Title>{translations.page2.title}</Title>
+      <Desc>{translations.page2.desc}</Desc>
     </Page2Layout>
   );
 };

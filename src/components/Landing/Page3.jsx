@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const writePost = keyframes`
   0% { width: 0; }
@@ -109,14 +110,16 @@ const Desc = styled.p`
   font-size: 0.875rem;
 `;
 
-const Page3 = () => (
-  <Page3Layout>
-    <AnimatedIllustration />
-    <Title>식물 노트를 작성해보세요!</Title>
-    <Desc>
-      식물에 대한 기록을 남기면, 근처에 있는 회원이 내 식물 노트를 볼 수 있어요.
-    </Desc>
-  </Page3Layout>
-);
+const Page3 = () => {
+  const { translations } = useLanguage();
+
+  return (
+    <Page3Layout>
+      <AnimatedIllustration />
+      <Title>{translations.page3.title}</Title>
+      <Desc>{translations.page3.desc}</Desc>
+    </Page3Layout>
+  );
+};
 
 export default Page3;

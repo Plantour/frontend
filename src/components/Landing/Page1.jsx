@@ -1,5 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import { translations } from "../../list/translations";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const fadeInDown = keyframes`
   0% {
@@ -156,36 +158,37 @@ const markerPositions = [
   { top: "20%", left: "40%" },
 ];
 
-const Page1 = () => (
-  <Page1Layout>
-    <IllustContainer>
-      <UserMarkerContainer>
-        <UserMarkerArrow>
-          <UserMarkerRound></UserMarkerRound>
-        </UserMarkerArrow>
-        <UserMarkerShadow></UserMarkerShadow>
-      </UserMarkerContainer>
+const Page1 = () => {
+  const { translations } = useLanguage();
 
-      {markerPositions.map((position, index) => (
-        <MarkerContainer
-          key={index}
-          top={position.top}
-          left={position.left}
-          delay={1 + index * 0.2}
-        >
-          <MarkerArrow>
-            <MarkerRound></MarkerRound>
-          </MarkerArrow>
-          <MarkerShadow delay={1 + index * 0.2}></MarkerShadow>
-        </MarkerContainer>
-      ))}
-    </IllustContainer>
-    <Title>내 주변 식물들의 위치를 확인해보세요!</Title>
-    <Desc>
-      다른 사용자가 찾은 식물들의 위치를 볼 수 있고, 마커를 클릭하면 식물 사진과
-      설명을 볼 수 있어요.
-    </Desc>
-  </Page1Layout>
-);
+  return (
+    <Page1Layout>
+      <IllustContainer>
+        <UserMarkerContainer>
+          <UserMarkerArrow>
+            <UserMarkerRound></UserMarkerRound>
+          </UserMarkerArrow>
+          <UserMarkerShadow></UserMarkerShadow>
+        </UserMarkerContainer>
+
+        {markerPositions.map((position, index) => (
+          <MarkerContainer
+            key={index}
+            top={position.top}
+            left={position.left}
+            delay={1 + index * 0.2}
+          >
+            <MarkerArrow>
+              <MarkerRound></MarkerRound>
+            </MarkerArrow>
+            <MarkerShadow delay={1 + index * 0.2}></MarkerShadow>
+          </MarkerContainer>
+        ))}
+      </IllustContainer>
+      <Title>{translations.page1.title}</Title>
+      <Desc>{translations.page1.desc}</Desc>
+    </Page1Layout>
+  );
+};
 
 export default Page1;

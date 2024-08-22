@@ -16,6 +16,18 @@ export const translations = {
       winter: "Win",
       plantList: "Plant List",
     },
+    page1: {
+      title: "Discover the plants around you!",
+      desc: "Check the locations of plants found by other users, and click on a marker to view the plant's photo and description.",
+    },
+    page2: {
+      title: "Take on the Quest!",
+      desc: "Check the seasonal plant list and try to find them.",
+    },
+    page3: {
+      title: "Start Your Plant Journal!",
+      desc: "Record your observations, and nearby members will be able to see your plant journal.",
+    },
     questStatus: {
       completedQuest: "Completed a quest",
       selectPlant: "Select a plant",
@@ -25,7 +37,6 @@ export const translations = {
       addLocation: "Add Location",
       locationAdded: "Location added",
     },
-
     plantNote: {
       createPost: "Create a post",
       post: "post",
@@ -59,6 +70,18 @@ export const translations = {
       autumn: "가을",
       winter: "겨울",
       plantList: "식물 목록",
+    },
+    page1: {
+      title: "내 주변의 식물을 찾아보세요!",
+      desc: "다른 사용자들이 발견한 식물들의 위치도 확인할 수 있고, 마커를 클릭하면 해당 식물의 사진과 설명을 볼 수 있어요.",
+    },
+    page2: {
+      title: "미션에 도전해보세요!",
+      desc: "계절별 식물 리스트를 확인하고, 그 식물들을 찾아보세요.",
+    },
+    page3: {
+      title: "식물 노트를 작성해보세요!",
+      desc: "식물에 대한 기록을 남기면, 주변의 멤버들이 내 식물 노트를 볼 수 있어요.",
     },
     questStatus: {
       completedQuest: "퀘스트 작성",

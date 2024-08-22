@@ -74,6 +74,7 @@ const StampBlock = styled.div`
   align-items: center;
   border-radius: 5px;
   box-shadow: 0px 5px 6px rgba(128, 128, 128, 0.3);
+  cursor: pointer;
 `;
 
 const ImgSticker = styled.img`
