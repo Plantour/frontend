@@ -9,6 +9,9 @@ export const translations = {
     mapComponent: {
       searchPlaces: "Search for places...",
     },
+    my: {
+      hello: "Hello!",
+    },
     seasons: {
       spring: "Spr",
       summer: "Sum",
@@ -63,6 +66,10 @@ export const translations = {
     },
     mapComponent: {
       searchPlaces: "장소 검색",
+    },
+    my: {
+      hello: "안녕하세요,",
+      title: " 님!",
     },
     seasons: {
       spring: "봄",

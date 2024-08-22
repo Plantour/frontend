@@ -49,7 +49,7 @@ const My = () => {
   const [error, setError] = useState("");
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
-  const { language } = useLanguage();
+  const { language, translations } = useLanguage();
 
   const handleSignOut = () => {
     console.log("Sign out triggered");
@@ -133,7 +133,12 @@ const My = () => {
 
   return (
     <MyLayout>
-      <h1>안녕하세요, {nickname}님!</h1>
+      <h1>{translations.my.hello}</h1>
+
+      <h1>
+        {nickname}
+        {language === "kr" && translations.my.title}
+      </h1>
       {isEditing ? (
         <>
           <NicknameInput
