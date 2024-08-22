@@ -143,7 +143,7 @@ const QuestStatus = () => {
     useRecoilState(selectedSeasonState);
   const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const { blockId } = useParams(); // URL에서 블록 번호를 가져옴
-  const [plant, setPlant] = useState(translations.questStatus.selectPlant);
+  const [plant, setPlant] = useState("");
   const [plantId, setPlantId] = useState(null);
   const [textData, setTextData] = useState(null);
   const [today, setToday] = useState(null);
@@ -239,8 +239,9 @@ const QuestStatus = () => {
       settingQuestData();
     } else {
       setDoesCompletedQuestExist(false);
+      setPlant(translations.questStatus.selectPlant);
     }
-  }, [blockId, questDataBySeason]);
+  }, [blockId, questDataBySeason, completedQuest, translations]);
 
   const handleTextChange = (event) => {
     const text = event.target.value;
