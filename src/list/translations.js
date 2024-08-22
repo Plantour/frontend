@@ -34,6 +34,7 @@ export const translations = {
     questStatus: {
       completedQuest: "Completed a quest",
       selectPlant: "Select a plant",
+      submit: "SUBMIT",
     },
     textArea: {
       addDescription: "Tell us about your discovery!",
@@ -93,6 +94,7 @@ export const translations = {
     questStatus: {
       completedQuest: "퀘스트 작성",
       selectPlant: "식물 선택",
+      submit: "제출",
     },
     textArea: {
       addDescription: "발견 스토리를 들려주세요!",
