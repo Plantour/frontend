@@ -414,7 +414,7 @@ const QuestStatus = () => {
               <div>{translations.questStatus.completedQuest}</div>
             </CancelBtnAndTextWrapper>
 
-            <PostBtn type="submit">{translations.questStaus.submit}</PostBtn>
+            <PostBtn type="submit">{translations.questStatus.submit}</PostBtn>
           </ButtonsContainer>
           <TextArea
             value={textData}
