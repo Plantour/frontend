@@ -49,6 +49,7 @@ export const translations = {
       post: "post",
       selectPlant: "Select a plant",
       confirmLocation: "Confirm Location",
+      alert: "Please log in to continue.",
     },
     plantNoteTextArea: {
       addTitle: "Add a title..",
@@ -112,6 +113,7 @@ export const translations = {
       post: "제출",
       selectPlant: "식물 선택",
       confirmLocation: "위치 확인",
+      alert: "로그인 후 이용해주세요.",
     },
     plantNoteTextArea: {
       addTitle: "제목을 작성해주세요.",
