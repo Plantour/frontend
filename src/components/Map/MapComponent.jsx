@@ -61,7 +61,7 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
     try {
       const url = `${API_URL}/api/quests/nearby?latitude=${latitude}&longitude=${longitude}`;
 
-      const response = await fetchData(url);
+      const response = await fetchData(url, "GET", language);
 
       console.log("fetched data:", response);
       setFetchedData(response.data);
