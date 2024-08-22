@@ -54,7 +54,7 @@ const Quest = () => {
     checkAuthentication();
   }, []);
 
-  //로그인 상태에 따라 데이터 받아오기
+  //데이터 받아오기 (로그인 안해도 데이터 받아와짐)
   useEffect(() => {
     const fetchStamps = async () => {
       try {
@@ -75,10 +75,9 @@ const Quest = () => {
         console.error("Error fetching data:", error);
       }
     };
-    if (isLoggedIn) {
-      fetchStamps();
-    }
-  }, [isLoggedIn, selectedSeason, language]);
+
+    fetchStamps();
+  }, [selectedSeason, language]);
 
   // URL 쿼리 파라미터에서 animateId를 가져오는 로직
   const location = useLocation();
