@@ -19,6 +19,9 @@ export const translations = {
       winter: "Win",
       plantList: "Plant List",
     },
+    stamp: {
+      alert: "Please log in to continue.",
+    },
     page1: {
       title: "Discover the plants around you!",
       desc: "Check the locations of plants found by other users, and click on a marker to view the plant's photo and description.",
@@ -78,6 +81,9 @@ export const translations = {
       autumn: "가을",
       winter: "겨울",
       plantList: "식물 목록",
+    },
+    stamp: {
+      alert: "로그인 후 이용해주세요.",
     },
     page1: {
       title: "내 주변의 식물을 찾아보세요!",

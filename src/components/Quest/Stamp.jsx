@@ -39,6 +39,7 @@ import quest_winter_06 from "../../assets/quest_winter_06.png";
 import quest_winter_07 from "../../assets/quest_winter_07.png";
 import quest_winter_08 from "../../assets/quest_winter_08.png";
 import quest_winter_09 from "../../assets/quest_winter_09.png";
+import { useLanguage } from "../../helpers/languageUtils";
 
 const fadeIn = keyframes`
   from {
@@ -136,6 +137,7 @@ const imageMap = {
 };
 
 const Stamp = ({ animateId, setAnimateId, isLoggedIn }) => {
+  const { translations } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
   const questDataBySeason = useRecoilValue(questDataState);
@@ -169,7 +171,7 @@ const Stamp = ({ animateId, setAnimateId, isLoggedIn }) => {
 
   const handleBlockClick = (blockId) => {
     if (!isLoggedIn) {
-      alert("로그인 후 이용해주세요");
+      alert(translations.stamp.alert);
       navigate("/login"); // 로그인 페이지로 이동
     } else {
       navigate(`/queststatus/${selectedSeason}/${blockId}`); // 해당 퀘스트 페이지로 이동
