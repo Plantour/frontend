@@ -113,17 +113,23 @@ const MapModal = ({ showModal, onClose, markerData }) => {
     return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
   };
 
+  //imageUrl에 https://가 없으면 앞에 붙여주기
+  const imageUrl = markerData.imageUrl;
+  const fullImageUrl = imageUrl.startsWith("http")
+    ? imageUrl
+    : `https://${imageUrl}`;
+
   return (
     <ModalOverlay>
       <ModalContent>
         <SectionTopContainer onClick={onClose}>
           <SectionTopLeft>
-            <div>{markerData.userName}</div>
+            <div>{markerData.nickName}</div>
             <div>{showDDMMYY(markerData.createdAt)}</div>
           </SectionTopLeft>
           <StyledIoCloseCircleOutline />
         </SectionTopContainer>
-        <Img src={markerData.imageUrl} alt="plant image"></Img>
+        <Img src={fullImageUrl} alt="plant image"></Img>
 
         <Title>
           {markerData.plantName && <span>{markerData.plantName}</span>}
