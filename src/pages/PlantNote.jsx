@@ -16,12 +16,17 @@ import PlantNoteTextArea from "../components/PlantNote/PlantNoteTextArea";
 import { IoMdClose } from "react-icons/io";
 import { useLanguage } from "../helpers/languageUtils";
 
-const PlantNoteForm = styled.form`
+const PageWrapper = styled.div`
   width: 100%;
   height: calc(
     100vh - 100px
   ); /* 100vh에서 Header와 Footer의 높이(50px씩)를 뺀 값 */
   position: relative;
+`;
+
+const PlantNoteForm = styled.form`
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,6 +120,7 @@ const PlantNote = () => {
   const [isPlantNoteImageValid, setIsPlantNoteImageValid] = useState(true);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [currentTextLength, setCurrentTextLength] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const navigate = useNavigate();
 
@@ -266,6 +272,42 @@ const PlantNote = () => {
     }
   };
 
+  const handleRedirectIfNotLoggedIn = (e) => {
+    if (!isLoggedIn) {
+      e.preventDefault(); // 기본 동작을 방지합니다.
+      alert(translations.plantNote.alert);
+      navigate("/"); // 메인 페이지로 리다이렉트합니다.
+    }
+  };
+
+  // 토큰 유효성 검사 및 로그인 상태 확인
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      let accessToken = localStorage.getItem("accessToken");
+      if (accessToken) {
+        try {
+          const response = await fetchData(
+            `${API_URL}/api/auth/check-token`,
+            "GET",
+            language
+          );
+          console.log("accesstoken유효성검사:", response);
+          if (response.data.valid) {
+            setIsLoggedIn(true);
+          } else {
+            setIsLoggedIn(false);
+          }
+        } catch (error) {
+          console.error("Error validating token:", error);
+          setIsLoggedIn(false); // 오류 발생 시 로그인 상태를 false로 설정
+        }
+      } else {
+        setIsLoggedIn(false); // 액세스 토큰이 없을 때도 false로 설정
+      }
+    };
+    checkAuthentication();
+  }, []);
+
   // Update validation states when form fields change
   useEffect(() => {
     if (formSubmitted) {
@@ -274,7 +316,7 @@ const PlantNote = () => {
   }, [title, plant, textData, imageBlob, markerPosition]);
 
   return (
-    <>
+    <PageWrapper onClick={handleRedirectIfNotLoggedIn}>
       {isMapOpen ? (
         <>
           <BtnMapClose type="button" onClick={handleBtnClose}>
@@ -326,7 +368,7 @@ const PlantNote = () => {
           {isMapOpen && <StyledMapComponent />}
         </PlantNoteForm>
       )}
-    </>
+    </PageWrapper>
   );
 };
 
