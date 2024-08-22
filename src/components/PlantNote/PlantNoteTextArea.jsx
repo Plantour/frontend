@@ -234,7 +234,7 @@ const PlantNoteTextArea = ({
       // 직접 입력 기능
       setIsInputOpen(true);
     } else if (option === "unknown") {
-      setPlant("모르겠음");
+      setPlant(translations.plantNoteTextArea.iDontKnow);
     }
     setIsModalOpen(false);
   };
