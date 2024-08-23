@@ -46,7 +46,7 @@ export const translations = {
       confirmLocation: "Confirm Location",
       noImgAvailable: "No image available",
       selectPlant: "Select a plant",
-      submit: "SUBMIT",
+      submit: "submit",
     },
     textArea: {
       addDescription: "Tell us about your discovery!",

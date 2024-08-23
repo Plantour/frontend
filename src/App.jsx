@@ -37,25 +37,27 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Layout>
-        <Header />
         {showLanding ? (
           <LandingPage onComplete={handleLandingComplete} />
         ) : (
-          <Routes>
-            <Route path="/" element={<Map />} />
-            <Route path="/quest" element={<Quest />} />
-            <Route path="/plantnote" element={<PlantNote />} />
-            <Route path="/my" element={<My />} />
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/queststatus/:selectedSeason/:blockId"
-              element={<QuestStatus />}
-            />
-            <Route path="/oauth/callback" element={<GoogleOAuthCallback />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Map />} />
+              <Route path="/quest" element={<Quest />} />
+              <Route path="/plantnote" element={<PlantNote />} />
+              <Route path="/my" element={<My />} />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/queststatus/:selectedSeason/:blockId"
+                element={<QuestStatus />}
+              />
+              <Route path="/oauth/callback" element={<GoogleOAuthCallback />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </>
         )}
-        <Footer />
       </Layout>
     </ThemeProvider>
   );
