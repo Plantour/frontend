@@ -152,6 +152,7 @@ const MapModal = ({ showModal, onClose, markerData }) => {
 
         <Title>
           {markerData.plantName && <span>{markerData.plantName}</span>}
+          <span>🌱</span>
           {markerData.title && <span>{markerData.title}</span>}
         </Title>
         <Content>{markerData.content}</Content>
