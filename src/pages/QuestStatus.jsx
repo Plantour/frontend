@@ -113,6 +113,12 @@ const PhotoCompletedQuest = styled.div`
   height: 375px;
 `;
 
+const ImgContainer = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const TitleWrapper = styled.div`
   width: 100%;
   height: 45px;
@@ -396,7 +402,7 @@ const QuestStatus = () => {
         <CompletedQuestViewContainer>
           <PhotoCompletedQuest>
             {imageBlob ? (
-              <img src={imageBlob} alt="Completed Quest Image" />
+              <ImgContainer src={imageBlob} alt="Completed Quest Image" />
             ) : (
               <div>{translations.questStatus.noImgAvailable}</div>
             )}
