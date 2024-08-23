@@ -149,7 +149,9 @@ const My = () => {
             onBlur={handleBlur} // 포커스가 벗어날 때 유효성 검사
           />
           {error && <ErrorMessage>{error}</ErrorMessage>}
-          <EditButton onClick={handleSaveNickname}>저장</EditButton>
+          <EditButton onClick={handleSaveNickname}>
+            {translations.my.save}
+          </EditButton>
         </>
       ) : (
         <>

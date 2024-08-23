@@ -77,7 +77,7 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
 
       const response = await fetchData(url, "GET", language);
 
-      console.log("fetched data:", response);
+      console.log("Quest fetched data:", response);
       setFetchedData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -89,9 +89,9 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
     try {
       const url = `${API_URL}/api/plant-notes/nearby?latitude=${latitude}&longitude=${longitude}`;
 
-      const response = await fetchData(url);
+      const response = await fetchData(url, "GET", language);
 
-      console.log("plantNoteFetchedDatafetched data:", response);
+      console.log("plantNote Fetched data:", response);
       setPlantNoteFetchedData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
