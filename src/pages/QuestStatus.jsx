@@ -279,7 +279,7 @@ const QuestStatus = () => {
   };
 
   const handleDate = (date) => {
-    setToday(showFormattedDate(date));
+    setToday(formatDate(date));
   };
 
   const handleBtnClose = () => {
