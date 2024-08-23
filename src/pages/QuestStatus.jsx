@@ -191,47 +191,6 @@ const QuestStatus = () => {
     }
   };
 
-  // const showDDMMYY = (dateStr) => {
-  //   // Date 객체로 변환
-  //   const dateObj = new Date(dateStr);
-
-  //   // 영국식 날짜 형식 (8th Aug 2024)
-  //   const day = dateObj.getDate();
-  //   const monthNames = [
-  //     "Jan",
-  //     "Feb",
-  //     "Mar",
-  //     "Apr",
-  //     "May",
-  //     "Jun",
-  //     "Jul",
-  //     "Aug",
-  //     "Sep",
-  //     "Oct",
-  //     "Nov",
-  //     "Dec",
-  //   ];
-  //   const month = monthNames[dateObj.getMonth()];
-  //   const year = dateObj.getFullYear();
-
-  //   // 서수 접미사 계산
-  //   const getOrdinalSuffix = (day) => {
-  //     if (day > 3 && day < 21) return "th"; // 4th - 20th
-  //     switch (day % 10) {
-  //       case 1:
-  //         return "st"; // 1st, 21st, 31st
-  //       case 2:
-  //         return "nd"; // 2nd, 22nd
-  //       case 3:
-  //         return "rd"; // 3rd, 23rd
-  //       default:
-  //         return "th"; // 4th, 5th, ...
-  //     }
-  //   };
-
-  //   return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
-  // };
-
   const completedQuest = questDataBySeason.completedQuests.find(
     (quest) => quest.puzzleNumber === parseInt(blockId, 10)
   );
@@ -281,7 +240,8 @@ const QuestStatus = () => {
   };
 
   const handleDate = (date) => {
-    setToday(formatDate(date));
+    const formattedDate = formatDate(date);
+    setToday(formattedDate);
   };
 
   const handleBtnClose = () => {
