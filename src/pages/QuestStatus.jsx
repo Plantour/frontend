@@ -214,7 +214,6 @@ const QuestStatus = () => {
       latitude: completedQuest.latitude,
       longitude: completedQuest.longitude,
     });
-    console.log("plant:", plant); //디버깅
   };
 
   // Check if there's a completed quest for this puzzleNumber
@@ -223,7 +222,7 @@ const QuestStatus = () => {
       settingQuestData();
     } else {
       setDoesCompletedQuestExist(false);
-      setPlant(translations.questStatus.selectPlant);
+      setPlant(completedQuest.plantName);
     }
   }, [blockId, questDataBySeason, completedQuest, translations]);
 
