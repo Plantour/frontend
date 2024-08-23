@@ -193,7 +193,6 @@ const TextArea = ({
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    console.log(isDropdownOpen); //함수가 비동기적으로 동작해서 열렸을때 false가 찍힘. 기능적으로는 이상이 없어서 수정하지 않음
   };
 
   // useEffect(() => {
