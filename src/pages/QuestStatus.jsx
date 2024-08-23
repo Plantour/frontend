@@ -427,7 +427,7 @@ const QuestStatus = () => {
           </PhotoCompletedQuest>
           <TitleWrapper>
             <PlantNameCompledtedQuest>{plant}</PlantNameCompledtedQuest>
-            <DateCompletedQuest>{today}</DateCompletedQuest>
+            <DateCompletedQuest>today</DateCompletedQuest>
           </TitleWrapper>
 
           <ContentCompletedQuest>{textData}</ContentCompletedQuest>
