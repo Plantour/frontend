@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import TextArea from "../components/Quest/TextArea";
 import CameraComponent from "../components/Quest/CameraComponent";
@@ -57,7 +57,7 @@ const CancelBtnAndTextWrapper = styled.div`
   color: black;
 `;
 
-const CancelBtnWrapper = styled(Link)`
+const CancelBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -265,6 +265,18 @@ const QuestStatus = () => {
     setIsMapOpen(false);
   };
 
+  const handleCancelClick = (e) => {
+    e.preventDefault(); // 기본 링크 동작을 막습니다.
+
+    const confirmed = window.confirm(
+      "작성 취소시 작성하던 글이 모두 사라집니다. 취소하시겠습니까?"
+    );
+
+    if (confirmed) {
+      navigate("/"); // 사용자가 확인을 누르면 루트 페이지로 리디렉션합니다.
+    }
+  };
+
   //유효성검사
   const validateForm = () => {
     setIsPlantValid(
@@ -405,7 +417,7 @@ const QuestStatus = () => {
         <QuestStatusForm onSubmit={handleSubmit}>
           <ButtonsContainer>
             <CancelBtnAndTextWrapper>
-              <CancelBtnWrapper to="/">
+              <CancelBtnWrapper onClick={handleCancelClick}>
                 <StyledIoMdClose />
               </CancelBtnWrapper>
               <div>{translations.questStatus.completedQuest}</div>
