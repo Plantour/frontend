@@ -14,13 +14,6 @@ const MyLayout = styled.div`
   justify-content: center;
 `;
 
-const LogoutButton = styled.button`
-  padding: 3px 10px;
-  font-size: 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-`;
-
 const EditButton = styled.button`
   margin-top: 10px;
   padding: 3px 10px;
@@ -34,6 +27,14 @@ const NicknameInput = styled.input`
   padding: 5px;
   font-size: 1rem;
   border-radius: 5px;
+`;
+
+const LogoutButton = styled.button`
+  margin-top: 10px;
+  padding: 3px 10px;
+  font-size: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
 `;
 
 const ErrorMessage = styled.p`
@@ -68,11 +69,11 @@ const My = () => {
   };
 
   const validateNickname = (nickname) => {
-    if (nickname.length < 3) {
-      return "닉네임은 최소 3글자 이상이어야 합니다.";
+    if (nickname.length < 2) {
+      return translations.my.nicknameMin;
     }
     if (nickname.length > 15) {
-      return "닉네임은 최대 15글자까지 입력할 수 있습니다.";
+      return translations.my.nicknameMax;
     }
     return "";
   };
@@ -152,11 +153,15 @@ const My = () => {
         </>
       ) : (
         <>
-          <EditButton onClick={handleEditNickname}>닉네임 수정</EditButton>
+          <EditButton onClick={handleEditNickname}>
+            {translations.my.editNickname}
+          </EditButton>
         </>
       )}
 
-      <LogoutButton onClick={handleSignOut}>Sign Out</LogoutButton>
+      <LogoutButton onClick={handleSignOut}>
+        {translations.my.signOut}
+      </LogoutButton>
     </MyLayout>
   );
 };
