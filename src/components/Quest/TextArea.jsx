@@ -135,6 +135,7 @@ const TextArea = ({
   formSubmitted,
   setIsLocationValid,
   currentTextLength,
+  today,
 }) => {
   const { translations, language } = useLanguage();
   const [selectedSeason, setSelectedSeason] =
@@ -144,7 +145,7 @@ const TextArea = ({
   const [seasonplantList, setSeasonplantList] = useState(mockSeasonPlantList);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const today = new Date();
+  const currentDate = new Date();
   // const formattedDate =
   //   language === "en"
   //     ? today.toLocaleDateString("en-GB", {
@@ -156,7 +157,7 @@ const TextArea = ({
   //         today.getMonth() + 1
   //       }월 ${today.getDate()}일`;
 
-  handleDate(today);
+  handleDate(currentDate);
 
   // const handleTextChange = (e) => {
   //   onChange(e);
