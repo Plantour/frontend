@@ -427,6 +427,7 @@ const QuestStatus = () => {
             setIsTextValid={setIsTextValid}
             currentTextLength={currentTextLength}
             setCurrentTextLength={setCurrentTextLength}
+            today={today}
           />
           <CameraComponent
             imageBlob={imageBlob}
