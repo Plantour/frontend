@@ -1,16 +1,20 @@
 export const translations = {
   en: {
     menu: {
-      my: "MY",
       map: "MAP",
-      quest: "QUEST",
+      my: "MY",
       plantNote: "PLANT NOTE",
+      quest: "QUEST",
     },
     mapComponent: {
       searchPlaces: "Search for places...",
     },
     my: {
+      editNickname: "Edit Nickname",
       hello: "Hello!",
+      nicknameMin: "Nickname must be at least 2 characters long.",
+      nicknameMax: "Nickname can be up to 15 characters long.",
+      signOut: "Sign Out",
     },
     seasons: {
       spring: "Spr",
@@ -77,7 +81,11 @@ export const translations = {
       searchPlaces: "장소 검색",
     },
     my: {
+      editNickname: "Edit Nickname",
       hello: "안녕하세요,",
+      nicknameMin: "닉네임은 최소 2자 이상이어야 합니다.",
+      nicknameMax: "닉네임은 최대 15자까지 입력할 수 있습니다.",
+      signOut: "로그아웃",
       title: " 님!",
     },
     seasons: {
