@@ -35,11 +35,13 @@ export const translations = {
       desc: "Record your observations, and nearby members will be able to see your plant journal.",
     },
     questStatus: {
+      cancelConfirm:
+        "All your current work will be lost. Are you sure you want to cancel?",
       completedQuest: "Completed a quest",
-      selectPlant: "Select a plant",
-      submit: "SUBMIT",
       confirmLocation: "Confirm Location",
       noImgAvailable: "No image available",
+      selectPlant: "Select a plant",
+      submit: "SUBMIT",
     },
     textArea: {
       addDescription: "Tell us about your discovery!",
@@ -101,11 +103,12 @@ export const translations = {
       desc: "식물에 대한 기록을 남기면, 주변의 멤버들이 내 식물 노트를 볼 수 있어요.",
     },
     questStatus: {
+      cancelConfirm: "작성 중인 내용이 모두 사라집니다. 취소하시겠습니까?",
       completedQuest: "퀘스트 작성",
-      selectPlant: "식물 선택",
-      submit: "제출",
       confirmLocation: "위치 확인",
       noImgAvailable: "이미지가 없습니다.",
+      selectPlant: "식물 선택",
+      submit: "제출",
     },
     textArea: {
       addDescription: "발견 스토리를 들려주세요!",

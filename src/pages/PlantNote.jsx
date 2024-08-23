@@ -280,6 +280,16 @@ const PlantNote = () => {
     }
   };
 
+  const handleCancelClick = (e) => {
+    e.preventDefault();
+
+    const confirmed = window.confirm(translations.questStatus.cancelConfirm);
+
+    if (confirmed) {
+      navigate("/"); // 사용자가 확인을 누르면 루트 페이지로 리디렉션합니다.
+    }
+  };
+
   // 토큰 유효성 검사 및 로그인 상태 확인
   useEffect(() => {
     const checkAuthentication = async () => {
@@ -331,7 +341,7 @@ const PlantNote = () => {
         <PlantNoteForm onSubmit={handleSubmit}>
           <ButtonsContainer>
             <CancelBtnAndTextWrapper>
-              <CancelBtnWrapper to="/">
+              <CancelBtnWrapper onClick={handleCancelClick}>
                 <StyledIoMdClose />
               </CancelBtnWrapper>
               <div>{translations.plantNote.createPost}</div>
