@@ -57,7 +57,7 @@ const LanguageText = styled.span`
   top: 50%;
   transform: translateY(-50%);
   ${(props) => (props.isKorean ? "right: 10px;" : "left: 10px;")}
-  color: ${(props) => (props.isActive ? "black" : "#ffd700")};
+  color: ${(props) => (props.isActive ? "black" : "#50e32b")};
   font-weight: ${(props) => (props.isActive ? "normal" : "bold")};
   transition: color 0.3s ease;
   pointer-events: none;

@@ -102,6 +102,10 @@ const Page3Layout = styled.div`
   gap: 5px;
 `;
 
+const TextContainer = styled.div`
+  height: 110px;
+`;
+
 const Title = styled.h1`
   font-size: 1rem;
 `;
@@ -116,8 +120,10 @@ const Page3 = () => {
   return (
     <Page3Layout>
       <AnimatedIllustration />
-      <Title>{translations.page3.title}</Title>
-      <Desc>{translations.page3.desc}</Desc>
+      <TextContainer>
+        <Title>{translations.page3.title}</Title>
+        <Desc>{translations.page3.desc}</Desc>
+      </TextContainer>
     </Page3Layout>
   );
 };

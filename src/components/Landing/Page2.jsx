@@ -95,6 +95,10 @@ const Attribution = styled.div`
   color: grey;
 `;
 
+const TextContainer = styled.div`
+  height: 110px;
+`;
+
 const Title = styled.h1`
   font-size: 1rem;
 `;
@@ -177,8 +181,10 @@ const Page2 = () => {
         </GridContainer>
         <Attribution>designed by Freepik</Attribution>
       </IllustContainer>
-      <Title>{translations.page2.title}</Title>
-      <Desc>{translations.page2.desc}</Desc>
+      <TextContainer>
+        <Title>{translations.page2.title}</Title>
+        <Desc>{translations.page2.desc}</Desc>
+      </TextContainer>
     </Page2Layout>
   );
 };

@@ -142,6 +142,10 @@ const MarkerShadow = styled.div`
   animation-delay: ${(props) => props.delay}s;
 `;
 
+const TextContainer = styled.div`
+  height: 110px;
+`;
+
 const Title = styled.h1`
   font-size: 1rem;
 `;
@@ -152,11 +156,11 @@ const Desc = styled.p`
 
 // 마커 위치 데이터
 const markerPositions = [
-  { top: "45%", left: "30%" },
-  { top: "30%", left: "60%" },
-  { top: "70%", left: "20%" },
-  { top: "60%", left: "80%" },
-  { top: "20%", left: "40%" },
+  { top: "40%", left: "30%" },
+  { top: "25%", left: "60%" },
+  { top: "65%", left: "20%" },
+  { top: "55%", left: "80%" },
+  { top: "15%", left: "40%" },
 ];
 
 const Page1 = () => {
@@ -187,8 +191,10 @@ const Page1 = () => {
             </MarkerContainer>
           ))}
         </IllustContainer>
-        <Title>{translations.page1.title}</Title>
-        <Desc>{translations.page1.desc}</Desc>
+        <TextContainer>
+          <Title>{translations.page1.title}</Title>
+          <Desc>{translations.page1.desc}</Desc>
+        </TextContainer>
       </Page1Layout>
     </Page1Layout>
   );

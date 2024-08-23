@@ -3,17 +3,25 @@ import styled from "styled-components";
 import Page1 from "../components/Landing/Page1";
 import Page2 from "../components/Landing/Page2";
 import Page3 from "../components/Landing/Page3";
+import LanguageToggle from "../components/Header/LanguageToggle";
 
 const pages = [Page1, Page2, Page3];
 
 const LandingPageLayout = styled.div`
   width: 100%;
-  height: calc(100vh - 100px);
-  background-color: white
+  height: 100vh;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const ToggleContainer = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: end;
+  padding: 5px 0;
 `;
 
 const ButtonContainer = styled.div`
@@ -35,7 +43,6 @@ const NextButton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-
   &:hover {
     background-color: #66dddd;
   }
@@ -76,6 +83,10 @@ const LandingPage = ({ onComplete }) => {
 
   return (
     <LandingPageLayout>
+      <ToggleContainer>
+        <LanguageToggle />
+      </ToggleContainer>
+
       <CurrentPageComponent />
       <ButtonContainer>
         {currentPage < pages.length - 1 ? (

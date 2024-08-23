@@ -139,7 +139,32 @@ const CameraComponent = ({
     photo.height = height;
 
     let ctx = photo.getContext("2d");
-    ctx.drawImage(video, 0, 0, width, height);
+
+    // Calculate aspect ratio
+    const aspectRatio = video.videoWidth / video.videoHeight;
+
+    let drawWidth, drawHeight, startX, startY;
+
+    if (aspectRatio > 1) {
+      // Landscape orientation
+      drawHeight = height;
+      drawWidth = video.videoWidth * (height / video.videoHeight);
+      startX = (width - drawWidth) / 2;
+      startY = 0;
+    } else {
+      // Portrait or square orientation
+      drawWidth = width;
+      drawHeight = video.videoHeight * (width / video.videoWidth);
+      startX = 0;
+      startY = (height - drawHeight) / 2;
+    }
+
+    // Clear the canvas before drawing
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw the image
+    ctx.drawImage(video, startX, startY, drawWidth, drawHeight);
+
     setHasPhoto(true);
 
     // Convert canvas image to Blob
@@ -148,7 +173,7 @@ const CameraComponent = ({
       onImageCapture(blob); // Callback to parent component with Blob
       if (formSubmitted) {
         // Validate image on capture after form submission
-        setIsQuestImageValid(!!imageBlob);
+        setIsQuestImageValid(!!blob);
       }
     }, "image/jpeg"); // MIME type 지정
   };
