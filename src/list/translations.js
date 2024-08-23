@@ -38,6 +38,8 @@ export const translations = {
       completedQuest: "Completed a quest",
       selectPlant: "Select a plant",
       submit: "SUBMIT",
+      confirmLocation: "Confirm Location",
+      noImgAvailable: "No image available",
     },
     textArea: {
       addDescription: "Tell us about your discovery!",
@@ -102,6 +104,8 @@ export const translations = {
       completedQuest: "퀘스트 작성",
       selectPlant: "식물 선택",
       submit: "제출",
+      confirmLocation: "위치 확인",
+      noImgAvailable: "이미지가 없습니다.",
     },
     textArea: {
       addDescription: "발견 스토리를 들려주세요!",
