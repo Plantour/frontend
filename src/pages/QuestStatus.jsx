@@ -51,13 +51,13 @@ const ButtonsContainer = styled.div`
   }
 `;
 
-const CancelBtnAndTextWrapper = styled(Link)`
+const CancelBtnAndTextWrapper = styled.div`
   display: flex;
   font-weight: bold;
   color: black;
 `;
 
-const CancelBtnWrapper = styled.div`
+const CancelBtnWrapper = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
