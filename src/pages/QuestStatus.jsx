@@ -214,7 +214,7 @@ const QuestStatus = () => {
       latitude: completedQuest.latitude,
       longitude: completedQuest.longitude,
     });
-    console.log("Formatted date:", today); //디버깅
+    console.log("plant:", plant); //디버깅
   };
 
   // Check if there's a completed quest for this puzzleNumber
