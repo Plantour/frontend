@@ -248,7 +248,7 @@ const TextArea = ({
         maxLength={100} // 글자 수 제한 설정
       />
       <DateLocationContainer>
-        {formattedDate}/{" "}
+        {today}/{" "}
         <AddLocationBtn
           type="button"
           onClick={locationBtnClickHandler}
