@@ -175,7 +175,7 @@ const QuestStatus = () => {
   const navigate = useNavigate();
 
   // 언어에 따라 날짜 형식 변경
-  const showFormattedDate = (dateStr) => {
+  const formatDate = (dateStr) => {
     const dateObj = new Date(dateStr);
 
     if (language === "en") {
@@ -249,7 +249,7 @@ const QuestStatus = () => {
       : `https://${imageUrl}`;
     setImageBlob(fullImageUrl);
     setTextData(completedQuest.content);
-    setToday(completedQuest.completedAt);
+    setToday(formatDate(completedQuest.completedAt));
     setMarkerPosition({
       latitude: completedQuest.latitude,
       longitude: completedQuest.longitude,
