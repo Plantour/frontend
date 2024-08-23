@@ -51,7 +51,7 @@ const ButtonsContainer = styled.div`
   }
 `;
 
-const CancelBtnAndTextWrapper = styled.div`
+const CancelBtnAndTextWrapper = styled(Link)`
   display: flex;
   font-weight: bold;
   color: black;
@@ -374,7 +374,7 @@ const QuestStatus = () => {
       {isMapOpen ? (
         <>
           <BtnMapClose type="button" onClick={handleBtnClose}>
-            Confirm Location
+            {translations.questStatus.confirmLocation}
           </BtnMapClose>
           <StyledMapComponent
             markerPosition={markerPosition}
@@ -388,7 +388,7 @@ const QuestStatus = () => {
             {imageBlob ? (
               <img src={imageBlob} alt="Completed Quest Image" />
             ) : (
-              <div>No image available</div>
+              <div>{translations.questStatus.noImgAvailable}</div>
             )}
           </PhotoCompletedQuest>
           <TitleWrapper>
