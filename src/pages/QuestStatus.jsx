@@ -249,7 +249,7 @@ const QuestStatus = () => {
       : `https://${imageUrl}`;
     setImageBlob(fullImageUrl);
     setTextData(completedQuest.content);
-    setToday(new Date(completedQuest.completedAt));
+    setToday(completedQuest.completedAt);
     setMarkerPosition({
       latitude: completedQuest.latitude,
       longitude: completedQuest.longitude,
