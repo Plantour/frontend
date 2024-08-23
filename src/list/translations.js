@@ -14,6 +14,7 @@ export const translations = {
       hello: "Hello!",
       nicknameMin: "Nickname must be at least 2 characters long.",
       nicknameMax: "Nickname can be up to 15 characters long.",
+      save: "Save",
       signOut: "Sign Out",
     },
     seasons: {
@@ -85,6 +86,7 @@ export const translations = {
       hello: "안녕하세요,",
       nicknameMin: "닉네임은 최소 2자 이상이어야 합니다.",
       nicknameMax: "닉네임은 최대 15자까지 입력할 수 있습니다.",
+      save: "저장",
       signOut: "로그아웃",
       title: " 님!",
     },
