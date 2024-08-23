@@ -98,7 +98,7 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
     }
   };
 
-  // 사용자의 위치정보 받아오기
+  // 사용자의 위치정보 받아오기 및 언어 변경시 데이터 재요청
   useEffect(() => {
     const getLocation = () => {
       if (navigator.geolocation) {
@@ -130,7 +130,7 @@ export default function MapComponent({ markerPosition, setMarkerPosition }) {
     };
 
     getLocation();
-  }, []);
+  }, [language]);
 
   const handleMarkerClick = (quest) => {
     setSelectedMarkerData(quest);
