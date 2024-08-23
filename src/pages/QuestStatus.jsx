@@ -222,7 +222,7 @@ const QuestStatus = () => {
       settingQuestData();
     } else {
       setDoesCompletedQuestExist(false);
-      setPlant(completedQuest.plantName);
+      setPlant(translations.questStatus.selectPlant);
     }
   }, [blockId, questDataBySeason, completedQuest, translations]);
 
@@ -359,9 +359,9 @@ const QuestStatus = () => {
   }, [plant, textData, imageBlob, markerPosition]);
 
   // 언어 변경 시 plant 상태 업데이트
-  useEffect(() => {
-    setPlant(translations.questStatus.selectPlant);
-  }, [translations]);
+  //useEffect(() => {
+  //  setPlant(translations.questStatus.selectPlant);
+  //}, [translations]);
 
   return (
     <>
