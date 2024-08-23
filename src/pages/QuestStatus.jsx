@@ -249,7 +249,8 @@ const QuestStatus = () => {
       : `https://${imageUrl}`;
     setImageBlob(fullImageUrl);
     setTextData(completedQuest.content);
-    setToday(formatDate(completedQuest.completedAt));
+    const formattedDate = formatDate(completedQuest.completedAt);
+    setToday(formattedDate);
     setMarkerPosition({
       latitude: completedQuest.latitude,
       longitude: completedQuest.longitude,
@@ -427,9 +428,7 @@ const QuestStatus = () => {
           </PhotoCompletedQuest>
           <TitleWrapper>
             <PlantNameCompledtedQuest>{plant}</PlantNameCompledtedQuest>
-            <DateCompletedQuest>
-              {formatDate(completedQuest.completedAt)}
-            </DateCompletedQuest>
+            <DateCompletedQuest>{today}</DateCompletedQuest>
           </TitleWrapper>
 
           <ContentCompletedQuest>{textData}</ContentCompletedQuest>
