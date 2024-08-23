@@ -145,18 +145,18 @@ const TextArea = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const today = new Date();
-  const formattedDate =
-    language === "en"
-      ? today.toLocaleDateString("en-GB", {
-          day: "numeric",
-          month: "short",
-          year: "numeric",
-        })
-      : `${today.getFullYear()}년 ${
-          today.getMonth() + 1
-        }월 ${today.getDate()}일`;
+  // const formattedDate =
+  //   language === "en"
+  //     ? today.toLocaleDateString("en-GB", {
+  //         day: "numeric",
+  //         month: "short",
+  //         year: "numeric",
+  //       })
+  //     : `${today.getFullYear()}년 ${
+  //         today.getMonth() + 1
+  //       }월 ${today.getDate()}일`;
 
-  handleDate(formattedDate);
+  handleDate(today);
 
   // const handleTextChange = (e) => {
   //   onChange(e);
