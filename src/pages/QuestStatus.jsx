@@ -144,9 +144,11 @@ const ContentCompletedQuest = styled.p`
 //작성된 글이 있을 경우 받아오고 없으면 글작성 UI띄우기
 const QuestStatus = () => {
   const { language, translations } = useLanguage();
-  const questDataBySeason = useRecoilValue(questDataState);
+
   const [selectedSeason, setSelectedSeason] =
     useRecoilState(selectedSeasonState);
+  const [questDataBySeason, setQuestDataBySeason] =
+    useRecoilState(questDataState);
   const [userLocation, setUserLocation] = useRecoilState(userLocationState);
   const { blockId } = useParams(); // URL에서 블록 번호를 가져옴
   const [plant, setPlant] = useState("");
