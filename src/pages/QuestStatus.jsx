@@ -358,10 +358,43 @@ const QuestStatus = () => {
     }
   }, [plant, textData, imageBlob, markerPosition]);
 
-  // 언어 변경 시 plant 상태 업데이트
-  //useEffect(() => {
-  //  setPlant(translations.questStatus.selectPlant);
-  //}, [translations]);
+  //QuestStatus에서 언어 변경시 데이터 받아오기 위함
+  useEffect(() => {
+    const fetchQuestData = async () => {
+      try {
+        const response = await fetchData(
+          `${API_URL}/api/quests?season=${selectedSeason}`,
+          "GET",
+          language
+        );
+        if (response.data) {
+          setQuestDataBySeason(response.data);
+          console.log("questDataBySeason", response.data);
+        } else {
+          console.log("no data");
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchQuestData();
+  }, [selectedSeason, language, setQuestDataBySeason]);
+
+  //QuestStatus에서 언어 변경시 데이터 받아오기 위함
+  useEffect(() => {
+    if (questDataBySeason.completedQuests) {
+      const completedQuest = questDataBySeason.completedQuests.find(
+        (quest) => quest.puzzleNumber === parseInt(blockId, 10)
+      );
+      if (completedQuest) {
+        settingQuestData(completedQuest);
+      } else {
+        setDoesCompletedQuestExist(false);
+        setPlant(translations.questStatus.selectPlant);
+      }
+    }
+  }, [blockId, questDataBySeason, translations]);
 
   return (
     <>
