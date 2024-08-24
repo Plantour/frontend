@@ -230,11 +230,12 @@ const PlantNoteTextArea = ({
   const handleModalOptionSelect = (option) => {
     if (option === "list") {
       setIsAllFlowerListModalOpen(true);
+      setIsInputOpen(false); //list 를 선택하면 입력필드 닫기
     } else if (option === "input") {
-      // 직접 입력 기능
-      setIsInputOpen(true);
+      setIsInputOpen(true); //input을 선택하면 입력필드 열기
     } else if (option === "unknown") {
       setPlant(translations.plantNoteTextArea.iDontKnow);
+      setIsInputOpen(false); //unknown 을 선택하면 입력필드 닫기
     }
     setIsModalOpen(false);
   };
@@ -248,7 +249,7 @@ const PlantNoteTextArea = ({
       setPlant(inputValue);
     }
     setInputValue(""); // 입력 필드를 초기화
-    setIsInputOpen(false); // 입력 모달 닫기
+    //setIsInputOpen(false); // 입력 모달 닫기
   };
 
   useEffect(() => {
