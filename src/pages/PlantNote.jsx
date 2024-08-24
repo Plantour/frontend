@@ -135,9 +135,6 @@ const PlantNote = () => {
   const handleImageChange = (blob) => {
     setImageBlob(blob);
   };
-  // const handleImageChange = (dataURL) => {
-  //   setImageDataURL(dataURL);
-  // };
 
   const handleDate = (date) => {
     setToday(date);
@@ -145,7 +142,6 @@ const PlantNote = () => {
 
   const handleBtnClose = () => {
     setMarkerPosition(userLocation);
-    console.log("marker position:", markerPosition);
     setIsMapOpen(false);
   };
 
@@ -171,48 +167,6 @@ const PlantNote = () => {
     if (!validateForm()) {
       return;
     }
-
-    // //유효성검사
-    // let isValid = true;
-
-    // if (!title.trim()) {
-    //   setIsTitleValid(false);
-    //   isValid = false;
-    // } else {
-    //   setIsTitleValid(true);
-    // }
-
-    // if (!plant || plant === "Select a plant" || plant === "식물 선택") {
-    //   setIsPlantValid(false);
-    //   isValid = false;
-    // } else {
-    //   setIsPlantValid(true);
-    // }
-
-    // if (!textData || textData.trim().length === 0) {
-    //   setIsTextValid(false);
-    //   isValid = false;
-    // } else {
-    //   setIsTextValid(true);
-    // }
-
-    // if (!imageBlob) {
-    //   setIsPlantNoteImageValid(false);
-    //   isValid = false;
-    // } else {
-    //   setIsPlantNoteImageValid(true);
-    // }
-
-    // if (!markerPosition.latitude || !markerPosition.longitude) {
-    //   setIsLocationValid(false);
-    //   isValid = false;
-    // } else {
-    //   setIsLocationValid(true);
-    // }
-
-    // if (!isValid) {
-    //   return; // 유효성 검사 실패 시 제출 중단
-    // }
 
     // Determine infoType and plantInfo based on plant state
     let infoType = "";
@@ -274,19 +228,20 @@ const PlantNote = () => {
 
   const handleRedirectIfNotLoggedIn = (e) => {
     if (!isLoggedIn) {
-      e.preventDefault(); // 기본 동작을 방지합니다.
+      e.preventDefault();
       alert(translations.plantNote.alert);
-      navigate("/"); // 메인 페이지로 리다이렉트합니다.
+      navigate("/"); // 메인 페이지로 리다이렉트
     }
   };
 
+  //글 작성 취소 버튼 클릭시
   const handleCancelClick = (e) => {
     e.preventDefault();
 
     const confirmed = window.confirm(translations.questStatus.cancelConfirm);
 
     if (confirmed) {
-      navigate("/"); // 사용자가 확인을 누르면 루트 페이지로 리디렉션합니다.
+      navigate("/");
     }
   };
 
@@ -327,7 +282,7 @@ const PlantNote = () => {
 
   return (
     <PageWrapper onClick={handleRedirectIfNotLoggedIn}>
-      {isMapOpen ? (
+      {isMapOpen && (
         <>
           <BtnMapClose type="button" onClick={handleBtnClose}>
             {translations.plantNote.confirmLocation}
@@ -337,47 +292,46 @@ const PlantNote = () => {
             setMarkerPosition={setMarkerPosition}
           />
         </>
-      ) : (
-        <PlantNoteForm onSubmit={handleSubmit}>
-          <ButtonsContainer>
-            <CancelBtnAndTextWrapper>
-              <CancelBtnWrapper onClick={handleCancelClick}>
-                <StyledIoMdClose />
-              </CancelBtnWrapper>
-              <div>{translations.plantNote.createPost}</div>
-            </CancelBtnAndTextWrapper>
-
-            <PostBtn type="submit">{translations.plantNote.post}</PostBtn>
-          </ButtonsContainer>
-          <PlantNoteTextArea
-            value={textData}
-            onChange={handleTextChange}
-            handleDate={handleDate}
-            plant={plant}
-            setPlant={setPlant}
-            setPlantId={setPlantId}
-            isMapOpen={isMapOpen}
-            setIsMapOpen={setIsMapOpen}
-            markerPosition={markerPosition}
-            title={title}
-            setTitle={setTitle}
-            isTitleValid={isTitleValid}
-            isPlantValid={isPlantValid}
-            isTextValid={isTextValid}
-            isLocationValid={isLocationValid}
-            currentTextLength={currentTextLength}
-          />
-          <CameraComponent
-            imageBlob={imageBlob}
-            setImageBlob={setImageBlob}
-            onImageCapture={handleImageChange}
-            isPlantNoteImageValid={isPlantNoteImageValid}
-            setIsPlantNoteImageValid={setIsPlantNoteImageValid}
-            formSubmitted={formSubmitted}
-          />
-          {isMapOpen && <StyledMapComponent />}
-        </PlantNoteForm>
       )}
+      <PlantNoteForm onSubmit={handleSubmit}>
+        <ButtonsContainer>
+          <CancelBtnAndTextWrapper>
+            <CancelBtnWrapper onClick={handleCancelClick}>
+              <StyledIoMdClose />
+            </CancelBtnWrapper>
+            <div>{translations.plantNote.createPost}</div>
+          </CancelBtnAndTextWrapper>
+
+          <PostBtn type="submit">{translations.plantNote.post}</PostBtn>
+        </ButtonsContainer>
+        <PlantNoteTextArea
+          value={textData}
+          onChange={handleTextChange}
+          handleDate={handleDate}
+          plant={plant}
+          setPlant={setPlant}
+          setPlantId={setPlantId}
+          isMapOpen={isMapOpen}
+          setIsMapOpen={setIsMapOpen}
+          markerPosition={markerPosition}
+          title={title}
+          setTitle={setTitle}
+          isTitleValid={isTitleValid}
+          isPlantValid={isPlantValid}
+          isTextValid={isTextValid}
+          isLocationValid={isLocationValid}
+          currentTextLength={currentTextLength}
+        />
+        <CameraComponent
+          imageBlob={imageBlob}
+          setImageBlob={setImageBlob}
+          onImageCapture={handleImageChange}
+          isPlantNoteImageValid={isPlantNoteImageValid}
+          setIsPlantNoteImageValid={setIsPlantNoteImageValid}
+          formSubmitted={formSubmitted}
+        />
+        {isMapOpen && <StyledMapComponent />}
+      </PlantNoteForm>
     </PageWrapper>
   );
 };
