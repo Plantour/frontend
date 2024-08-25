@@ -118,7 +118,7 @@ const Page2 = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % 9);
-    }, 3000);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, []);
@@ -144,8 +144,8 @@ const Page2 = () => {
             newState[currentIndex] = true;
             return newState;
           });
-        }, 300);
-      }, 2000);
+        }, 150);
+      }, 1000);
 
       return () => clearTimeout(clickTimeout);
     }
