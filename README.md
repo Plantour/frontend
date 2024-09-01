@@ -24,17 +24,32 @@
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)
 ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078d7?style=flat&logo=visual%20studio%20code&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
+<br>
+<br>
 
 ## Deploy
 
 ▶[https://plantour.site/](https://plantour.site/)
+<br>
+<br>
 
 ## Develop Period
 
 1st July 2024 ~
+<br>
+<br>
 
 ## Member
 
+BE: 최영규
+FE: 민예빈
+<br>
+<br>
+
 ## App Screenshots
 
-Home
+**Home**
+
+**Quest**
+
+**Plantour**
