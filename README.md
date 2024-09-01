@@ -1,12 +1,13 @@
 # Plantour
 
 Explore the Plants in Your Neighborhood!  
-우리 동네 식물을 찾아 떠나는 집 앞 탐험!  
 -Discover seasonal plants and complete fun missions.  
--계절마다 다양한 식물을 찾아 미션을 수행하세요.  
 -Record the plants you find around you and share them with other users.  
+-Check out the plants others have already found on the map.
+
+우리 동네 식물을 찾아 떠나는 집 앞 탐험!  
+-계절마다 다양한 식물을 찾아 미션을 수행하세요.  
 -내 주변에서 발견한 식물을 기록하고, 다른 사용자들과 공유할 수 있어요.  
--Check out the plants others have already found on the map.  
 -지도에서 다른 사용자들이 발견한 식물들을 확인할 수 있어요.
 
 ## Stack
