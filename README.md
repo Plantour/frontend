@@ -49,22 +49,12 @@ FE: 민예빈
 ## App Screenshots
 
 **Home**
-
-<div style="display: flex; flex-wrap: wrap; justify-content: start gap:10px;">
-  
-    <img src="src/assets/readme_home_1.jpg" style="width: 30%;">
-    <img src="src/assets/readme_home_2.jpg" style="width: 30%; margin-top: 10px;">
-  
-  
-</div>
-![Home1](src/assets/readme_home_1.jpg)
-![Home2](src/assets/readme_home_2.jpg)
+![Home](src/assets/readme_home.jpg)
 <br>
 
 **Quest**
-![Quest1](src/assets/readme_quest_1.jpg)
-![Quest2](src/assets/readme_quest_2.jpg)
+![Quest](src/assets/readme_quest.jpg)
 <br>
 
 **Plantour**
-![Plantour](src/assets/readme_plantour_1.jpg)
+![Plantour](src/assets/readme_plantour.jpg)
