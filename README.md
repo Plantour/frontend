@@ -50,6 +50,15 @@ FE: 민예빈
 
 **Home**
 
+<div style="display: flex; flex-wrap: wrap; justify-content: start gap:10px;">
+  
+    <img src="src/assets/readme_home_1.jpg" style="width: 30%;">
+    <img src="src/assets/readme_home_2.jpg" style="width: 30%; margin-top: 10px;">
+  
+  
+</div>
+![Home1](src/assets/readme_home_1.jpg)
+![Home2](src/assets/readme_home_2.jpg)
 <br>
 
 **Quest**
