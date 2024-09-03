@@ -49,12 +49,15 @@ FE: 민예빈
 ## App Screenshots
 
 **Home**
+<br>
 ![Home](src/assets/readme_home.jpg)
 <br>
 
 **Quest**
+<br>
 ![Quest](src/assets/readme_quest.jpg)
 <br>
 
 **Plantour**
+<br>
 ![Plantour](src/assets/readme_plantour.jpg)
