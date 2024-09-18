@@ -41,8 +41,8 @@
 
 ## Member
 
-BE: 최영규
-FE: 민예빈
+FE: Yebin Min  
+BE: Young-kyu Choi   
 <br>
 <br>
 
