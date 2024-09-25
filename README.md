@@ -1,4 +1,4 @@
-# Plantour
+# 🌱 Plantour
 
 **Explore the Plants in Your Neighborhood!**
 
@@ -37,7 +37,7 @@
 
 ## Develop Period
 
-1st July 2024 ~
+1 July 2024 – 23 August 2024
 <br>
 <br>
 
